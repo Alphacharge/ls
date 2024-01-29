@@ -1,4 +1,4 @@
-name: ls Continuous Integration
+name: compile test
 
 on:
   pull_request:
