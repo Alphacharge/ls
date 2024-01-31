@@ -14,7 +14,7 @@ CFLAGS	+=	-MMD
 VPATH	:=	src/
 
 SRC_F	:=	main.c
-#SRC_F	+=	
+SRC_F	+=	bubblesort.c
 
 ###			###			OBJECTS			###			###
 OBJ_D	:=	./obj
