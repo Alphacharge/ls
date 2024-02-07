@@ -15,11 +15,17 @@ void	ft_error(t_data *data, unsigned int code)
 			ft_free(data);
 			ft_printf("folder malloc error\n");
 			exit (++code);
-		// case 3:
-		// 	while (data && data->folders)
-		// 		ft_free(data->folders++);
-		// 	ft_free(data);
-		// 	ft_printf("folder malloc error\n");
-		// 	exit (++code);
+		case 3:
+			ft_free_tree(data->tree);
+			ft_free_array((void **)data->folders);
+			ft_free(data);
+			ft_printf("tree creation malloc error\n");
+			exit (++code);
+		case 4:
+			ft_free_tree(data->tree);
+			ft_free_array((void **)data->folders);
+			ft_free(data);
+			ft_printf("lstat error\n");
+			exit (++code);
 	}
 }

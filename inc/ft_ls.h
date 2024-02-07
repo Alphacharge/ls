@@ -32,8 +32,8 @@ typedef enum e_type
 typedef struct s_file
 {
 	t_type			type;
-	// struct stat		*stat;
-	// struct s_data	*data;
+	struct stat		stat;
+	struct s_data	*data;
 	struct s_file	*sub;
 	struct s_file	*next;
 }				t_file;
@@ -58,6 +58,7 @@ typedef struct s_data
 {
 	unsigned short	*flags;
 	char			**folders;
+	DIR				*dirref;
 	t_file			*tree;
 }				t_data;
 
@@ -65,12 +66,15 @@ typedef struct s_data
 bool	is_option(char *argv);
 void	get_options(t_data *data, char* argv);
 void	parsing(t_data *data, int argc, char **argv);
+void	set_file_type(t_file *node, unsigned char type);
+void	generate_tree(t_data *data, t_file **treelvl, DIR *ref);
 
 //error
 void	ft_error(t_data *data, unsigned int code);
 
 //cleanup
 void	ft_free(void *tofree);
+void	ft_free_tree(t_file	*tree);
 
 void	bubblesort(char **input, int n, bool direction);
 

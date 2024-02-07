@@ -25,9 +25,10 @@ int main(int argc, char** argv) {
 	ft_printf("options:\ta:%d,l:%d,t:%d,R:%d,r:%d\n", F_ISSET((*data->flags), F_ALL), F_ISSET((*data->flags), F_LONG), F_ISSET((*data->flags), F_MTIME), F_ISSET((*data->flags), F_RECURSIVE), F_ISSET((*data->flags), F_REVERSE));
 	for (int i = 0; data && data->folders && data->folders[i]; i++)
 		ft_printf("item: %s\n", data->folders[i]);
-	exit (0);
 
-	
+	// data->dirref = opendir(data->folders[0]);
+	generate_tree(data, &data->tree, opendir(data->folders[0]));
+	exit (0);
 
 	// for (int i = 1; folder != NULL; ++i, folder = argv[i]){
 	// 	DIR* ref = opendir(folder);

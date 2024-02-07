@@ -19,7 +19,10 @@ SRC_F	+=	is_option.c
 SRC_F	+=	get_options.c
 SRC_F	+=	ft_error.c
 SRC_F	+=	ft_free.c
+SRC_F	+=	ft_free_tree.c
 SRC_F	+=	parsing.c
+SRC_F	+=	generate_tree.c
+SRC_F	+=	set_file_type.c
 
 ###			###			OBJECTS			###			###
 OBJ_D	:=	./obj
