@@ -7,11 +7,6 @@ t_data	*init_data(unsigned short *bitmask)
 	data = ft_calloc(1, sizeof(t_data));
 	if (data == NULL)
 		ft_error(NULL, 0);
-	data->all = false;
-	data->mtime = false;
-	data->recursive = false;
-	data->reversed = false;
-	data->longformat = false;
 	data->flags = bitmask;
 	data->folders = NULL;
 	data->tree = NULL;
@@ -25,9 +20,9 @@ int main(int argc, char** argv) {
 	data = init_data(&bitmask);
 	parsing(data, argc, argv);
 	//needs probably to be moved after the tree
-	bubblesort(data->folders, ft_arraycount(data->folders), data->reversed);
+	bubblesort(data->folders, ft_arraycount(data->folders), F_ISSET(*(data->flags), F_REVERSE));
 
-	ft_printf("options:\ta:%d,l:%d,u:%d,R:%d,r:%d\n", data->all, data->longformat, data->mtime, data->recursive, data->reversed);
+	ft_printf("options:\ta:%d,l:%d,t:%d,R:%d,r:%d\n", F_ISSET((*data->flags), F_ALL), F_ISSET((*data->flags), F_LONG), F_ISSET((*data->flags), F_MTIME), F_ISSET((*data->flags), F_RECURSIVE), F_ISSET((*data->flags), F_REVERSE));
 	for (int i = 0; data && data->folders && data->folders[i]; i++)
 		ft_printf("item: %s\n", data->folders[i]);
 	exit (0);

@@ -22,21 +22,21 @@
 #  define OFFSET dir->d_seekoff
 # endif
 
-// typedef enum e_type
-// {
-// 	_DIR,
-// 	_FILE,
-// 	_LINK,
-// }			t_type;
+typedef enum e_type
+{
+	_DIR,
+	_FILE,
+	_LINK,
+}			t_type;
 
-// typedef struct s_file
-// {
-// 	t_type			type;
-// 	// struct stat		*stat;
-// 	// struct s_data	*data;
-// 	struct s_file	*sub;
-// 	struct s_file	*next;
-// }				t_file;
+typedef struct s_file
+{
+	t_type			type;
+	// struct stat		*stat;
+	// struct s_data	*data;
+	struct s_file	*sub;
+	struct s_file	*next;
+}				t_file;
 
 # define F_ALL			(1 << 0)	//-a
 # define F_LONG			(1 << 1)	//-l
@@ -50,17 +50,15 @@
 # define F_NUMID		(1 << 9)	//-n
 # define F_COLOR		(1 << 10)	//-G
 
+# define F_SET(mask, flag)		((mask) |= (flag))
+# define F_CLEAR(mask, flag)	((mask) &= ~(flag))
+# define F_ISSET(mask, flag)	!!((mask) & (flag))
+
 typedef struct s_data
 {
-	bool	all;
-	bool	reversed;
-	bool	recursive;
-	bool	mtime;
-	bool	longformat;
-
 	unsigned short	*flags;
 	char			**folders;
-	// t_file			*tree;
+	t_file			*tree;
 }				t_data;
 
 //parsing

@@ -4,15 +4,15 @@ void	get_options(t_data *data, char* argv)
 {
 	while (data && argv && *argv) {
 		if (*argv == 'l')
-			data->longformat = true;
+			F_SET(*(data->flags), F_LONG);
 		else if (*argv == 'a')
-			data->all = true;
+			F_SET(*(data->flags), F_ALL);
 		else if (*argv == 'u')
-			data->mtime = true;
+			F_SET(*(data->flags), F_MTIME);
 		else if (*argv == 'R')
-			data->recursive = true;
+			F_SET(*(data->flags), F_RECURSIVE);
 		else if (*argv == 'r')
-			data->reversed = true;
+			F_SET(*(data->flags), F_REVERSE);
 		argv++;
 	}
 }
