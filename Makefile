@@ -7,14 +7,19 @@ OS		:=	$(shell uname)
 CC		:=	cc
 CFLAGS	:=	-Wall -Wextra -Werror
 CFLAGS	+=	-MMD
-#CFLAGS	+=	-g 
-#CFLAGS	+=	-fsanitize=address
+CFLAGS	+=	-g 
+CFLAGS	+=	-fsanitize=address
 
 ###			###			SOURCES			###			###
-VPATH	:=	src/
+VPATH	:=	src/ src/options src/error src/cleanup src/parsing
 
 SRC_F	:=	main.c
 SRC_F	+=	bubblesort.c
+SRC_F	+=	is_option.c
+SRC_F	+=	get_options.c
+SRC_F	+=	ft_error.c
+SRC_F	+=	ft_free.c
+SRC_F	+=	parsing.c
 
 ###			###			OBJECTS			###			###
 OBJ_D	:=	./obj
