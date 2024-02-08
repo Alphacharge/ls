@@ -27,7 +27,10 @@ int main(int argc, char** argv) {
 		ft_printf("item: %s\n", data->folders[i]);
 
 	// data->dirref = opendir(data->folders[0]);
-	generate_tree(data, &data->tree, opendir(data->folders[0]));
+	int	i = 0;
+	while (data->folders[i] != NULL) {
+		generate_tree(data, &data->tree, opendir(data->folders[i++]));
+	}
 	exit (0);
 
 	// for (int i = 1; folder != NULL; ++i, folder = argv[i]){
