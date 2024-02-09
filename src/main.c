@@ -29,7 +29,8 @@ int main(int argc, char** argv) {
 	// data->dirref = opendir(data->folders[0]);
 	int	i = 0;
 	while (data->folders[i] != NULL) {
-		generate_tree(data, &data->tree, opendir(data->folders[i++]));
+		generate_tree(data, &data->tree, data->folders[i], opendir(data->folders[i]));
+		i++;
 	}
 	exit (0);
 

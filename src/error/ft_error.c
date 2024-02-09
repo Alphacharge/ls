@@ -25,7 +25,13 @@ void	ft_error(t_data *data, unsigned int code)
 			ft_free_tree(data->tree);
 			ft_free_array((void **)data->folders);
 			ft_free(data);
-			ft_printf("lstat error\n");
+			ft_printf("No such file or directory.\n");
+			exit (++code);
+		case 5:
+			ft_free_tree(data->tree);
+			ft_free_array((void **)data->folders);
+			ft_free(data);
+			ft_printf("couldn't join path.\n");
 			exit (++code);
 	}
 }
