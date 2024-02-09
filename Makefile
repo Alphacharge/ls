@@ -12,6 +12,7 @@ CFLAGS	+=	-fsanitize=address
 
 ###			###			SOURCES			###			###
 VPATH	:=	src/ src/options src/error src/cleanup src/parsing
+VPATH	+=	src/sorting src/printing
 
 SRC_F	:=	main.c
 SRC_F	+=	bubblesort.c
@@ -23,6 +24,7 @@ SRC_F	+=	ft_free_tree.c
 SRC_F	+=	parsing.c
 SRC_F	+=	generate_tree.c
 SRC_F	+=	set_file_type.c
+SRC_F	+=	print_tree.c
 
 ###			###			OBJECTS			###			###
 OBJ_D	:=	./obj
