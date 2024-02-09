@@ -22,9 +22,9 @@ int main(int argc, char** argv) {
 	//needs probably to be moved after the tree
 	bubblesort(data->folders, ft_arraycount(data->folders), F_ISSET(*(data->flags), F_REVERSE));
 
-	ft_printf("options:\ta:%d,l:%d,t:%d,R:%d,r:%d\n", F_ISSET((*data->flags), F_ALL), F_ISSET((*data->flags), F_LONG), F_ISSET((*data->flags), F_MTIME), F_ISSET((*data->flags), F_RECURSIVE), F_ISSET((*data->flags), F_REVERSE));
-	for (int i = 0; data && data->folders && data->folders[i]; i++)
-		ft_printf("item: %s\n", data->folders[i]);
+	// ft_printf("options:\ta:%d,l:%d,t:%d,R:%d,r:%d\n", F_ISSET((*data->flags), F_ALL), F_ISSET((*data->flags), F_LONG), F_ISSET((*data->flags), F_MTIME), F_ISSET((*data->flags), F_RECURSIVE), F_ISSET((*data->flags), F_REVERSE));
+	// for (int i = 0; data && data->folders && data->folders[i]; i++)
+		// ft_printf("item: %s\n", data->folders[i]);
 
 	// data->dirref = opendir(data->folders[0]);
 	int	i = 0;
@@ -32,6 +32,8 @@ int main(int argc, char** argv) {
 		generate_tree(data, &data->tree, data->folders[i], opendir(data->folders[i]));
 		i++;
 	}
+	// ft_printf("start printing:\n");
+	print_tree(data->tree, 0);
 	exit (0);
 
 	// for (int i = 1; folder != NULL; ++i, folder = argv[i]){

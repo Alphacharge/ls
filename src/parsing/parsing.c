@@ -24,9 +24,10 @@ void	parsing(t_data *data, int argc, char **argv)
 			if (argv[i][0] == '/' || argv[i][0] == '.')
 				data->folders[j] = ft_strdup(argv[i++]);
 			else
-				data->folders[j] = ft_strjoin("./", argv[i++]);
+				data->folders[j] = ft_strdup(argv[i++]);
 			if (data->folders[j++] == NULL)
 				ft_error(data, 2);
 		}
 	}
+	// print_array(data->folders);
 }

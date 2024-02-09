@@ -5,6 +5,8 @@ void	ft_free_tree(t_file	*tree)
 	t_file	*tmp;
 	while (tree) {
 		tmp = tree;
+		ft_free(tree->fullpath_name);
+		ft_free(tree->name);
 		if (tree->sub)
 			ft_free_tree(tree->sub);
 		tree = tree->next;

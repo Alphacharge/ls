@@ -25,6 +25,7 @@ SRC_F	+=	parsing.c
 SRC_F	+=	generate_tree.c
 SRC_F	+=	set_file_type.c
 SRC_F	+=	print_tree.c
+SRC_F	+=	print_array.c
 
 ###			###			OBJECTS			###			###
 OBJ_D	:=	./obj

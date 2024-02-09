@@ -32,6 +32,10 @@ typedef enum e_type
 typedef struct s_file
 {
 	t_type			type;
+	char			*path;
+	char			*name;
+	char			*fullpath_name;
+	unsigned int	length;
 	struct stat		stat;
 	struct s_data	*data;
 	struct s_file	*sub;
@@ -67,7 +71,7 @@ bool	is_option(char *argv);
 void	get_options(t_data *data, char* argv);
 void	parsing(t_data *data, int argc, char **argv);
 void	set_file_type(t_file *node, unsigned char type);
-void	generate_tree(t_data *data, t_file **treelvl, DIR *ref);
+void	generate_tree(t_data *data, t_file **treelvl, char *path, DIR *ref);
 
 //error
 void	ft_error(t_data *data, unsigned int code);
@@ -75,6 +79,10 @@ void	ft_error(t_data *data, unsigned int code);
 //cleanup
 void	ft_free(void *tofree);
 void	ft_free_tree(t_file	*tree);
+
+//printing
+void	print_tree(t_file *tree, int lvl);
+void	print_array(char **array);
 
 void	bubblesort(char **input, int n, bool direction);
 
