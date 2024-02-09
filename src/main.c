@@ -33,6 +33,7 @@ int main(int argc, char** argv) {
 		i++;
 	}
 	// ft_printf("start printing:\n");
+	data->tree = mergesortlist(data->tree);
 	print_tree(data->tree, 0);
 	exit (0);
 

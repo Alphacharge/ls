@@ -12,14 +12,18 @@ void	generate_tree(t_data *data, t_file **treelvl, char *path, DIR *ref)
 		new->fullpath_name = NULL;
 		new->data = data;
 		new->length = 0;
+		new->listsize = 1;
 		if (*treelvl == NULL){
 			*treelvl = new;
 			// ft_printf("/%s\n", new->name);
 		}
 		else {
 			t_file	*last = *treelvl;
-			while (last && last->next)
+			while (last && last->next){
 				last = last->next;
+				(*treelvl)->listsize++;
+			}
+			(*treelvl)->listsize += 2;
 			last->next = new;
 		}
 		struct dirent *dir = readdir(ref);

@@ -16,6 +16,7 @@ VPATH	+=	src/sorting src/printing
 
 SRC_F	:=	main.c
 SRC_F	+=	bubblesort.c
+SRC_F	+=	mergesort.c
 SRC_F	+=	is_option.c
 SRC_F	+=	get_options.c
 SRC_F	+=	ft_error.c

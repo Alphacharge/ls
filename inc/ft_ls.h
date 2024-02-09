@@ -36,6 +36,7 @@ typedef struct s_file
 	char			*name;
 	char			*fullpath_name;
 	unsigned int	length;
+	unsigned int	listsize;
 	struct stat		stat;
 	struct s_data	*data;
 	struct s_file	*sub;
@@ -85,5 +86,7 @@ void	print_tree(t_file *tree, int lvl);
 void	print_array(char **array);
 
 void	bubblesort(char **input, int n, bool direction);
+t_file	*merge(t_file *left, t_file *right);
+t_file	*mergesortlist(t_file *tree);
 
 #endif
