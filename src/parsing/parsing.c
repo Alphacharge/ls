@@ -7,7 +7,9 @@ void	parsing(t_data *data, int argc, char **argv)
 
 	while (argv && i < argc && argv[i] && is_option(argv[i]))
 		get_options(data, argv[i++]);
-	if (argv[i] == NULL) {
+	//only options without parameter
+	if (argv[i] == NULL)
+	{
 		data->folders = malloc(2 * sizeof(char*));
 		if (data->folders == NULL)
 			ft_error(data, 1);
@@ -15,16 +17,17 @@ void	parsing(t_data *data, int argc, char **argv)
 		if (data->folders[0] == NULL)
 			ft_error(data, 2);
 		data->folders[1] = NULL;
-	} else {
+	}
+	//parameter
+	else
+	{
 		data->folders = ft_calloc(argc, sizeof(char*));
 		if (data->folders == NULL)
 			ft_error(data, 1);
 		data->folders[argc - 1] = NULL;
-		while (argv && i < argc && j < argc && argv[i] && !is_option(argv[i])) {
-			if (argv[i][0] == '/' || argv[i][0] == '.')
-				data->folders[j] = ft_strdup(argv[i++]);
-			else
-				data->folders[j] = ft_strdup(argv[i++]);
+		while (argv && i < argc && j < argc && argv[i] && !is_option(argv[i]))
+		{
+			data->folders[j] = ft_strdup(argv[i++]);
 			if (data->folders[j++] == NULL)
 				ft_error(data, 2);
 		}

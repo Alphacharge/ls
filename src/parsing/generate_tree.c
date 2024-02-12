@@ -17,13 +17,15 @@ void	generate_tree(t_data *data, t_file **treelvl, char *path, DIR *ref)
 			*treelvl = new;
 			// ft_printf("/%s\n", new->name);
 		}
-		else {
+		else
+		{
 			t_file	*last = *treelvl;
-			while (last && last->next){
+			while (last && last->next)
+			{
 				last = last->next;
 				(*treelvl)->listsize++;
 			}
-			(*treelvl)->listsize += 2;
+			(*treelvl)->listsize++;
 			last->next = new;
 		}
 		struct dirent *dir = readdir(ref);
@@ -47,11 +49,6 @@ void	generate_tree(t_data *data, t_file **treelvl, char *path, DIR *ref)
 			break;
 		}
 	}
-	// 	for (int i = 0; data->folders[i]; i++) {
-	// 	new->next = NULL;
-	// 	DIR	*dir = opendir(data->folders[i]);
-	// 	if (dir == NULL)
-	// 	if (dir.)
-		
-	// }
+	if (ref == NULL)
+		ft_error(data, 6);
 }
