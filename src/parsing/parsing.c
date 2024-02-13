@@ -21,7 +21,7 @@ void	parsing(t_data *data, int argc, char **argv)
 	//parameter
 	else
 	{
-		data->folders = ft_calloc(argc, sizeof(char*));
+		data->folders = malloc(argc * sizeof(char*));
 		if (data->folders == NULL)
 			ft_error(data, 1);
 		data->folders[argc - 1] = NULL;
@@ -32,5 +32,4 @@ void	parsing(t_data *data, int argc, char **argv)
 				ft_error(data, 2);
 		}
 	}
-	// print_array(data->folders);
 }
