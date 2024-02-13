@@ -2,23 +2,23 @@
 
 void	print_tree(t_file *tree, int lvl)
 {
-	// ft_printf("++%s\t%s\t%s\n", tree->name, tree->path, tree->fullpath_name);
 	t_file	*this = tree;
 	unsigned int	length;
 
 	while (this) {
-		if (this->type == _DIR && this->data && F_ISSET(*(this->data->flags), F_RECURSIVE) && this->name && ft_strcmp(this->name, ".") && ft_strcmp(this->name, ".."))
+		if (this->type == _DIR && this->data && F_ISSET(*(this->data->flags), F_RECURSIVE) && this->name && (!is_dotfile(this->name) || print_dotfile(this->data->flags, this->name)))
 			ft_printf("./%s:\n", this->fullpath_name);
-		if (this->sub) {
-			print_tree(this->sub, ++lvl);
-		}
-		if (this->name && this->data && (this->name[0] != '.' || (this->name[0] == '.' && F_ISSET(*(this->data->flags), F_ALL))))
+		if (this->name && this->data && (!is_dotfile(this->name) || (is_dotfile(this->name) && F_ISSET(*(this->data->flags), F_ALL))))
 			ft_printf("%s", this->name);
-		if (this && this->name && (ft_strcmp(this->name, ".") && ft_strcmp(this->name, ".."))){
+		if (this && this->name && !is_special_dir(this->name))
+		{
 			length = this->length;
 			while (length++ % 4)
 				ft_printf(" ");
 			ft_printf("\t");
+		}
+		if (this->sub && this->name && this->data && (!is_dotfile(this->name) || print_dotfile(this->data->flags, this->name))) {
+			print_tree(this->sub, ++lvl);
 		}
 		this = this->next;
 		if (this == NULL){
