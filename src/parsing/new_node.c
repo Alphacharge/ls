@@ -6,7 +6,9 @@ t_file	*new_node(t_data *data)
 	if (new == NULL)
 		return NULL;
 	new->next = NULL;
+	new->sub = NULL;
 	new->name = NULL;
+	new->path = NULL;
 	new->fullpath_name = NULL;
 	new->data = data;
 	new->length = 0;
