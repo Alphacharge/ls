@@ -1,0 +1,15 @@
+tests
+src
+obj
+lib
+inc
+ft_ls
+README.md
+Makefile
+LICENSE
+.vscode
+.gitignore
+.github
+.git
+..
+.

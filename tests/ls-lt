@@ -1,0 +1,10 @@
+total 256
+drwxr-xr-x  12 rbetz  2021_heilbronn    408 Feb 13 12:42 tests
+-rwxr-xr-x   1 rbetz  2021_heilbronn  80176 Feb 13 11:25 ft_ls
+drwxr-xr-x  42 rbetz  2021_heilbronn   1428 Feb 13 11:25 obj
+-rw-r--r--   2 rbetz  2021_heilbronn   5703 Feb 13 11:06 Makefile
+drwxr-xr-x   3 rbetz  2021_heilbronn    102 Feb 12 09:38 inc
+drwxr-xr-x   9 rbetz  2021_heilbronn    306 Feb 12 09:38 src
+drwxr-xr-x   3 rbetz  2021_heilbronn    102 Jan 29 10:09 lib
+-rw-r--r--   1 rbetz  2021_heilbronn  35149 Jan 24 10:30 LICENSE
+-rw-r--r--   1 rbetz  2021_heilbronn     54 Jan 24 10:30 README.md

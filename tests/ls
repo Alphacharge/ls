@@ -1,0 +1,9 @@
+LICENSE
+Makefile
+README.md
+ft_ls
+inc
+lib
+obj
+src
+tests
