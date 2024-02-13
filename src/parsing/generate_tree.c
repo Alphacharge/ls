@@ -32,10 +32,16 @@ void	generate_tree(t_data *data, t_file **treelvl, char *path, DIR *ref)
 			if (lstat(new->fullpath_name, &new->stat) < 0)
 				ft_error(data, 4);
 			if (SYSTEM && OFFSET > 2 && F_ISSET(*(data->flags), F_RECURSIVE) && new->type == _DIR)
-				generate_tree(data, &new->sub, new->fullpath_name, opendir(new->fullpath_name));
+			{
+				DIR	*dir = opendir(new->fullpath_name);
+				if (dir == NULL)
+					ft_error(data, 6);
+				generate_tree(data, &new->sub, new->fullpath_name, dir);
+			}
 		} else {
 			break;
 		}
 	}
+	closedir(ref);
 	(*treelvl)->listsize = listsize(*treelvl);
 }

@@ -26,8 +26,10 @@ int main(int argc, char** argv) {
 	//generate, sort, print and free tree for every parameter
 	int	i = 0;
 	while (data->folders[i] != NULL) {
-		generate_tree(data, &data->tree, data->folders[i], opendir(data->folders[i]));
-		// print_debug_tree(data->tree, 0);
+		DIR	*dir = opendir(data->folders[i]);
+		if (dir == NULL)
+			ft_error(data, 6);
+		generate_tree(data, &data->tree, data->folders[i], dir);
 		data->tree = mergesortlist(data->tree);
 		print_tree(data->tree, 1);
 	exit (0);
