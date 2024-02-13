@@ -27,10 +27,11 @@ int main(int argc, char** argv) {
 	int	i = 0;
 	while (data->folders[i] != NULL) {
 		generate_tree(data, &data->tree, data->folders[i], opendir(data->folders[i]));
+		// print_debug_tree(data->tree, 0);
 		data->tree = mergesortlist(data->tree);
-		print_tree(data->tree, 0);
-		ft_free_tree(data->tree);
+		print_tree(data->tree, 1);
 	exit (0);
+		ft_free_tree(data->tree);
 		i++;
 	}
 

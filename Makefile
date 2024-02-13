@@ -17,15 +17,18 @@ VPATH	+=	src/sorting src/printing
 SRC_F	:=	main.c
 SRC_F	+=	bubblesort.c
 SRC_F	+=	mergesort.c
-SRC_F	+=	is_option.c
+SRC_F	+=	is_option.c is_dotfile.c is_special_dir.c
 SRC_F	+=	get_options.c
 SRC_F	+=	ft_error.c
 SRC_F	+=	ft_free.c
 SRC_F	+=	ft_free_tree.c
-SRC_F	+=	parsing.c
+SRC_F	+=	listsize.c
+SRC_F	+=	listlast.c
+SRC_F	+=	parsing.c new_node.c
 SRC_F	+=	generate_tree.c
 SRC_F	+=	set_file_type.c
-SRC_F	+=	print_tree.c
+SRC_F	+=	print_tree.c print_dotfile.c
+SRC_F	+=	print_debug_tree.c
 SRC_F	+=	print_array.c
 
 ###			###			OBJECTS			###			###
