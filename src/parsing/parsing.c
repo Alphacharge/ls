@@ -21,7 +21,7 @@ void	parsing(t_data *data, int argc, char **argv)
 	//parameter
 	else
 	{
-		data->folders = malloc(argc * sizeof(char*));
+		data->folders = ft_calloc(argc, sizeof(char*));
 		if (data->folders == NULL)
 			ft_error(data, 1);
 		data->folders[argc - 1] = NULL;
