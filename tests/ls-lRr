@@ -1,52 +1,69 @@
-total 256
-drwxr-xr-x  19 rbetz  2021_heilbronn    646 Feb 13 12:44 tests
+total 456
+drwxr-xr-x  26 rbetz  2021_heilbronn    884 Feb 13 12:45 tests
+drwxr-xr-x   6 rbetz  2021_heilbronn    204 Feb 13 13:08 testfolder
 drwxr-xr-x   9 rbetz  2021_heilbronn    306 Feb 12 09:38 src
-drwxr-xr-x  42 rbetz  2021_heilbronn   1428 Feb 13 11:25 obj
+-rw-r--r--   1 rbetz  2021_heilbronn  96149 Feb 13 15:59 out
+drwxr-xr-x  42 rbetz  2021_heilbronn   1428 Feb 13 15:21 obj
 drwxr-xr-x   3 rbetz  2021_heilbronn    102 Jan 29 10:09 lib
 drwxr-xr-x   3 rbetz  2021_heilbronn    102 Feb 12 09:38 inc
--rwxr-xr-x   1 rbetz  2021_heilbronn  80176 Feb 13 11:25 ft_ls
+-rwxr-xr-x   1 rbetz  2021_heilbronn    929 Feb 13 16:01 gen_test.sh
+-rwxr-xr-x   1 rbetz  2021_heilbronn  80272 Feb 13 15:21 ft_ls
 -rw-r--r--   1 rbetz  2021_heilbronn     54 Jan 24 10:30 README.md
 -rw-r--r--   2 rbetz  2021_heilbronn   5703 Feb 13 11:06 Makefile
 -rw-r--r--   1 rbetz  2021_heilbronn  35149 Jan 24 10:30 LICENSE
 
 ./tests:
-total 160
--rw-r--r--  1 rbetz  2021_heilbronn     55 Feb 13 12:41 ls-t
--rw-r--r--  1 rbetz  2021_heilbronn   2895 Feb 13 12:41 ls-r
--rw-r--r--  1 rbetz  2021_heilbronn    578 Feb 13 12:42 ls-lt
--rw-r--r--  1 rbetz  2021_heilbronn      0 Feb 13 12:44 ls-lRr
--rw-r--r--  1 rbetz  2021_heilbronn    578 Feb 13 12:42 ls-lR
--rw-r--r--  1 rbetz  2021_heilbronn    578 Feb 13 12:41 ls-l
--rw-r--r--  1 rbetz  2021_heilbronn     92 Feb 13 12:42 ls-at
--rw-r--r--  1 rbetz  2021_heilbronn    957 Feb 13 12:43 ls-alt
--rw-r--r--  1 rbetz  2021_heilbronn    957 Feb 13 12:43 ls-alR
--rw-r--r--  1 rbetz  2021_heilbronn    957 Feb 13 12:42 ls-al
--rw-r--r--  1 rbetz  2021_heilbronn     92 Feb 13 12:44 ls-aRt
--rw-r--r--  1 rbetz  2021_heilbronn  19855 Feb 13 12:44 ls-aRr
--rw-r--r--  1 rbetz  2021_heilbronn     92 Feb 13 12:42 ls-aR
--rw-r--r--  1 rbetz  2021_heilbronn     92 Feb 13 12:41 ls-a
--rw-r--r--  1 rbetz  2021_heilbronn     55 Feb 13 12:43 ls-Rt
--rw-r--r--  1 rbetz  2021_heilbronn   2936 Feb 13 12:43 ls-Rr
--rw-r--r--  1 rbetz  2021_heilbronn     55 Feb 13 12:41 ls
+total 664
+-rw-r--r--  1 rbetz  2021_heilbronn     82 Feb 13 16:01 ls-t
+-rw-r--r--  1 rbetz  2021_heilbronn   3237 Feb 13 16:01 ls-r
+-rw-r--r--  1 rbetz  2021_heilbronn    776 Feb 13 16:01 ls-lt
+-rw-r--r--  1 rbetz  2021_heilbronn    801 Feb 13 15:51 ls-lRt
+-rw-r--r--  1 rbetz  2021_heilbronn  16916 Feb 13 15:51 ls-lRrt
+-rw-r--r--  1 rbetz  2021_heilbronn      0 Feb 13 16:01 ls-lRr
+-rw-r--r--  1 rbetz  2021_heilbronn    776 Feb 13 16:01 ls-lR
+-rw-r--r--  1 rbetz  2021_heilbronn    776 Feb 13 16:01 ls-l
+-rw-r--r--  1 rbetz  2021_heilbronn    119 Feb 13 16:01 ls-at
+-rw-r--r--  1 rbetz  2021_heilbronn   1155 Feb 13 16:01 ls-alt
+-rw-r--r--  1 rbetz  2021_heilbronn   1192 Feb 13 15:51 ls-alRt
+-rw-r--r--  1 rbetz  2021_heilbronn  96186 Feb 13 15:51 ls-alRrt
+-rw-r--r--  1 rbetz  2021_heilbronn  96186 Feb 13 15:51 ls-alRr
+-rw-r--r--  1 rbetz  2021_heilbronn   1155 Feb 13 16:01 ls-alR
+-rw-r--r--  1 rbetz  2021_heilbronn   1155 Feb 13 16:01 ls-al
+-rw-r--r--  1 rbetz  2021_heilbronn    119 Feb 13 16:01 ls-aRt
+-rw-r--r--  1 rbetz  2021_heilbronn  22181 Feb 13 15:51 ls-aRrt
+-rw-r--r--  1 rbetz  2021_heilbronn  22181 Feb 13 16:01 ls-aRr
+-rw-r--r--  1 rbetz  2021_heilbronn    119 Feb 13 16:01 ls-aR
+-rw-r--r--  1 rbetz  2021_heilbronn    119 Feb 13 16:01 ls-a
+-rw-r--r--  1 rbetz  2021_heilbronn     82 Feb 13 16:01 ls-Rt
+-rw-r--r--  1 rbetz  2021_heilbronn   3237 Feb 13 15:51 ls-Rrt
+-rw-r--r--  1 rbetz  2021_heilbronn   3237 Feb 13 16:01 ls-Rr
+-rw-r--r--  1 rbetz  2021_heilbronn     82 Feb 13 16:01 ls
+
+./testfolder:
+total 0
+-rw-r--r--  1 rbetz  2021_heilbronn  0 Feb 13 13:08 1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+-rw-r--r--  1 rbetz  2021_heilbronn  0 Feb 13 13:06 12345678901234567890123456789012345678901234567890
+-rw-r--r--  1 rbetz  2021_heilbronn  0 Feb 13 13:03 12345
+-rw-r--r--  1 rbetz  2021_heilbronn  0 Feb 13 13:03 1234
 
 ./src:
 total 8
-drwxr-xr-x   4 rbetz  2021_heilbronn  136 Feb 12 09:38 sorting
+drwxr-xr-x   4 rbetz  2021_heilbronn  136 Feb 13 14:58 sorting
 drwxr-xr-x   6 rbetz  2021_heilbronn  204 Feb 12 17:40 printing
 drwxr-xr-x  10 rbetz  2021_heilbronn  340 Feb 13 10:56 parsing
 drwxr-xr-x   4 rbetz  2021_heilbronn  136 Feb  7 09:40 options
--rw-r--r--   1 rbetz  2021_heilbronn  858 Feb 12 14:03 main.c
+-rw-r--r--   1 rbetz  2021_heilbronn  879 Feb 13 14:58 main.c
 drwxr-xr-x   3 rbetz  2021_heilbronn  102 Feb  7 09:43 error
 drwxr-xr-x   4 rbetz  2021_heilbronn  136 Feb  7 15:58 cleanup
 
 ./src/sorting:
 total 16
 -rw-r--r--  1 rbetz  2021_heilbronn  1175 Feb 13 10:47 mergesort.c
--rw-r--r--  1 rbetz  2021_heilbronn   449 Feb  7 10:26 bubblesort.c
+-rw-r--r--  1 rbetz  2021_heilbronn   449 Feb 13 14:58 bubblesort.c
 
 ./src/printing:
 total 32
--rw-r--r--  1 rbetz  2021_heilbronn  979 Feb 13 12:35 print_tree.c
+-rw-r--r--  1 rbetz  2021_heilbronn  979 Feb 13 14:58 print_tree.c
 -rw-r--r--  1 rbetz  2021_heilbronn  165 Feb 12 17:42 print_dotfile.c
 -rw-r--r--  1 rbetz  2021_heilbronn  447 Feb 12 13:45 print_debug_tree.c
 -rw-r--r--  1 rbetz  2021_heilbronn  160 Feb  9 11:13 print_array.c
@@ -54,13 +71,13 @@ total 32
 ./src/parsing:
 total 64
 -rw-r--r--  1 rbetz  2021_heilbronn   195 Feb  7 16:53 set_file_type.c
--rw-r--r--  1 rbetz  2021_heilbronn   809 Feb 13 11:02 parsing.c
+-rw-r--r--  1 rbetz  2021_heilbronn   811 Feb 13 14:18 parsing.c
 -rw-r--r--  1 rbetz  2021_heilbronn   304 Feb 13 11:25 new_node.c
 -rw-r--r--  1 rbetz  2021_heilbronn   163 Feb 12 15:10 listsize.c
 -rw-r--r--  1 rbetz  2021_heilbronn   118 Feb 12 15:47 listlast.c
 -rw-r--r--  1 rbetz  2021_heilbronn   184 Feb 13 10:31 is_special_dir.c
 -rw-r--r--  1 rbetz  2021_heilbronn   143 Feb 12 17:38 is_dotfile.c
--rw-r--r--  1 rbetz  2021_heilbronn  1074 Feb 13 11:00 generate_tree.c
+-rw-r--r--  1 rbetz  2021_heilbronn  1200 Feb 13 15:21 generate_tree.c
 
 ./src/options:
 total 16
@@ -77,57 +94,57 @@ total 16
 -rw-r--r--  1 rbetz  2021_heilbronn   82 Feb  7 10:10 ft_free.c
 
 ./obj:
-total 504
--rw-r--r--  1 rbetz  2021_heilbronn   5896 Feb 13 11:21 set_file_type.o
--rw-r--r--  1 rbetz  2021_heilbronn     83 Feb 13 11:21 set_file_type.d
--rw-r--r--  1 rbetz  2021_heilbronn  12748 Feb 13 11:21 print_tree.o
--rw-r--r--  1 rbetz  2021_heilbronn     74 Feb 13 11:21 print_tree.d
--rw-r--r--  1 rbetz  2021_heilbronn   2692 Feb 13 11:21 print_dotfile.o
--rw-r--r--  1 rbetz  2021_heilbronn     84 Feb 13 11:21 print_dotfile.d
--rw-r--r--  1 rbetz  2021_heilbronn   8312 Feb 13 11:21 print_debug_tree.o
--rw-r--r--  1 rbetz  2021_heilbronn     90 Feb 13 11:21 print_debug_tree.d
--rw-r--r--  1 rbetz  2021_heilbronn   4408 Feb 13 11:21 print_array.o
--rw-r--r--  1 rbetz  2021_heilbronn     80 Feb 13 11:21 print_array.d
--rw-r--r--  1 rbetz  2021_heilbronn   9956 Feb 13 11:21 parsing.o
--rw-r--r--  1 rbetz  2021_heilbronn     67 Feb 13 11:21 parsing.d
--rw-r--r--  1 rbetz  2021_heilbronn   6488 Feb 13 11:25 new_node.o
--rw-r--r--  1 rbetz  2021_heilbronn     69 Feb 13 11:25 new_node.d
--rw-r--r--  1 rbetz  2021_heilbronn   8976 Feb 13 11:21 mergesort.o
--rw-r--r--  1 rbetz  2021_heilbronn     71 Feb 13 11:21 mergesort.d
--rw-r--r--  1 rbetz  2021_heilbronn   9000 Feb 13 11:21 main.o
--rw-r--r--  1 rbetz  2021_heilbronn     53 Feb 13 11:21 main.d
--rw-r--r--  1 rbetz  2021_heilbronn   5568 Feb 13 11:21 listsize.o
--rw-r--r--  1 rbetz  2021_heilbronn     69 Feb 13 11:21 listsize.d
--rw-r--r--  1 rbetz  2021_heilbronn   5580 Feb 13 11:21 listlast.o
--rw-r--r--  1 rbetz  2021_heilbronn     69 Feb 13 11:21 listlast.d
--rw-r--r--  1 rbetz  2021_heilbronn   4256 Feb 13 11:21 is_special_dir.o
--rw-r--r--  1 rbetz  2021_heilbronn     85 Feb 13 11:21 is_special_dir.d
--rw-r--r--  1 rbetz  2021_heilbronn   2520 Feb 13 11:21 is_option.o
--rw-r--r--  1 rbetz  2021_heilbronn     71 Feb 13 11:21 is_option.d
--rw-r--r--  1 rbetz  2021_heilbronn   2560 Feb 13 11:21 is_dotfile.o
--rw-r--r--  1 rbetz  2021_heilbronn     73 Feb 13 11:21 is_dotfile.d
--rw-r--r--  1 rbetz  2021_heilbronn   7556 Feb 13 11:21 get_options.o
--rw-r--r--  1 rbetz  2021_heilbronn     79 Feb 13 11:21 get_options.d
--rw-r--r--  1 rbetz  2021_heilbronn  11928 Feb 13 11:21 generate_tree.o
--rw-r--r--  1 rbetz  2021_heilbronn     83 Feb 13 11:21 generate_tree.d
--rw-r--r--  1 rbetz  2021_heilbronn   6004 Feb 13 11:21 ft_free_tree.o
--rw-r--r--  1 rbetz  2021_heilbronn     81 Feb 13 11:21 ft_free_tree.d
--rw-r--r--  1 rbetz  2021_heilbronn   2276 Feb 13 11:21 ft_free.o
--rw-r--r--  1 rbetz  2021_heilbronn     67 Feb 13 11:21 ft_free.d
--rw-r--r--  1 rbetz  2021_heilbronn  11096 Feb 13 11:21 ft_error.o
--rw-r--r--  1 rbetz  2021_heilbronn     67 Feb 13 11:21 ft_error.d
--rw-r--r--  1 rbetz  2021_heilbronn   4096 Feb 13 11:21 bubblesort.o
--rw-r--r--  1 rbetz  2021_heilbronn     73 Feb 13 11:21 bubblesort.d
+total 512
+-rw-r--r--  1 rbetz  2021_heilbronn   5896 Feb 13 14:19 set_file_type.o
+-rw-r--r--  1 rbetz  2021_heilbronn     83 Feb 13 14:19 set_file_type.d
+-rw-r--r--  1 rbetz  2021_heilbronn  12748 Feb 13 15:15 print_tree.o
+-rw-r--r--  1 rbetz  2021_heilbronn     74 Feb 13 15:15 print_tree.d
+-rw-r--r--  1 rbetz  2021_heilbronn   2692 Feb 13 14:19 print_dotfile.o
+-rw-r--r--  1 rbetz  2021_heilbronn     84 Feb 13 14:19 print_dotfile.d
+-rw-r--r--  1 rbetz  2021_heilbronn   8312 Feb 13 14:19 print_debug_tree.o
+-rw-r--r--  1 rbetz  2021_heilbronn     90 Feb 13 14:19 print_debug_tree.d
+-rw-r--r--  1 rbetz  2021_heilbronn   4408 Feb 13 14:19 print_array.o
+-rw-r--r--  1 rbetz  2021_heilbronn     80 Feb 13 14:19 print_array.d
+-rw-r--r--  1 rbetz  2021_heilbronn   9980 Feb 13 14:19 parsing.o
+-rw-r--r--  1 rbetz  2021_heilbronn     67 Feb 13 14:19 parsing.d
+-rw-r--r--  1 rbetz  2021_heilbronn   6488 Feb 13 14:19 new_node.o
+-rw-r--r--  1 rbetz  2021_heilbronn     69 Feb 13 14:19 new_node.d
+-rw-r--r--  1 rbetz  2021_heilbronn   8976 Feb 13 14:19 mergesort.o
+-rw-r--r--  1 rbetz  2021_heilbronn     71 Feb 13 14:19 mergesort.d
+-rw-r--r--  1 rbetz  2021_heilbronn   9772 Feb 13 15:15 main.o
+-rw-r--r--  1 rbetz  2021_heilbronn     53 Feb 13 15:15 main.d
+-rw-r--r--  1 rbetz  2021_heilbronn   5568 Feb 13 14:19 listsize.o
+-rw-r--r--  1 rbetz  2021_heilbronn     69 Feb 13 14:19 listsize.d
+-rw-r--r--  1 rbetz  2021_heilbronn   5580 Feb 13 14:19 listlast.o
+-rw-r--r--  1 rbetz  2021_heilbronn     69 Feb 13 14:19 listlast.d
+-rw-r--r--  1 rbetz  2021_heilbronn   4256 Feb 13 14:19 is_special_dir.o
+-rw-r--r--  1 rbetz  2021_heilbronn     85 Feb 13 14:19 is_special_dir.d
+-rw-r--r--  1 rbetz  2021_heilbronn   2520 Feb 13 14:19 is_option.o
+-rw-r--r--  1 rbetz  2021_heilbronn     71 Feb 13 14:19 is_option.d
+-rw-r--r--  1 rbetz  2021_heilbronn   2560 Feb 13 14:19 is_dotfile.o
+-rw-r--r--  1 rbetz  2021_heilbronn     73 Feb 13 14:19 is_dotfile.d
+-rw-r--r--  1 rbetz  2021_heilbronn   7556 Feb 13 14:19 get_options.o
+-rw-r--r--  1 rbetz  2021_heilbronn     79 Feb 13 14:19 get_options.d
+-rw-r--r--  1 rbetz  2021_heilbronn  12392 Feb 13 15:21 generate_tree.o
+-rw-r--r--  1 rbetz  2021_heilbronn     83 Feb 13 15:21 generate_tree.d
+-rw-r--r--  1 rbetz  2021_heilbronn   6004 Feb 13 14:19 ft_free_tree.o
+-rw-r--r--  1 rbetz  2021_heilbronn     81 Feb 13 14:19 ft_free_tree.d
+-rw-r--r--  1 rbetz  2021_heilbronn   2276 Feb 13 14:19 ft_free.o
+-rw-r--r--  1 rbetz  2021_heilbronn     67 Feb 13 14:19 ft_free.d
+-rw-r--r--  1 rbetz  2021_heilbronn  11096 Feb 13 14:19 ft_error.o
+-rw-r--r--  1 rbetz  2021_heilbronn     67 Feb 13 14:19 ft_error.d
+-rw-r--r--  1 rbetz  2021_heilbronn   4096 Feb 13 15:15 bubblesort.o
+-rw-r--r--  1 rbetz  2021_heilbronn     73 Feb 13 15:15 bubblesort.d
 
 ./lib:
 total 0
-drwxr-xr-x  73 rbetz  2021_heilbronn  2482 Feb 13 11:21 libft
+drwxr-xr-x  73 rbetz  2021_heilbronn  2482 Feb 13 14:19 libft
 
 ./lib/libft:
 total 760
-drwxr-xr-x  66 rbetz  2021_heilbronn   2244 Feb 13 11:21 obj
+drwxr-xr-x  66 rbetz  2021_heilbronn   2244 Feb 13 14:19 obj
 -rw-r--r--   1 rbetz  2021_heilbronn   4726 Jan 30 15:39 libft.h
--rw-r--r--   1 rbetz  2021_heilbronn  70112 Feb 13 11:21 libft.a
+-rw-r--r--   1 rbetz  2021_heilbronn  70088 Feb 13 14:19 libft.a
 -rw-r--r--   1 rbetz  2021_heilbronn   1265 Jan 29 10:04 get_next_line_utils_bonus.c
 -rw-r--r--   1 rbetz  2021_heilbronn   3708 Jan 29 10:04 get_next_line_bonus.c
 -rw-r--r--   1 rbetz  2021_heilbronn    984 Jan 29 10:04 ft_toupper.c
@@ -147,7 +164,7 @@ drwxr-xr-x  66 rbetz  2021_heilbronn   2244 Feb 13 11:21 obj
 -rw-r--r--   1 rbetz  2021_heilbronn   1077 Jan 29 10:04 ft_striteri.c
 -rw-r--r--   1 rbetz  2021_heilbronn   1095 Jan 29 10:04 ft_strisdigit.c
 -rw-r--r--   1 rbetz  2021_heilbronn   1107 Jan 29 10:04 ft_strdup.c
--rw-r--r--   1 rbetz  2021_heilbronn   1376 Feb 12 16:52 ft_strcmp.c
+-rw-r--r--   1 rbetz  2021_heilbronn   1360 Feb 13 14:14 ft_strcmp.c
 -rw-r--r--   1 rbetz  2021_heilbronn   1074 Jan 29 10:04 ft_strchr.c
 -rw-r--r--   1 rbetz  2021_heilbronn   1602 Jan 29 10:04 ft_split_p.c
 -rw-r--r--   1 rbetz  2021_heilbronn   1934 Jan 29 10:04 ft_split.c
@@ -193,75 +210,75 @@ drwxr-xr-x  66 rbetz  2021_heilbronn   2244 Feb 13 11:21 obj
 -rw-r--r--   1 rbetz  2021_heilbronn   1415 Jan 29 10:04 ft_atod.c
 -rw-r--r--   1 rbetz  2021_heilbronn   1078 Jan 29 10:04 ft_arraycount.c
 -rw-r--r--   1 rbetz  2021_heilbronn   1519 Jan 29 10:04 README.md
--rw-r--r--   1 rbetz  2021_heilbronn   2883 Jan 29 10:04 Makefile
+-rw-r--r--   1 rbetz  2021_heilbronn   2883 Feb 13 14:18 Makefile
 -rw-r--r--   1 rbetz  2021_heilbronn  35149 Jan 29 10:04 LICENSE
 
 ./lib/libft/obj:
 total 512
--rw-r--r--  1 rbetz  2021_heilbronn  1076 Feb 13 11:21 get_next_line_utils_bonus.o
--rw-r--r--  1 rbetz  2021_heilbronn  2288 Feb 13 11:21 get_next_line_bonus.o
--rw-r--r--  1 rbetz  2021_heilbronn   664 Feb 13 11:21 ft_toupper.o
--rw-r--r--  1 rbetz  2021_heilbronn   664 Feb 13 11:21 ft_tolower.o
--rw-r--r--  1 rbetz  2021_heilbronn  1056 Feb 13 11:21 ft_substr.o
--rw-r--r--  1 rbetz  2021_heilbronn  1336 Feb 13 11:21 ft_strtrim.o
--rw-r--r--  1 rbetz  2021_heilbronn  1252 Feb 13 11:21 ft_strstr.o
--rw-r--r--  1 rbetz  2021_heilbronn  1132 Feb 13 11:21 ft_strreplace.o
--rw-r--r--  1 rbetz  2021_heilbronn   816 Feb 13 11:21 ft_strrchr.o
--rw-r--r--  1 rbetz  2021_heilbronn  1308 Feb 13 11:21 ft_strnstr.o
--rw-r--r--  1 rbetz  2021_heilbronn   768 Feb 13 11:21 ft_strncmp.o
--rw-r--r--  1 rbetz  2021_heilbronn   824 Feb 13 11:21 ft_strmapi.o
--rw-r--r--  1 rbetz  2021_heilbronn   700 Feb 13 11:21 ft_strlen.o
--rw-r--r--  1 rbetz  2021_heilbronn   820 Feb 13 11:21 ft_strlcpy.o
--rw-r--r--  1 rbetz  2021_heilbronn   936 Feb 13 11:21 ft_strlcat.o
--rw-r--r--  1 rbetz  2021_heilbronn  1012 Feb 13 11:21 ft_strjoin.o
--rw-r--r--  1 rbetz  2021_heilbronn   720 Feb 13 11:21 ft_striteri.o
--rw-r--r--  1 rbetz  2021_heilbronn   752 Feb 13 11:21 ft_strisdigit.o
--rw-r--r--  1 rbetz  2021_heilbronn   852 Feb 13 11:21 ft_strdup.o
--rw-r--r--  1 rbetz  2021_heilbronn   844 Feb 13 11:21 ft_strcmp.o
--rw-r--r--  1 rbetz  2021_heilbronn   764 Feb 13 11:21 ft_strchr.o
--rw-r--r--  1 rbetz  2021_heilbronn  1300 Feb 13 11:21 ft_split_p.o
--rw-r--r--  1 rbetz  2021_heilbronn  1872 Feb 13 11:21 ft_split.o
--rw-r--r--  1 rbetz  2021_heilbronn   760 Feb 13 11:21 ft_putstr_fd.o
--rw-r--r--  1 rbetz  2021_heilbronn   888 Feb 13 11:21 ft_putnbr_fd.o
--rw-r--r--  1 rbetz  2021_heilbronn   752 Feb 13 11:21 ft_putendl_fd.o
--rw-r--r--  1 rbetz  2021_heilbronn   680 Feb 13 11:21 ft_putchar_fd.o
--rw-r--r--  1 rbetz  2021_heilbronn  1152 Feb 13 11:21 ft_printflibft.o
--rw-r--r--  1 rbetz  2021_heilbronn  3532 Feb 13 11:21 ft_printf.o
--rw-r--r--  1 rbetz  2021_heilbronn  1404 Feb 13 11:21 ft_multijoin_array.o
--rw-r--r--  1 rbetz  2021_heilbronn  2148 Feb 13 11:21 ft_multijoin.o
--rw-r--r--  1 rbetz  2021_heilbronn   692 Feb 13 11:21 ft_memset.o
--rw-r--r--  1 rbetz  2021_heilbronn  1000 Feb 13 11:21 ft_memmove.o
--rw-r--r--  1 rbetz  2021_heilbronn   748 Feb 13 11:21 ft_memcpy.o
--rw-r--r--  1 rbetz  2021_heilbronn   756 Feb 13 11:21 ft_memcmp.o
--rw-r--r--  1 rbetz  2021_heilbronn   724 Feb 13 11:21 ft_memchr.o
--rw-r--r--  1 rbetz  2021_heilbronn  1188 Feb 13 11:21 ft_ltoa.o
--rw-r--r--  1 rbetz  2021_heilbronn   672 Feb 13 11:21 ft_lstsize.o
--rw-r--r--  1 rbetz  2021_heilbronn   732 Feb 13 11:21 ft_lstnew.o
--rw-r--r--  1 rbetz  2021_heilbronn  1236 Feb 13 11:21 ft_lstmap.o
--rw-r--r--  1 rbetz  2021_heilbronn   764 Feb 13 11:21 ft_lstlast.o
--rw-r--r--  1 rbetz  2021_heilbronn   672 Feb 13 11:21 ft_lstiter.o
--rw-r--r--  1 rbetz  2021_heilbronn   704 Feb 13 11:21 ft_lstdelone.o
--rw-r--r--  1 rbetz  2021_heilbronn   788 Feb 13 11:21 ft_lstclear.o
--rw-r--r--  1 rbetz  2021_heilbronn   652 Feb 13 11:21 ft_lstadd_front.o
--rw-r--r--  1 rbetz  2021_heilbronn   728 Feb 13 11:21 ft_lstadd_back.o
--rw-r--r--  1 rbetz  2021_heilbronn  1048 Feb 13 11:21 ft_last_word.o
--rw-r--r--  1 rbetz  2021_heilbronn  1116 Feb 13 11:21 ft_itoa.o
--rw-r--r--  1 rbetz  2021_heilbronn   712 Feb 13 11:21 ft_isspace.o
--rw-r--r--  1 rbetz  2021_heilbronn   664 Feb 13 11:21 ft_isprint.o
--rw-r--r--  1 rbetz  2021_heilbronn   664 Feb 13 11:21 ft_isdigit.o
--rw-r--r--  1 rbetz  2021_heilbronn   664 Feb 13 11:21 ft_isascii.o
--rw-r--r--  1 rbetz  2021_heilbronn   680 Feb 13 11:21 ft_isalpha.o
--rw-r--r--  1 rbetz  2021_heilbronn   760 Feb 13 11:21 ft_isalnum.o
--rw-r--r--  1 rbetz  2021_heilbronn  1320 Feb 13 11:21 ft_free_multiple.o
--rw-r--r--  1 rbetz  2021_heilbronn   808 Feb 13 11:21 ft_free_array.o
--rw-r--r--  1 rbetz  2021_heilbronn  1068 Feb 13 11:21 ft_first_word.o
--rw-r--r--  1 rbetz  2021_heilbronn   904 Feb 13 11:21 ft_close.o
--rw-r--r--  1 rbetz  2021_heilbronn   864 Feb 13 11:21 ft_calloc.o
--rw-r--r--  1 rbetz  2021_heilbronn   680 Feb 13 11:21 ft_bzero.o
--rw-r--r--  1 rbetz  2021_heilbronn  1084 Feb 13 11:21 ft_atol.o
--rw-r--r--  1 rbetz  2021_heilbronn  1020 Feb 13 11:21 ft_atoi.o
--rw-r--r--  1 rbetz  2021_heilbronn  1304 Feb 13 11:21 ft_atod.o
--rw-r--r--  1 rbetz  2021_heilbronn   696 Feb 13 11:21 ft_arraycount.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1076 Feb 13 14:19 get_next_line_utils_bonus.o
+-rw-r--r--  1 rbetz  2021_heilbronn  2288 Feb 13 14:19 get_next_line_bonus.o
+-rw-r--r--  1 rbetz  2021_heilbronn   664 Feb 13 14:19 ft_toupper.o
+-rw-r--r--  1 rbetz  2021_heilbronn   664 Feb 13 14:19 ft_tolower.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1056 Feb 13 14:19 ft_substr.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1336 Feb 13 14:19 ft_strtrim.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1252 Feb 13 14:19 ft_strstr.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1132 Feb 13 14:19 ft_strreplace.o
+-rw-r--r--  1 rbetz  2021_heilbronn   816 Feb 13 14:19 ft_strrchr.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1308 Feb 13 14:19 ft_strnstr.o
+-rw-r--r--  1 rbetz  2021_heilbronn   768 Feb 13 14:19 ft_strncmp.o
+-rw-r--r--  1 rbetz  2021_heilbronn   824 Feb 13 14:19 ft_strmapi.o
+-rw-r--r--  1 rbetz  2021_heilbronn   700 Feb 13 14:19 ft_strlen.o
+-rw-r--r--  1 rbetz  2021_heilbronn   820 Feb 13 14:19 ft_strlcpy.o
+-rw-r--r--  1 rbetz  2021_heilbronn   936 Feb 13 14:19 ft_strlcat.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1012 Feb 13 14:19 ft_strjoin.o
+-rw-r--r--  1 rbetz  2021_heilbronn   720 Feb 13 14:19 ft_striteri.o
+-rw-r--r--  1 rbetz  2021_heilbronn   752 Feb 13 14:19 ft_strisdigit.o
+-rw-r--r--  1 rbetz  2021_heilbronn   852 Feb 13 14:19 ft_strdup.o
+-rw-r--r--  1 rbetz  2021_heilbronn   820 Feb 13 14:19 ft_strcmp.o
+-rw-r--r--  1 rbetz  2021_heilbronn   764 Feb 13 14:19 ft_strchr.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1300 Feb 13 14:19 ft_split_p.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1872 Feb 13 14:19 ft_split.o
+-rw-r--r--  1 rbetz  2021_heilbronn   760 Feb 13 14:19 ft_putstr_fd.o
+-rw-r--r--  1 rbetz  2021_heilbronn   888 Feb 13 14:19 ft_putnbr_fd.o
+-rw-r--r--  1 rbetz  2021_heilbronn   752 Feb 13 14:19 ft_putendl_fd.o
+-rw-r--r--  1 rbetz  2021_heilbronn   680 Feb 13 14:19 ft_putchar_fd.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1152 Feb 13 14:19 ft_printflibft.o
+-rw-r--r--  1 rbetz  2021_heilbronn  3532 Feb 13 14:19 ft_printf.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1404 Feb 13 14:19 ft_multijoin_array.o
+-rw-r--r--  1 rbetz  2021_heilbronn  2148 Feb 13 14:19 ft_multijoin.o
+-rw-r--r--  1 rbetz  2021_heilbronn   692 Feb 13 14:19 ft_memset.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1000 Feb 13 14:19 ft_memmove.o
+-rw-r--r--  1 rbetz  2021_heilbronn   748 Feb 13 14:19 ft_memcpy.o
+-rw-r--r--  1 rbetz  2021_heilbronn   756 Feb 13 14:19 ft_memcmp.o
+-rw-r--r--  1 rbetz  2021_heilbronn   724 Feb 13 14:19 ft_memchr.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1188 Feb 13 14:19 ft_ltoa.o
+-rw-r--r--  1 rbetz  2021_heilbronn   672 Feb 13 14:19 ft_lstsize.o
+-rw-r--r--  1 rbetz  2021_heilbronn   732 Feb 13 14:19 ft_lstnew.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1236 Feb 13 14:19 ft_lstmap.o
+-rw-r--r--  1 rbetz  2021_heilbronn   764 Feb 13 14:19 ft_lstlast.o
+-rw-r--r--  1 rbetz  2021_heilbronn   672 Feb 13 14:19 ft_lstiter.o
+-rw-r--r--  1 rbetz  2021_heilbronn   704 Feb 13 14:19 ft_lstdelone.o
+-rw-r--r--  1 rbetz  2021_heilbronn   788 Feb 13 14:19 ft_lstclear.o
+-rw-r--r--  1 rbetz  2021_heilbronn   652 Feb 13 14:19 ft_lstadd_front.o
+-rw-r--r--  1 rbetz  2021_heilbronn   728 Feb 13 14:19 ft_lstadd_back.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1048 Feb 13 14:19 ft_last_word.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1116 Feb 13 14:19 ft_itoa.o
+-rw-r--r--  1 rbetz  2021_heilbronn   712 Feb 13 14:19 ft_isspace.o
+-rw-r--r--  1 rbetz  2021_heilbronn   664 Feb 13 14:19 ft_isprint.o
+-rw-r--r--  1 rbetz  2021_heilbronn   664 Feb 13 14:19 ft_isdigit.o
+-rw-r--r--  1 rbetz  2021_heilbronn   664 Feb 13 14:19 ft_isascii.o
+-rw-r--r--  1 rbetz  2021_heilbronn   680 Feb 13 14:19 ft_isalpha.o
+-rw-r--r--  1 rbetz  2021_heilbronn   760 Feb 13 14:19 ft_isalnum.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1320 Feb 13 14:19 ft_free_multiple.o
+-rw-r--r--  1 rbetz  2021_heilbronn   808 Feb 13 14:19 ft_free_array.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1068 Feb 13 14:19 ft_first_word.o
+-rw-r--r--  1 rbetz  2021_heilbronn   904 Feb 13 14:19 ft_close.o
+-rw-r--r--  1 rbetz  2021_heilbronn   864 Feb 13 14:19 ft_calloc.o
+-rw-r--r--  1 rbetz  2021_heilbronn   680 Feb 13 14:19 ft_bzero.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1084 Feb 13 14:19 ft_atol.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1020 Feb 13 14:19 ft_atoi.o
+-rw-r--r--  1 rbetz  2021_heilbronn  1304 Feb 13 14:19 ft_atod.o
+-rw-r--r--  1 rbetz  2021_heilbronn   696 Feb 13 14:19 ft_arraycount.o
 
 ./inc:
 total 8

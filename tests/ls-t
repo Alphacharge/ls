@@ -1,6 +1,9 @@
-tests
+gen_test.sh
+out
 ft_ls
 obj
+testfolder
+tests
 Makefile
 inc
 src

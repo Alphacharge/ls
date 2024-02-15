@@ -1,8 +1,11 @@
-tests
+gen_test.sh
+out
 .
-.git
 ft_ls
 obj
+.git
+testfolder
+tests
 .gitignore
 Makefile
 inc
