@@ -1,16 +1,13 @@
 #include "ft_ls.h"
 
-void	ft_free_tree(t_file	*tree)
+void	ft_free_tree(t_data *data)
 {
-	t_file	*tmp;
-	while (tree) {
-		tmp = tree;
-		ft_free(tree->fullpath_name);
-		ft_free(tree->name);
-		if (tree->sub)
-			ft_free_tree(tree->sub);
-		tree = tree->next;
-		ft_free(tmp);
-		tmp = NULL;
+	size_t	i = 0;
+
+	while (i < data->treeused) {
+		ft_free(data->tree[i].fullpath_name);
+		ft_free(data->tree[i].name);
+		i++;
 	}
+	ft_free(data->tree);
 }

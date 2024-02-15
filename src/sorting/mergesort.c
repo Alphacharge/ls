@@ -1,71 +1,68 @@
 #include "ft_ls.h"
 
-t_file	*merge(t_file *left, t_file *right)
+void	merge(t_file *arr, size_t left, size_t mid, size_t right)
 {
-	t_file	*new = NULL;
-	t_file	*tmp = NULL;
+	int i, j, k;
+	int n1 = mid - left + 1;
+	int n2 = right - mid;
 
-	if (left && !right)
-		new = left;
-	else if (!left && right)
-		new = right;
-	else 
-	{
-		if (ft_strcmp(left->name, right->name) < 0)
-		{
-			new = left;
-			left = left->next;
+	/* Create temporary arrays */
+	t_file L[n1], R[n2];
+
+	/* Copy data to temporary arrays L[] and R[] */
+	for (i = 0; i < n1; i++)
+		L[i] = arr[left + i];
+	for (j = 0; j < n2; j++)
+		R[j] = arr[mid + 1 + j];
+
+	/* Merge the temporary arrays back into arr[l..r] */
+	i = 0;
+	j = 0;
+	k = left;
+	while (i < n1 && j < n2) {
+		if (ft_strcmp(L[i].fullpath_name, R[j].fullpath_name) <= 0) {
+			arr[k] = L[i];
+			i++;
+		} else {
+			arr[k] = R[j];
+			j++;
 		}
-		else
-		{
-			new = right;
-			right = right->next;
-		}
+		k++;
 	}
-	tmp = new;
-	while (left && right)
-	{
-		if (ft_strcmp(left->name, right->name) < 0)
-		{
-			tmp->next = left;
-			left = left->next;
-		}
-		else
-		{
-			tmp->next = right;
-			right = right->next;
-		}
-		tmp = tmp->next;
+
+	/* Copy the remaining elements of L[], if any */
+	while (i < n1) {
+		arr[k] = L[i];
+		i++;
+		k++;
 	}
-	if (left)
-		tmp->next = left;
-	else if (right)
-		tmp->next = right;
-	new->listsize = listsize(new);
-	return new;
+
+	/* Copy the remaining elements of R[], if any */
+	while (j < n2) {
+		arr[k] = R[j];
+		j++;
+		k++;
+	}
 }
 
-t_file	*mergesortlist(t_file *tree)
+void	mergesortlist(t_file *arr, size_t left, size_t right)
 {
-	if (tree == NULL || tree->next == NULL)
-		return tree;
+	if (arr == NULL || left >= right)
+		return ;
 	
-	unsigned int	midpoint = tree->listsize / 2;
-	unsigned int 	i = 0;
-	t_file			*left = tree;
-	t_file			*right = tree;
-	t_file			*tmp = NULL;
-	while (right && i < midpoint) {
-		tmp = right;
-		right = right->next;
-		i++;
-	}
-	tmp->next = NULL;
-	left->listsize = listsize(left);
-	right->listsize = listsize(right);
+	size_t	midpoint = left + (right - left) / 2;
 
-	left = mergesortlist(left);
-	right = mergesortlist(right);
+	ft_printf("left:%d\tmid:%d\tright:%d\n", left, midpoint, right);
+	mergesortlist(arr, left, midpoint);
+	mergesortlist(arr, midpoint + 1, right);
 
-	return merge(left, right);
+	merge(arr, left, midpoint, right);
+}
+
+void	sortfiles(t_data *data)
+{
+	if (data == NULL || data->tree == NULL || data->treeused == 0)
+		return ;
+	ft_printf("used:%d\tsize:%d\n", data->treeused, data->treesize);
+	mergesortlist(data->tree, 0, data->treeused - 1);
 }

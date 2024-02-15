@@ -37,11 +37,11 @@ typedef struct s_file
 	char			*name;
 	char			*fullpath_name;
 	unsigned int	length;
-	unsigned int	listsize;
+	// unsigned int	listsize;
 	struct stat		stat;
 	struct s_data	*data;
-	struct s_file	*sub;
-	struct s_file	*next;
+	// struct s_file	*sub;
+	// struct s_file	*next;
 }				t_file;
 
 # define F_ALL			(1 << 0)	//-a
@@ -64,38 +64,43 @@ typedef struct s_data
 {
 	unsigned short	*flags;
 	char			**folders;
-	// DIR				*dirref;
+	size_t			treesize;
+	size_t			treeused;
 	t_file			*tree;
 }				t_data;
 
+//array
+void			alloc_array(t_data *data);
+void			realloc_array(t_data *data);
+
 //parsing
-t_file			*new_node(t_data *data);
+// t_file			*new_node(t_data *data);
 bool			is_option(char *argv);
 bool			is_dotfile(char *filename);
 bool			is_special_dir(char *filename);
 void			get_options(t_data *data, char* argv);
 void			parsing(t_data *data, int argc, char **argv);
 void			set_file_type(t_file *node, unsigned char type);
-void			generate_tree(t_data *data, t_file **treelvl, char *path, DIR *ref);
-unsigned int	listsize(t_file *tree);
-t_file			*listlast(t_file *tree);
+void			generate_tree(t_data *data, char *path, DIR *ref);
+// unsigned int	listsize(t_file *tree);
+// t_file			*listlast(t_file *tree);
 
 //error
 void	ft_error(t_data *data, unsigned int code);
 
 //cleanup
 void	ft_free(void *tofree);
-void	ft_free_tree(t_file	*tree);
+void	ft_free_tree(t_data *data);
 
 //printing
 void	fillup_and_gap(unsigned int length);
-void	print_tree(t_file *tree, int lvl);
-void	print_debug_tree(t_file *tree, int lvl);
+void	print_tree(t_data *data);
+// void	print_debug_tree(t_file *tree, int lvl);
 void	print_array(char **array);
 bool	print_dotfile(unsigned short *flags, char *filename);
 
 void	bubblesort(char **input, int n, bool direction);
-t_file	*merge(t_file *left, t_file *right);
-t_file	*mergesortlist(t_file *tree);
-
+void	merge(t_file *tree, size_t left, size_t mid, size_t right);
+void	mergesortlist(t_file *tree, size_t left, size_t right);
+void	sortfiles(t_data *data);
 #endif
