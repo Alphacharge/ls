@@ -1,6 +1,7 @@
 #ifndef FT_LS_H
 # define FT_LS_H
 # include "libft.h"
+# include "colors.h"
 # include <unistd.h>	//write, readlink
 # include <dirent.h>	//opendir, readdir, closedir
 # include <sys/stat.h>	//stat, lstat
@@ -87,6 +88,7 @@ void	ft_free(void *tofree);
 void	ft_free_tree(t_file	*tree);
 
 //printing
+void	fillup_and_gap(unsigned int length);
 void	print_tree(t_file *tree, int lvl);
 void	print_debug_tree(t_file *tree, int lvl);
 void	print_array(char **array);
