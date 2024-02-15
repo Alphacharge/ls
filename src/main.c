@@ -31,11 +31,11 @@ int main(int argc, char** argv) {
 			ft_error(data, 6);
 		generate_tree(data, &data->tree, data->folders[i], dir);
 		data->tree = mergesortlist(data->tree);
-		print_tree(data->tree, 1);
-	exit (0);
+		print_tree(data->tree, 0);
 		ft_free_tree(data->tree);
 		i++;
 	}
-
+	ft_free_array((void **)data->folders);
+	ft_free(data);
 	return 0;
 }
