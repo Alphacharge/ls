@@ -60,6 +60,11 @@ typedef struct s_file
 # define F_CLEAR(mask, flag)	((mask) &= ~(flag))
 # define F_ISSET(mask, flag)	!!((mask) & (flag))
 
+# define SORT_BY_ALPHA(left, right) \
+	(F_ISSET(*(left)->data->flags, F_REVERSE) ? ft_strcmp((left)->name, (right)->name) > 0 : ft_strcmp((left)->name, (right)->name) < 0)
+
+# define SORTDIR(left, right) ((F_ISSET(*(left)->data->flags, F_MTIME)) ? (sort_by_mtime(left, right)) : (SORT_BY_ALPHA(left, right)))
+
 typedef struct s_data
 {
 	unsigned short	*flags;

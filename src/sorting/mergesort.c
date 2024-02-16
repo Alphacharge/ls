@@ -11,7 +11,7 @@ t_file	*merge(t_file *left, t_file *right)
 		new = right;
 	else 
 	{
-		if (ft_strcmp(left->name, right->name) < 0)
+		if (SORTDIR(left, right))
 		{
 			new = left;
 			left = left->next;
@@ -25,7 +25,7 @@ t_file	*merge(t_file *left, t_file *right)
 	tmp = new;
 	while (left && right)
 	{
-		if (ft_strcmp(left->name, right->name) < 0)
+		if (SORTDIR(left, right))
 		{
 			tmp->next = left;
 			left = left->next;
