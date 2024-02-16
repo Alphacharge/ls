@@ -7,7 +7,7 @@ void	get_options(t_data *data, char* argv)
 			F_SET(*(data->flags), F_LONG);
 		else if (*argv == 'a')
 			F_SET(*(data->flags), F_ALL);
-		else if (*argv == 'u')
+		else if (*argv == 't')
 			F_SET(*(data->flags), F_MTIME);
 		else if (*argv == 'R')
 			F_SET(*(data->flags), F_RECURSIVE);
