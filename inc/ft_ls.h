@@ -99,6 +99,8 @@ void	print_debug_tree(t_file *tree, int lvl);
 void	print_array(char **array);
 bool	print_dotfile(unsigned short *flags, char *filename);
 
+//sorting
+int		sort_by_mtime(t_file *left, t_file *right);
 void	bubblesort(char **input, int n, bool direction);
 t_file	*merge(t_file *left, t_file *right);
 t_file	*mergesortlist(t_file *tree);
