@@ -12,6 +12,8 @@ t_file	*new_node(t_data *data)
 	new->fullpath_name = NULL;
 	new->data = data;
 	new->length = 0;
+	new->maxlength = 0;
 	new->listsize = 0;
+	new->type = _NONE;
 	return new;
 }
