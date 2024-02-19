@@ -25,6 +25,7 @@
 
 typedef enum e_type
 {
+	_NONE,
 	_DIR,
 	_FILE,
 	_LINK,
@@ -37,12 +38,14 @@ typedef struct s_file
 	char			*name;
 	char			*fullpath_name;
 	unsigned int	length;
+	unsigned int	maxlength;
 	unsigned int	listsize;
 	struct stat		stat;
 	struct s_data	*data;
 	struct s_file	*sub;
 	struct s_file	*next;
 }				t_file;
+# define TAB_WIDTH 4
 
 # define F_ALL			(1 << 0)	//-a
 # define F_LONG			(1 << 1)	//-l
@@ -61,7 +64,14 @@ typedef struct s_file
 # define F_ISSET(mask, flag)	!!((mask) & (flag))
 
 # define SORT_BY_ALPHA(left, right) \
-	(F_ISSET(*(left)->data->flags, F_REVERSE) ? ft_strcmp((left)->name, (right)->name) > 0 : ft_strcmp((left)->name, (right)->name) < 0)
+	(F_ISSET(*(left)->data->flags, F_REVERSE) ? ft_strcmp((left)->fullpath_name, (right)->fullpath_name) > 0 : ft_strcmp((left)->fullpath_name, (right)->fullpath_name) < 0)
+// # define SORT_BY_ALPHA(left, right) \
+//     ((is_dotfile((left)->name) && !is_dotfile((right)->name)) ? -1 : \
+//     ((!is_dotfile((left)->name) && is_dotfile((right)->name)) ? 1 : \
+//     (F_ISSET(*(left)->data->flags, F_REVERSE) ? ft_strcmp((left)->name, (right)->name) > 0 : ft_strcmp((left)->name, (right)->name) < 0)))
+
+
+
 
 # define SORTDIR(left, right) ((F_ISSET(*(left)->data->flags, F_MTIME)) ? (sort_by_mtime(left, right)) : (SORT_BY_ALPHA(left, right)))
 
@@ -81,9 +91,11 @@ bool			is_special_dir(char *filename);
 void			get_options(t_data *data, char* argv);
 void			parsing(t_data *data, int argc, char **argv);
 void			set_file_type(t_file *node, unsigned char type);
-void			generate_tree(t_data *data, t_file **treelvl, char *path, DIR *ref);
+void			loop(t_data *data, t_file *treelvl, char *path, DIR *ref);
+// void			generate_tree(t_data *data, t_file **treelvl, char *path, DIR *ref);
 unsigned int	listsize(t_file *tree);
 t_file			*listlast(t_file *tree);
+void			update_maxlength(t_file *head, unsigned int length);
 
 //error
 void	ft_error(t_data *data, unsigned int code);
@@ -93,16 +105,19 @@ void	ft_free(void *tofree);
 void	ft_free_tree(t_file	*tree);
 
 //printing
-void	fillup_and_gap(unsigned int length);
+void	fillup_and_gap(unsigned int length, unsigned int maxlength);
 void	print_tree(t_file *tree, int lvl);
+void	print_inline_tree(t_file *tree);
+void	print_treelvl(t_file *tree);
 void	print_debug_tree(t_file *tree, int lvl);
 void	print_array(char **array);
 bool	print_dotfile(unsigned short *flags, char *filename);
 
 //sorting
-int		sort_by_mtime(t_file *left, t_file *right);
+long	sort_by_mtime(t_file *left, t_file *right);
 void	bubblesort(char **input, int n, bool direction);
 t_file	*merge(t_file *left, t_file *right);
+t_file	*splitlist(t_file *head);
 t_file	*mergesortlist(t_file *tree);
 
 #endif

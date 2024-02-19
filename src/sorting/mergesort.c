@@ -42,27 +42,49 @@ t_file	*merge(t_file *left, t_file *right)
 	else if (right)
 		tmp->next = right;
 	new->listsize = listsize(new);
+	// ft_printf("Merged Tree: size:(%d)\n", listsize(new));
+	// print_inline_tree(new);
 	return new;
+}
+
+t_file	*splitlist(t_file *head)
+{
+	t_file *fast = head;
+	t_file *slow = head;
+	t_file *prev = NULL;
+
+	while (fast && fast->next) {
+		prev = slow;
+		slow = slow->next;
+		fast = fast->next->next;
+	}
+
+	if (prev)
+		prev->next = NULL;
+	head->listsize = listsize(head);
+	slow->listsize = listsize(slow);
+	return slow;
 }
 
 t_file	*mergesortlist(t_file *tree)
 {
 	if (tree == NULL || tree->next == NULL)
 		return tree;
-	
-	unsigned int	midpoint = tree->listsize / 2;
-	unsigned int 	i = 0;
+
+	// ft_printf("in merge lstsize: %d\n", listsize(tree));
+
 	t_file			*left = tree;
-	t_file			*right = tree;
-	t_file			*tmp = NULL;
-	while (right && i < midpoint) {
-		tmp = right;
-		right = right->next;
-		i++;
-	}
-	tmp->next = NULL;
-	left->listsize = listsize(left);
-	right->listsize = listsize(right);
+	t_file			*right = splitlist(tree);
+
+	// ft_printf("sizeleft:\t%d\n",listsize(left));
+	// ft_printf("sizeright:\t%d\n",listsize(right));
+	// ft_printf("Tree Left:\n");
+	// print_inline_tree(left);
+	// ft_printf("Tree Right:\n");
+	// print_inline_tree(right);
+	// ft_printf("-----------------\n");
+	// left->listsize = listsize(left);
+	// right->listsize = listsize(right);
 
 	left = mergesortlist(left);
 	right = mergesortlist(right);

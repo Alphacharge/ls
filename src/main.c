@@ -29,10 +29,11 @@ int main(int argc, char** argv) {
 		DIR	*dir = opendir(data->folders[i]);
 		if (dir == NULL)
 			ft_error(data, 6);
-		generate_tree(data, &data->tree, data->folders[i], dir);
-		data->tree = mergesortlist(data->tree);
-		print_tree(data->tree, 0);
-		ft_free_tree(data->tree);
+		loop(data, NULL, data->folders[i], dir);
+		// generate_tree(data, &data->tree, data->folders[i], dir);
+		// data->tree = mergesortlist(data->tree);
+		// print_tree(data->tree, 0);
+		// ft_free_tree(data->tree);
 		i++;
 	}
 	ft_free_array((void **)data->folders);
