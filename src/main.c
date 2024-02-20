@@ -21,22 +21,24 @@ int main(int argc, char** argv) {
 	parsing(data, argc, argv);
 
 	//sorting parameters
-	bubblesort(data->folders, ft_arraycount(data->folders), F_ISSET(*(data->flags), F_REVERSE));
+	data->folders = mergesortlist(data->folders);
+	// bubblesort(data->folders, ft_arraycount(data->folders), F_ISSET(*(data->flags), F_REVERSE));
 
 	//generate, sort, print and free tree for every parameter
-	int	i = 0;
-	while (data->folders[i] != NULL) {
-		DIR	*dir = opendir(data->folders[i]);
+	t_file	*current = data->folders;
+	while (current != NULL) {
+		DIR	*dir = opendir(current->fullpath_name);
 		if (dir == NULL)
 			ft_error(data, 6);
-		loop(data, NULL, data->folders[i], dir);
-		// generate_tree(data, &data->tree, data->folders[i], dir);
-		// data->tree = mergesortlist(data->tree);
-		// print_tree(data->tree, 0);
-		// ft_free_tree(data->tree);
-		i++;
+		if (!is_special_dir(current->fullpath_name) && listsize(data->folders) > 1)
+			ft_printf("%s:\n", current->fullpath_name);
+		loop(data, NULL, current->fullpath_name, dir);
+		if (!is_special_dir(current->fullpath_name) && current->next != NULL)
+			write(1, "\n", 1);
+		current = current->next;
+		closedir(dir);
 	}
-	ft_free_array((void **)data->folders);
-	ft_free(data);
+	ft_free_tree(data->folders);
+	ft_free((void**)&data);
 	return 0;
 }
