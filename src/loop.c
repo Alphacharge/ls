@@ -11,6 +11,23 @@ void	loop(t_data *data, t_file *treelvl, char *path, DIR *ref)
 		print_treelvl(treelvl);
 		if (ref)
 			closedir(ref);
+		if (F_ISSET(*(data->flags), F_RECURSIVE))
+		{
+			t_file *current = treelvl;
+			while (current)
+			{
+				if (!is_special_dir(current->name) && current->type == _DIR)
+				{
+					DIR	*dir = opendir(current->fullpath_name);
+					if (dir == NULL) {
+						perror(current->fullpath_name);
+						break;
+					}
+					loop(data, NULL, current->fullpath_name, dir);
+				}
+				current = current->next;
+			}
+		}
 		ft_free_tree(treelvl);
 	}
 	else
@@ -48,25 +65,8 @@ void	loop(t_data *data, t_file *treelvl, char *path, DIR *ref)
 			dir = readdir(ref);
 			head->listsize = listsize(head);
 		}
-		t_file *current = head;
-		if (current && !is_special_dir(current->name) && F_ISSET(*(data->flags), F_RECURSIVE) && current->type == _DIR)
-		{
-// ft_printf("4\n");
-			while (current) {
-// ft_printf("5\n");
-				DIR	*dir = opendir(current->fullpath_name);
-				if (dir == NULL) {
-					perror(current->fullpath_name);
-					break;
-				}
-				loop(data, current, current->fullpath_name, dir);
-			current = current->next;
-			}
-		}
-		else {
-// ft_printf("6\n");
-			loop(data, current, current->fullpath_name, NULL);
-		}
+		loop(data, head, head->fullpath_name, NULL);
+
 		// ft_printf("lstsize: %d\n", listsize(head));
 	}
 }

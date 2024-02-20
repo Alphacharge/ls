@@ -8,7 +8,7 @@ CC		:=	cc
 CFLAGS	:=	-Wall -Wextra -Werror
 CFLAGS	+=	-MMD
 CFLAGS	+=	-g 
-# CFLAGS	+=	-fsanitize=address
+CFLAGS	+=	-fsanitize=address
 
 ###			###			SOURCES			###			###
 VPATH	:=	src/ src/options src/error src/cleanup src/parsing
