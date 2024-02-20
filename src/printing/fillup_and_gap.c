@@ -3,8 +3,7 @@
 void	fillup_and_gap(unsigned int length, unsigned int maxlength)
 {
 	unsigned int spaces_needed = (TAB_WIDTH - (length % TAB_WIDTH)) % TAB_WIDTH;
-
-	for (int i = 0; i < spaces_needed; ++i) {
+	for (unsigned int i = 0; i < spaces_needed; ++i) {
 		write(1, " ", 1);
 		length++;
 	}
