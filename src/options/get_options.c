@@ -2,17 +2,26 @@
 
 void	get_options(t_data *data, char* argv)
 {
-	while (data && argv && *argv) {
-		if (*argv == 'l')
-			F_SET(*(data->flags), F_LONG);
-		else if (*argv == 'a')
-			F_SET(*(data->flags), F_ALL);
-		else if (*argv == 't')
-			F_SET(*(data->flags), F_MTIME);
-		else if (*argv == 'R')
-			F_SET(*(data->flags), F_RECURSIVE);
-		else if (*argv == 'r')
-			F_SET(*(data->flags), F_REVERSE);
+	while (data && argv && *argv)
+	{
+		switch (*argv)
+		{
+			case 'l':
+				F_SET(*(data->flags), F_LONG);
+				break;
+			case 'a':
+				F_SET(*(data->flags), F_ALL);
+				break;
+			case 't':
+				F_SET(*(data->flags), F_MTIME);
+				break;
+			case 'R':
+				F_SET(*(data->flags), F_RECURSIVE);
+				break;
+			case 'r':
+				F_SET(*(data->flags), F_REVERSE);
+				break;
+		}
 		argv++;
 	}
 }
