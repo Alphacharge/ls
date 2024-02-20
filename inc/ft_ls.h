@@ -15,12 +15,16 @@
 
 # ifdef __linux__
 #  define SYSTEM 0
-#  define OFFSET dir->d_off
+// #  define OFFSET dir->d_off
+#  define NAMELENGTH ft_strlen(dir->d_name)
+#  define TIME stat.st_mtime
 # endif
 
 # ifdef __APPLE__
 #  define SYSTEM 1
-#  define OFFSET dir->d_seekoff
+// #  define OFFSET dir->d_seekoff
+#  define NAMELENGTH dir->d_namlen
+#  define TIME stat.st_mtimespec.tv_sec
 # endif
 
 typedef enum e_type
@@ -58,27 +62,26 @@ typedef struct s_file
 # define F_DIR			(1 << 8)	//-d
 # define F_NUMID		(1 << 9)	//-n
 # define F_COLOR		(1 << 10)	//-G
+# define F_FOLDERSORT	(1 << 11)	//flag to sort args
 
 # define F_SET(mask, flag)		((mask) |= (flag))
 # define F_CLEAR(mask, flag)	((mask) &= ~(flag))
 # define F_ISSET(mask, flag)	!!((mask) & (flag))
 
 # define SORT_BY_ALPHA(left, right) \
-	(F_ISSET(*(left)->data->flags, F_REVERSE) ? ft_strcmp((left)->fullpath_name, (right)->fullpath_name) > 0 : ft_strcmp((left)->fullpath_name, (right)->fullpath_name) < 0)
-// # define SORT_BY_ALPHA(left, right) \
-//     ((is_dotfile((left)->name) && !is_dotfile((right)->name)) ? -1 : \
-//     ((!is_dotfile((left)->name) && is_dotfile((right)->name)) ? 1 : \
-//     (F_ISSET(*(left)->data->flags, F_REVERSE) ? ft_strcmp((left)->name, (right)->name) > 0 : ft_strcmp((left)->name, (right)->name) < 0)))
+	(F_ISSET(*(left)->data->flags, F_REVERSE) \
+	? ft_strcmp((left)->fullpath_name, (right)->fullpath_name) > 0 \
+	: ft_strcmp((left)->fullpath_name, (right)->fullpath_name) < 0)
 
-
-
-
-# define SORTDIR(left, right) ((F_ISSET(*(left)->data->flags, F_MTIME)) ? (sort_by_mtime(left, right)) : (SORT_BY_ALPHA(left, right)))
+# define SORTDIR(left, right) \
+	((F_ISSET(*(left)->data->flags, F_MTIME)) \
+	? (sort_by_mtime(left, right)) \
+	: (SORT_BY_ALPHA(left, right)))
 
 typedef struct s_data
 {
 	unsigned short	*flags;
-	char			**folders;
+	t_file			*folders;
 	// DIR				*dirref;
 	t_file			*tree;
 }				t_data;
@@ -101,7 +104,7 @@ void			update_maxlength(t_file *head, unsigned int length);
 void	ft_error(t_data *data, unsigned int code);
 
 //cleanup
-void	ft_free(void *tofree);
+void	ft_free(void **tofree);
 void	ft_free_tree(t_file	*tree);
 
 //printing
@@ -121,3 +124,52 @@ t_file	*splitlist(t_file *head);
 t_file	*mergesortlist(t_file *tree);
 
 #endif
+
+// rbetz@2-G-6:8_ls$./ft_ls -t src/ inc
+// inc:
+// ft_ls.h         colors.h
+
+// src/:
+// main.c          parsing         loop.c          cleanup         printing        sorting         error           options
+// rbetz@2-G-6:8_ls$./ft_ls -tr src/ inc
+// inc:
+// colors.h        ft_ls.h 
+
+// src/:
+// options         error           sorting         printing        cleanup         loop.c          parsing         main.c  
+// rbetz@2-G-6:8_ls$./ft_ls src/ inc
+// inc:
+// colors.h        ft_ls.h
+
+// src/:
+// cleanup         error           loop.c          main.c          options         parsing         printing        sorting
+// rbetz@2-G-6:8_ls$./ft_ls -r src/ inc
+// inc:
+// ft_ls.h         colors.h
+
+// src/:
+// sorting         printing        parsing         options         main.c          loop.c          error           cleanup 
+// rbetz@2-G-6:8_ls$ls -t src/ inc
+// src/:
+// main.c          parsing         loop.c          cleanup         printing        sorting         error           options
+
+// inc:
+// ft_ls.h         colors.h
+// rbetz@2-G-6:8_ls$ls -tr src/ inc
+// inc:
+// colors.h        ft_ls.h
+
+// src/:
+// options         error           sorting         printing        cleanup         loop.c          parsing         main.c
+// rbetz@2-G-6:8_ls$ls src/ inc
+// inc:
+// colors.h        ft_ls.h
+
+// src/:
+// cleanup         error           loop.c          main.c          options         parsing         printing        sorting
+// rbetz@2-G-6:8_ls$ls -r src/ inc
+// src/:
+// sorting         printing        parsing         options         main.c          loop.c          error           cleanup
+
+// inc:
+// ft_ls.h         colors.h

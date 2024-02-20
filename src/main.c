@@ -21,7 +21,9 @@ int main(int argc, char** argv) {
 	parsing(data, argc, argv);
 
 	//sorting parameters
+	F_SET(bitmask, F_FOLDERSORT);
 	data->folders = mergesortlist(data->folders);
+	F_CLEAR(bitmask, F_FOLDERSORT);
 	// bubblesort(data->folders, ft_arraycount(data->folders), F_ISSET(*(data->flags), F_REVERSE));
 
 	//generate, sort, print and free tree for every parameter
