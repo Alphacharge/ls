@@ -10,26 +10,36 @@ void	parsing(t_data *data, int argc, char **argv)
 	//only options without parameter
 	if (argv[i] == NULL)
 	{
-		data->folders = malloc(2 * sizeof(char*));
+		data->folders = ft_calloc(1, sizeof(t_file));
 		if (data->folders == NULL)
 			ft_error(data, 1);
-		data->folders[0] = ft_strdup(".");
-		if (data->folders[0] == NULL)
+		data->folders->fullpath_name = ft_strdup(".");
+		if (data->folders->fullpath_name == NULL)
 			ft_error(data, 2);
-		data->folders[1] = NULL;
+		data->folders->next = NULL;
 	}
 	//parameter
 	else
 	{
-		data->folders = ft_calloc(argc, sizeof(char*));
-		if (data->folders == NULL)
-			ft_error(data, 1);
-		data->folders[argc - 1] = NULL;
+		t_file	*head = NULL;
 		while (argv && i < argc && j < argc && argv[i] && !is_option(argv[i]))
 		{
-			data->folders[j] = ft_strdup(argv[i++]);
-			if (data->folders[j++] == NULL)
+			t_file	*new = new_node(data);
+			if (new == NULL)
 				ft_error(data, 2);
+			if (head == NULL)
+				head = new;
+			else
+			{
+				t_file	*last = head;
+				while (last && last->next)
+					last = last->next;
+				last->next = new;
+			}
+			new->fullpath_name = ft_strdup(argv[i++]);
+			if (new->fullpath_name == NULL)
+				ft_error(data, 2);
+			data->folders = head;
 		}
 	}
 }
