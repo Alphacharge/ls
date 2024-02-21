@@ -18,6 +18,7 @@ int main(int argc, char** argv) {
 	unsigned short	bitmask = 0;
 
 	data = init_data(&bitmask);
+	detectOutputMode(data);
 	parsing(data, argc, argv);
 
 	//sorting parameters

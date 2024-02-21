@@ -2,21 +2,20 @@
 
 void	loop(t_data *data, t_file *treelvl, char *path, DIR *ref)
 {
+	//print stuff and generate child if recursive
 	if (treelvl != NULL)
 	{
-// ft_printf("1\tlistsize:%d\n", treelvl->listsize);
-// print_inline_tree(treelvl);
 		treelvl = mergesortlist(treelvl);
-// print_inline_tree(treelvl);
 		print_treelvl(treelvl);
 		if (ref)
 			closedir(ref);
+		//if recursive generate child tree
 		if (F_ISSET(*(data->flags), F_RECURSIVE))
 		{
 			t_file *current = treelvl;
 			while (current)
 			{
-				if (!is_special_dir(current->name) && current->type == _DIR)
+				if (!is_special_dir(current->name) && (!is_dotfile(current->name) || (is_dotfile(current->name) && F_ISSET(*data->flags, F_ALL))) && current->type == _DIR)
 				{
 					DIR	*dir = opendir(current->fullpath_name);
 					if (dir == NULL) {
@@ -30,15 +29,14 @@ void	loop(t_data *data, t_file *treelvl, char *path, DIR *ref)
 		}
 		ft_free_tree(treelvl);
 	}
+	//if nothing to print, then generate something
 	else
 	{
 		if (ref == NULL)
 			ft_error(data, 6);
-// ft_printf("2\n");
 		struct dirent *dir = readdir(ref);
 		t_file	*head = NULL;
 		while (dir != NULL) {
-// ft_printf("3\n");
 			t_file	*new = new_node(data);
 			if (new == NULL)
 				ft_error(data, 3);
@@ -65,8 +63,7 @@ void	loop(t_data *data, t_file *treelvl, char *path, DIR *ref)
 			dir = readdir(ref);
 			head->listsize = listsize(head);
 		}
+		//call recursive to print
 		loop(data, head, head->fullpath_name, NULL);
-
-		// ft_printf("lstsize: %d\n", listsize(head));
 	}
 }
