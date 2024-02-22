@@ -8,7 +8,7 @@ void	print_inline_tree(t_file *tree)
 		if (this->name)
 			ft_printf("%s", this->name);
 		if (this->next && this->name)
-			fillup_and_gap(this->length, tree->maxlength);
+			fillup_and_gap(this->data->flags, this->length, tree->maxlength);
 		ft_printf("\t");
 		this = this->next;
 		if (this == NULL)

@@ -11,7 +11,7 @@ void	print_tree(t_file *tree, int lvl)
 			ft_printf("%s", this->name);
 			this = this->next;
 			if (this)
-				fillup_and_gap(this->length, tree->maxlength);
+				fillup_and_gap(this->data->flags, this->length, tree->maxlength);
 			else
 				print_tree(tree, ++lvl);
 			continue;
@@ -21,7 +21,7 @@ void	print_tree(t_file *tree, int lvl)
 		if (this->name && this->data && (!isDotfile(this->name) || (isDotfile(this->name) && F_ISSET(*(this->data->flags), F_ALL))))
 			ft_printf("%s", this->name);
 		if (this && this->next && this->name && !isSpecialDir(this->name))
-			fillup_and_gap(this->length, tree->maxlength);
+			fillup_and_gap(this->data->flags, this->length, tree->maxlength);
 		if (this->sub && this->name && this->data && (!isDotfile(this->name) || print_dotfile(this->data->flags, this->name))) {
 			print_tree(this->sub, ++lvl);
 		}

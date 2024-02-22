@@ -93,6 +93,7 @@ bool			isDotfile(char *filename);
 bool			isSpecialDir(char *filename);
 void			getOptions(t_data *data, char* argv);
 void			setFileType(t_file *node, unsigned char type);
+void			detectOutputMode(t_data *data);
 
 void			parsing(t_data *data, int argc, char **argv);
 void			loop(t_data *data, t_file *treelvl, char *path, DIR *ref);
@@ -111,7 +112,7 @@ void	ft_free(void **tofree);
 void	ft_free_tree(t_file	*tree);
 
 //printing
-void	fillup_and_gap(unsigned int length, unsigned int maxlength);
+void	fillup_and_gap(unsigned short *mask, unsigned int length, unsigned int maxlength);
 void	print_tree(t_file *tree, int lvl);
 void	print_inline_tree(t_file *tree);
 void	print_treelvl(t_file *tree);
