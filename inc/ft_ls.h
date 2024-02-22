@@ -72,7 +72,7 @@ typedef struct s_file
 # define SORT_BY_ALPHA(left, right) \
 	(F_ISSET(*(left)->data->flags, F_REVERSE) \
 	? ft_strcmp((left)->fullpath_name, (right)->fullpath_name) > 0 \
-	: ft_strcmp((left)->fullpath_name, (right)->fullpath_name) < 0)
+	: ft_strcmp((left)->fullpath_name, (right)->fullpath_name) < 0 )
 
 # define SORTDIR(left, right) \
 	((F_ISSET(*(left)->data->flags, F_MTIME)) \
@@ -97,7 +97,6 @@ void			detectOutputMode(t_data *data);
 
 void			parsing(t_data *data, int argc, char **argv);
 void			loop(t_data *data, t_file *treelvl, char *path, DIR *ref);
-// void			generate_tree(t_data *data, t_file **treelvl, char *path, DIR *ref);
 
 t_file			*listNew(t_data *data);
 unsigned int	listSize(t_file *tree);
@@ -113,12 +112,12 @@ void	ft_free_tree(t_file	*tree);
 
 //printing
 void	fillup_and_gap(unsigned short *mask, unsigned int length, unsigned int maxlength);
-void	print_tree(t_file *tree, int lvl);
-void	print_inline_tree(t_file *tree);
+// void	print_tree(t_file *tree, int lvl);
+// void	print_inline_tree(t_file *tree);
 void	print_treelvl(t_file *tree);
-void	print_debug_tree(t_file *tree, int lvl);
-void	print_array(char **array);
-bool	print_dotfile(unsigned short *flags, char *filename);
+// void	print_debug_tree(t_file *tree, int lvl);
+// void	print_array(char **array);
+// bool	print_dotfile(unsigned short *flags, char *filename);
 
 //sorting
 long	sort_by_mtime(t_file *left, t_file *right);
