@@ -37,6 +37,10 @@ void	loop(t_data *data, t_file *treelvl, char *path, DIR *ref)
 		struct dirent *dir = readdir(ref);
 		t_file	*head = NULL;
 		while (dir != NULL) {
+			if (isDotfile(dir->d_name) && !F_ISSET(*(data->flags), F_ALL)){
+				dir = readdir(ref);
+				continue;
+			}
 			t_file	*new = listNew(data);
 			if (new == NULL)
 				ft_error(data, 3);
