@@ -16,25 +16,21 @@ void	ft_error(t_data *data, unsigned int code)
 			ft_printf("folder malloc error\n");
 			exit (++code);
 		case 3:
-			ft_free_tree(data->tree);
 			ft_free_tree(data->folders);
 			ft_free((void**)&(data));
 			ft_printf("tree creation malloc error\n");
 			exit (++code);
 		case 4:
-			ft_free_tree(data->tree);
 			ft_free_tree(data->folders);
 			ft_free((void**)&(data));
 			ft_printf("No such file or directory.\n");
 			exit (++code);
 		case 5:
-			ft_free_tree(data->tree);
 			ft_free_tree(data->folders);
 			ft_free((void**)&(data));
 			ft_printf("couldn't join path.\n");
 			exit (++code);
 		case 6:
-			ft_free_tree(data->tree);
 			ft_free_tree(data->folders);
 			ft_free((void**)&(data));
 			ft_printf("opendir failed.\n");

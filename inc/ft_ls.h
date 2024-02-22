@@ -50,6 +50,7 @@ typedef struct s_file
 	struct s_file	*next;
 }				t_file;
 # define TAB_WIDTH 4
+# define DEBUG 0
 
 # define F_ALL			(1 << 0)	//-a
 # define F_LONG			(1 << 1)	//-l
@@ -83,8 +84,6 @@ typedef struct s_data
 {
 	unsigned short	*flags;
 	t_file			*folders;
-	// DIR				*dirref;
-	t_file			*tree;
 }				t_data;
 
 //parsing
@@ -111,7 +110,7 @@ void	ft_free(void **tofree);
 void	ft_free_tree(t_file	*tree);
 
 //printing
-void	fillup_and_gap(unsigned short *mask, unsigned int length, unsigned int maxlength);
+void	fillup_and_gap(unsigned int length, unsigned int maxlength);
 // void	print_tree(t_file *tree, int lvl);
 // void	print_inline_tree(t_file *tree);
 void	print_treelvl(t_file *tree);
@@ -128,51 +127,11 @@ t_file	*mergesortlist(t_file *tree);
 
 #endif
 
-// rbetz@2-G-6:8_ls$./ft_ls -t src/ inc
-// inc:
-// ft_ls.h         colors.h
-
-// src/:
-// main.c          parsing         loop.c          cleanup         printing        sorting         error           options
-// rbetz@2-G-6:8_ls$./ft_ls -tr src/ inc
-// inc:
-// colors.h        ft_ls.h 
-
-// src/:
-// options         error           sorting         printing        cleanup         loop.c          parsing         main.c  
-// rbetz@2-G-6:8_ls$./ft_ls src/ inc
-// inc:
-// colors.h        ft_ls.h
-
-// src/:
-// cleanup         error           loop.c          main.c          options         parsing         printing        sorting
-// rbetz@2-G-6:8_ls$./ft_ls -r src/ inc
-// inc:
-// ft_ls.h         colors.h
-
-// src/:
-// sorting         printing        parsing         options         main.c          loop.c          error           cleanup 
-// rbetz@2-G-6:8_ls$ls -t src/ inc
-// src/:
-// main.c          parsing         loop.c          cleanup         printing        sorting         error           options
-
-// inc:
-// ft_ls.h         colors.h
-// rbetz@2-G-6:8_ls$ls -tr src/ inc
-// inc:
-// colors.h        ft_ls.h
-
-// src/:
-// options         error           sorting         printing        cleanup         loop.c          parsing         main.c
-// rbetz@2-G-6:8_ls$ls src/ inc
-// inc:
-// colors.h        ft_ls.h
-
-// src/:
-// cleanup         error           loop.c          main.c          options         parsing         printing        sorting
-// rbetz@2-G-6:8_ls$ls -r src/ inc
-// src/:
-// sorting         printing        parsing         options         main.c          loop.c          error           cleanup
-
-// inc:
-// ft_ls.h         colors.h
+//                 OK
+// -a              OK
+// -t              OK
+// -aR             OK
+// -ar             OK
+// -at             OK
+// -aRt            OK
+// -art            OK

@@ -9,7 +9,6 @@ t_data	*init_data(unsigned short *bitmask)
 		ft_error(NULL, 0);
 	data->flags = bitmask;
 	data->folders = NULL;
-	data->tree = NULL;
 	return data;
 }
 
@@ -34,10 +33,10 @@ int main(int argc, char** argv) {
 		if (dir == NULL)
 			ft_error(data, 6);
 		if (!isSpecialDir(current->fullpath_name) && listSize(data->folders) > 1)
-			ft_printf("%s:\n", current->fullpath_name);
+			(DEBUG) ? (ft_printf("%s:0\n", current->fullpath_name)) : ft_printf("%s:\n", current->fullpath_name);
 		loop(data, NULL, current->fullpath_name, dir);
 		if (!isSpecialDir(current->fullpath_name) && current->next != NULL)
-			write(1, "\n", 1);
+			(DEBUG) ? (write(1, "9\n", 2)) : (write(1, "\n", 1));
 		current = current->next;
 		closedir(dir);
 	}
