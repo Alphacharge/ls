@@ -11,15 +11,15 @@ void	print_treelvl(t_file *tree)
 			F_ISSET(*(this->data->flags), F_ALL)))
 			ft_printf("%s", this->name);
 		//gaps 4 stdout
-		// if (this->next && this->next->name && F_ISSET(*(this->data->flags), F_STDOUT) &&\
+		if (this->next && this->next->name && F_ISSET(*(this->data->flags), F_STDOUT))
+			fillup_and_gap(this->length, tree->maxlength);
+		else if (this->next && this->next->name && !F_ISSET(*(this->data->flags), F_STDOUT))
+			(DEBUG) ? (write(1, "6\n", 2)) : (write(1, "\n", 1));
 		// 	(!isDotfile(this->name) || \
 		// 	F_ISSET(*(this->data->flags), F_ALL)))
-		fillup_and_gap(this->length, tree->maxlength);
 		//nl 4 redirection
-		// else if (this->next && this->next->name && !F_ISSET(*(this->data->flags), F_STDOUT) &&\
 		// 	(!isDotfile(this->name) || \
 		// 	F_ISSET(*(this->data->flags), F_ALL)))
-		// 	(DEBUG) ? (write(1, "6\n", 2)) : (write(1, "\n", 1));
 		this = this->next;
 		// ft_printf("this:%p:%s\n", this, this->fullpath_name);
 		if (this == NULL){

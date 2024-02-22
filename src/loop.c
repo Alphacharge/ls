@@ -44,27 +44,28 @@ void	loop(t_data *data, t_file *treelvl, char *path, DIR *ref)
 			t_file	*new = listNew(data);
 			if (new == NULL)
 				ft_error(data, 3);
-			if (head == NULL)
-				head = new;
-			else
-			{
-				t_file	*last = head;
-				while (last && last->next)
-					last = last->next;
-				last->next = new;
-			}
 			setFileType(new, dir->d_type);
 			new->name = ft_strdup(dir->d_name);
 			new->path = path;
 			new->fullpath_name = ft_multijoin(false, 3, path, "/", dir->d_name);
 			new->length = NAMELENGTH;
-			if (new->length > head->maxlength)
-				listUpdateMaxlength(head, new->length);
 			if (new->name == NULL || new->fullpath_name == NULL)
 				ft_error(data, 5);
 			if ((F_ISSET(*new->data->flags, F_LONG) || F_ISSET(*new->data->flags, F_MTIME)) && lstat(new->fullpath_name, &new->stat) < 0)
 				ft_error(data, 4);
 			dir = readdir(ref);
+			if (head == NULL)
+				head = new;
+			else
+			{
+				t_file	*last = head;
+				while (last && last->next){
+					if (last->length < new->length)
+						last->length = new->length;
+					last = last->next;
+				}
+				last->next = new;
+			}
 			head->listsize = listSize(head);
 		}
 		//call recursive to print
