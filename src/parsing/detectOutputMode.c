@@ -2,10 +2,9 @@
 
 void	detectOutputMode(t_data *data)
 {
-	int	fd = 1;
 	struct stat statbuf;
 
-	if (fstat(fd, &statbuf) == -1) {
+	if (fstat(STDOUT_FILENO, &statbuf) == -1) {
 		perror("fstat");
 		exit(EXIT_FAILURE);
 		//needs freeing
