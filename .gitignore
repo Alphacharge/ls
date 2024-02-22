@@ -1,6 +1,6 @@
 #executable
 ft_ls
-
+tests
 # Prerequisites
 *.d
 
