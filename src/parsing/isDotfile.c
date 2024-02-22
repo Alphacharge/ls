@@ -1,6 +1,6 @@
 #include "ft_ls.h"
 
-bool	is_dotfile(char *filename)
+bool	isDotfile(char *filename)
 {
 	if (!filename)
 		return false;

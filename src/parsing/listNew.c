@@ -1,6 +1,6 @@
 #include "ft_ls.h"
 
-t_file	*new_node(t_data *data)
+t_file	*listNew(t_data *data)
 {
 	t_file	*new = malloc(1 * sizeof(t_file));
 	if (new == NULL)

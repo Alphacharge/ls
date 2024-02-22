@@ -63,6 +63,7 @@ typedef struct s_file
 # define F_NUMID		(1 << 9)	//-n
 # define F_COLOR		(1 << 10)	//-G
 # define F_FOLDERSORT	(1 << 11)	//flag to sort args
+# define F_STDOUT		(1 << 12)	//flag to recognize output 1 stdout 0 pipe or file
 
 # define F_SET(mask, flag)		((mask) |= (flag))
 # define F_CLEAR(mask, flag)	((mask) &= ~(flag))
@@ -87,18 +88,20 @@ typedef struct s_data
 }				t_data;
 
 //parsing
-t_file			*new_node(t_data *data);
-bool			is_option(char *argv);
-bool			is_dotfile(char *filename);
-bool			is_special_dir(char *filename);
-void			get_options(t_data *data, char* argv);
+bool			isOption(char *argv);
+bool			isDotfile(char *filename);
+bool			isSpecialDir(char *filename);
+void			getOptions(t_data *data, char* argv);
+void			setFileType(t_file *node, unsigned char type);
+
 void			parsing(t_data *data, int argc, char **argv);
-void			set_file_type(t_file *node, unsigned char type);
 void			loop(t_data *data, t_file *treelvl, char *path, DIR *ref);
 // void			generate_tree(t_data *data, t_file **treelvl, char *path, DIR *ref);
-unsigned int	listsize(t_file *tree);
-t_file			*listlast(t_file *tree);
-void			update_maxlength(t_file *head, unsigned int length);
+
+t_file			*listNew(t_data *data);
+unsigned int	listSize(t_file *tree);
+t_file			*listLast(t_file *tree);
+void			listUpdateMaxlength(t_file *head, unsigned int length);
 
 //error
 void	ft_error(t_data *data, unsigned int code);

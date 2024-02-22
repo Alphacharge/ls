@@ -1,6 +1,6 @@
 #include "ft_ls.h"
 
-bool	is_special_dir(char *filename)
+bool	isSpecialDir(char *filename)
 {
 	if (!filename)
 		return false;

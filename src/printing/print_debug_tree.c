@@ -2,7 +2,7 @@
 
 void	print_debug_tree(t_file *tree, int lvl)
 {
-	ft_printf("Listsize tree:%d\n", listsize(tree));
+	ft_printf("Listsize tree:%d\n", listSize(tree));
 	// int		intend = 0;
 	while (tree != NULL && tree->next != NULL)
 	{

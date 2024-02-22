@@ -1,6 +1,6 @@
 #include "ft_ls.h"
 
-void	update_maxlength(t_file *head, unsigned int length)
+void	listUpdateMaxlength(t_file *head, unsigned int length)
 {
 	t_file	*tmp = head;
 

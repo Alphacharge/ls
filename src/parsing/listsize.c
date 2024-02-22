@@ -1,6 +1,6 @@
 #include "ft_ls.h"
 
-unsigned int	listsize(t_file *tree)
+unsigned int	listSize(t_file *tree)
 {
 	if (!tree)
 		return 0;

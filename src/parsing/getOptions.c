@@ -1,6 +1,6 @@
 #include "ft_ls.h"
 
-void	get_options(t_data *data, char* argv)
+void	getOptions(t_data *data, char* argv)
 {
 	while (data && argv && *argv)
 	{

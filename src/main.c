@@ -33,10 +33,10 @@ int main(int argc, char** argv) {
 		DIR	*dir = opendir(current->fullpath_name);
 		if (dir == NULL)
 			ft_error(data, 6);
-		if (!is_special_dir(current->fullpath_name) && listsize(data->folders) > 1)
+		if (!isSpecialDir(current->fullpath_name) && listSize(data->folders) > 1)
 			ft_printf("%s:\n", current->fullpath_name);
 		loop(data, NULL, current->fullpath_name, dir);
-		if (!is_special_dir(current->fullpath_name) && current->next != NULL)
+		if (!isSpecialDir(current->fullpath_name) && current->next != NULL)
 			write(1, "\n", 1);
 		current = current->next;
 		closedir(dir);
