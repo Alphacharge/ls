@@ -84,7 +84,7 @@ $(OBJ_D):
 $(LIBFT_F):
 ifneq ($(shell test -d $(LIBFT_D) && echo exists), exists)
 	@echo "$(GREEN)Clone libft ...$(WHITE)"
-	@git clone -q --branch v1.0.2 --recurse-submodules $(LIBFT_U) $(LIBFT_D)
+	@git clone -q --branch v1.0.3 --recurse-submodules $(LIBFT_U) $(LIBFT_D)
 endif
 	@$(MAKE) -j -C $(LIBFT_D)
 
