@@ -13,7 +13,6 @@ t_file	*listNew(t_data *data)
 	new->data = data;
 	new->length = 0;
 	new->maxlength = 0;
-	new->listsize = 0;
 	new->type = _NONE;
 	return new;
 }

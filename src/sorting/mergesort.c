@@ -41,7 +41,6 @@ t_file	*merge(t_file *left, t_file *right)
 		tmp->next = left;
 	else if (right)
 		tmp->next = right;
-	new->listsize = listSize(new);
 	return new;
 }
 
@@ -59,8 +58,6 @@ t_file	*splitlist(t_file *head)
 
 	if (prev)
 		prev->next = NULL;
-	head->listsize = listSize(head);
-	slow->listsize = listSize(slow);
 	return slow;
 }
 

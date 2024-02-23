@@ -43,7 +43,6 @@ typedef struct s_file
 	char			*fullpath_name;
 	unsigned int	length;
 	unsigned int	maxlength;
-	unsigned int	listsize;
 	struct stat		stat;
 	struct s_data	*data;
 	struct s_file	*sub;
@@ -98,7 +97,7 @@ void			parsing(t_data *data, int argc, char **argv);
 void			loop(t_data **data, t_file **treelvl, char *path, DIR *ref);
 
 t_file			*listNew(t_data *data);
-unsigned int	listSize(t_file *tree);
+// unsigned int	listSize(t_file *tree);
 t_file			*listLast(t_file *tree);
 void			listUpdateMaxlength(t_file *head, unsigned int length);
 
@@ -114,6 +113,7 @@ void	fillup_and_gap(unsigned int length, unsigned int maxlength);
 // void	print_tree(t_file *tree, int lvl);
 // void	print_inline_tree(t_file *tree);
 void	print_treelvl(t_file **tree);
+void	printLongTreelvl(t_file **tree);
 // void	print_debug_tree(t_file *tree, int lvl);
 // void	print_array(char **array);
 // bool	print_dotfile(unsigned short *flags, char *filename);

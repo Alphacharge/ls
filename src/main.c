@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
 			perror(current->fullpath_name);
 			ft_error(data, 6);
 		}
-		if (!isSpecialDir(current->fullpath_name) && listSize(data->folders) > 1)
+		if (!isSpecialDir(current->fullpath_name))
 			(DEBUG) ? (ft_printf("%s:0\n", current->fullpath_name)) : ft_printf("%s:\n", current->fullpath_name);
 		loop(&data, NULL, current->fullpath_name, dir);
 		if (!isSpecialDir(current->fullpath_name) && current->next != NULL)
