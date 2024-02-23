@@ -62,6 +62,9 @@ message:
 $(OBJ_D):
 	@mkdir $@
 
+gprof: CFLAGS += -pg
+gprof: re
+
 clean:
 	@echo "$(YELL)--->$(RED)Cleaning Objects .....$(WHITE)"
 	@/bin/rm -rf $(OBJ_D) libft.h.gch
