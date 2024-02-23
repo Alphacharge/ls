@@ -6,7 +6,10 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 	if (treelvl != NULL)
 	{
 		*treelvl = mergesortlist(*treelvl);
-		print_treelvl(treelvl);
+		if (F_ISSET((*(*data)->flags), F_LONG))
+			printLongTreelvl(treelvl);
+		else
+			print_treelvl(treelvl);
 		//if recursive generate child tree
 		if (F_ISSET((*(*data)->flags), F_RECURSIVE))
 		{
@@ -33,7 +36,7 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 	else
 	{
 		if (ref == NULL)
-			ft_error(*data, 6);
+			return ;
 		struct dirent *dir = readdir(ref);
 		t_file	*head = NULL;
 		while (dir != NULL) {
@@ -66,7 +69,7 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 				}
 				last->next = new;
 			}
-			head->listsize = listSize(head);
+			// head->listsize = listSize(head);
 		}
 		if (ref)
 			closedir(ref);
