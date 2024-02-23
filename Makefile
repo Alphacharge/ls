@@ -7,8 +7,8 @@ OS		:=	$(shell uname)
 CC		:=	cc
 CFLAGS	:=	-Wall -Wextra -Werror
 CFLAGS	+=	-MMD
-CFLAGS	+=	-g 
-CFLAGS	+=	-fsanitize=address
+CFLAGS	+=	-g
+# CFLAGS	+=	-fsanitize=address
 
 ###			###			SOURCES			###			###
 VPATH	:=	src/ src/options src/error src/cleanup src/parsing
@@ -68,6 +68,13 @@ all: message $(LIBFT_F)
 
 lsan: clean_lsan $(OBJ_D) $(LIBFT_F) $(LSAN_F)
 	@$(MAKE) -j $(NAME)
+
+gprof: CFLAGS += -pg
+gprof: clean
+	@$(MAKE) gprof -C $(LIBFT_D)
+	@$(MAKE) $(NAME)
+	./ft_ls -aR ftt
+	gprof ./ft_ls gmon.out > analysis.txt
 
 $(NAME): $(OBJ_D) $(OBJ_F)
 	$(CC) $(CFLAGS) $(INC_F) -o $(NAME) $(OBJ_F) $(LIB)

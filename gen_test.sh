@@ -1,8 +1,12 @@
 #!/bin/bash
 
-dir="tests/ls"
-dir2="tests/ftls"
+loc="../tests"
+dir="$loc/ls"
+dir2="$loc/ftls"
 
+rm -r tests
+
+mkdir -p $loc
 mkdir -p $dir
 mkdir -p $dir2
 
@@ -114,3 +118,5 @@ done
 for ((i = 0; i < ${#ls_files[@]}; i++)); do
 	run_test "$dir/${ls_files[i]}" "$dir2/${ls_files[i]}" "${ls_flags[i]}"
 done
+
+mv $loc .
