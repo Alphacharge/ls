@@ -22,6 +22,7 @@ void	loop(t_data *data, t_file *treelvl, char *path, DIR *ref)
 						perror(current->fullpath_name);
 						break;
 					}
+					ft_printf("\n%s:\n", current->fullpath_name);
 					loop(data, NULL, current->fullpath_name, dir);
 				}
 				current = current->next;
