@@ -6,9 +6,7 @@ void	print_treelvl(t_file **tree)
 
 	while (this) {
 		//print names
-		if (this->name && this->data && \
-			(!isDotfile(this->name) || \
-			F_ISSET(*(this->data->flags), F_ALL)))
+		if (this->name && this->data)
 			ft_printf("%s", this->name);
 		//gaps 4 stdout
 		if (this->next && this->next->name && F_ISSET(*(this->data->flags), F_STDOUT))
