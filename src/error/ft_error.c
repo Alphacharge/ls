@@ -33,7 +33,7 @@ void	ft_error(t_data *data, unsigned int code)
 		case 6:
 			ft_free_tree(data->folders);
 			ft_free((void**)&(data));
-			ft_printf("opendir failed.\n");
+			// ft_printf("opendir failed.\n");
 			exit (++code);
 	}
 }

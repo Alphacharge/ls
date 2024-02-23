@@ -95,7 +95,7 @@ void			setFileType(t_file *node, unsigned char type);
 void			detectOutputMode(t_data *data);
 
 void			parsing(t_data *data, int argc, char **argv);
-void			loop(t_data *data, t_file *treelvl, char *path, DIR *ref);
+void			loop(t_data **data, t_file **treelvl, char *path, DIR *ref);
 
 t_file			*listNew(t_data *data);
 unsigned int	listSize(t_file *tree);
@@ -113,7 +113,7 @@ void	ft_free_tree(t_file	*tree);
 void	fillup_and_gap(unsigned int length, unsigned int maxlength);
 // void	print_tree(t_file *tree, int lvl);
 // void	print_inline_tree(t_file *tree);
-void	print_treelvl(t_file *tree);
+void	print_treelvl(t_file **tree);
 // void	print_debug_tree(t_file *tree, int lvl);
 // void	print_array(char **array);
 // bool	print_dotfile(unsigned short *flags, char *filename);
