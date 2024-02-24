@@ -44,7 +44,7 @@ t_file	*merge(t_file *left, t_file *right)
 	return new;
 }
 
-t_file	*splitlist(t_file *head)
+t_file	*splitList(t_file *head)
 {
 	t_file *fast = head;
 	t_file *slow = head;
@@ -61,16 +61,16 @@ t_file	*splitlist(t_file *head)
 	return slow;
 }
 
-t_file	*mergesortlist(t_file *tree)
+t_file	*mergesortFileList(t_file *tree)
 {
 	if (tree == NULL || tree->next == NULL)
 		return tree;
 
 	t_file			*left = tree;
-	t_file			*right = splitlist(tree);
+	t_file			*right = splitList(tree);
 
-	left = mergesortlist(left);
-	right = mergesortlist(right);
+	left = mergesortFileList(left);
+	right = mergesortFileList(right);
 
 	return merge(left, right);
 }

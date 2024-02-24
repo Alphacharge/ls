@@ -1,10 +1,10 @@
 #include "ft_ls.h"
 
-bool	isDotfile(char *filename)
+bool	isDotfile(char *fileName)
 {
-	if (!filename)
+	if (!fileName)
 		return false;
-	if (filename[0] == '.')
+	if (fileName[0] == '.')
 		return true;
 	return false;
 }

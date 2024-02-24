@@ -22,21 +22,21 @@ int main(int argc, char** argv) {
 
 	//sorting parameters
 	F_SET(bitmask, F_FOLDERSORT);
-	data->folders = mergesortlist(data->folders);
+	data->folders = mergesortFileList(data->folders);
 	F_CLEAR(bitmask, F_FOLDERSORT);
 
 	//generate, sort, print and free tree for every parameter
 	t_file	*current = data->folders;
 	while (current != NULL) {
-		DIR	*dir = opendir(current->fullpath_name);
+		DIR	*dir = opendir(current->fullPathName);
 		if (dir == NULL){
-			perror(current->fullpath_name);
+			perror(current->fullPathName);
 			ft_error(data, 6);
 		}
-		if (!isSpecialDir(current->fullpath_name))
-			(DEBUG) ? (ft_printf("%s:0\n", current->fullpath_name)) : ft_printf("%s:\n", current->fullpath_name);
-		loop(&data, NULL, current->fullpath_name, dir);
-		if (!isSpecialDir(current->fullpath_name) && current->next != NULL)
+		if (!isSpecialDir(current->fullPathName))
+			(DEBUG) ? (ft_printf("%s:0\n", current->fullPathName)) : ft_printf("%s:\n", current->fullPathName);
+		loop(&data, NULL, current->fullPathName, dir);
+		if (!isSpecialDir(current->fullPathName) && current->next != NULL)
 			(DEBUG) ? (write(1, "9\n", 2)) : (write(1, "\n", 1));
 		current = current->next;
 	}

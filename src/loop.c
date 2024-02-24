@@ -5,27 +5,27 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 	//print stuff and generate child if recursive
 	if (treelvl != NULL)
 	{
-		*treelvl = mergesortlist(*treelvl);
+		*treelvl = mergesortFileList(*treelvl);
 		if (F_ISSET((*(*data)->flags), F_LONG))
 			printLongTreelvl(treelvl);
 		else
-			print_treelvl(treelvl);
+			printTreelvl(treelvl);
 		//if recursive generate child tree
 		if (F_ISSET((*(*data)->flags), F_RECURSIVE))
 		{
 			t_file *current = *treelvl;
 			while (current)
 			{
-				if (!isSpecialDir(current->name) && (!isDotfile(current->name) || (isDotfile(current->name) && F_ISSET(*(*data)->flags, F_ALL))) && current->type == _DIR)
+				if (!isSpecialDir(current->fileName) && (!isDotfile(current->fileName) || (isDotfile(current->fileName) && F_ISSET(*(*data)->flags, F_ALL))) && current->fileType == _DIR)
 				{
-					DIR	*dir = opendir(current->fullpath_name);
+					DIR	*dir = opendir(current->fullPathName);
 					if (dir == NULL) {
-						perror(current->fullpath_name);
+						perror(current->fullPathName);
 						current = current->next;
 						continue;
 					}
-					ft_printf("\n%s:\n", current->fullpath_name);
-					loop(data, NULL, current->fullpath_name, dir);
+					ft_printf("\n%s:\n", current->fullPathName);
+					loop(data, NULL, current->fullPathName, dir);
 				}
 				current = current->next;
 			}
@@ -48,13 +48,13 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 			if (new == NULL)
 				ft_error(*data, 3);
 			setFileType(new, dir->d_type);
-			new->name = ft_strdup(dir->d_name);
-			new->path = path;
-			new->fullpath_name = ft_multijoin(false, 3, path, "/", dir->d_name);
-			new->length = NAMELENGTH;
-			if (new->name == NULL || new->fullpath_name == NULL)
+			new->fileName = ft_strdup(dir->d_name);
+			// new->path = path;
+			new->fullPathName = ft_multijoin(false, 3, path, "/", dir->d_name);
+			new->fileNameLength = NAMELENGTH;
+			if (new->fileName == NULL || new->fullPathName == NULL)
 				ft_error(*data, 5);
-			if ((F_ISSET(*new->data->flags, F_LONG) || F_ISSET(*new->data->flags, F_MTIME)) && lstat(new->fullpath_name, &new->stat) < 0)
+			if ((F_ISSET(*new->data->flags, F_LONG) || F_ISSET(*new->data->flags, F_MTIME)) && lstat(new->fullPathName, &new->stat) < 0)
 				ft_error(*data, 4);
 			dir = readdir(ref);
 			if (head == NULL)
@@ -63,8 +63,8 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 			{
 				t_file	*last = head;
 				while (last && last->next){
-					if (last->length < new->length)
-						last->length = new->length;
+					if (last->fileNameLength < new->fileNameLength)
+						last->fileNameLength = new->fileNameLength;
 					last = last->next;
 				}
 				last->next = new;
@@ -75,6 +75,6 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 			closedir(ref);
 		//call recursive to print
 		if (head != NULL)
-			loop(data, &head, head->fullpath_name, NULL);
+			loop(data, &head, head->fullPathName, NULL);
 	}
 }

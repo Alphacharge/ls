@@ -13,6 +13,9 @@
 # include <time.h>		//time, ctime
 # include <sys/xattr.h>	//listxattr
 
+/*----------------------------------------------------------------------------*/
+/*--------------------------SYSTEM SETTINGS-----------------------------------*/
+/*----------------------------------------------------------------------------*/
 # ifdef __linux__
 #  define SYSTEM 0
 // #  define OFFSET dir->d_off
@@ -27,6 +30,9 @@
 #  define TIME stat.st_mtimespec.tv_sec
 # endif
 
+/*----------------------------------------------------------------------------*/
+/*--------------------------DATA STRUCTURES-----------------------------------*/
+/*----------------------------------------------------------------------------*/
 typedef enum e_type
 {
 	_NONE,
@@ -37,20 +43,31 @@ typedef enum e_type
 
 typedef struct s_file
 {
-	t_type			type;
-	char			*path;
-	char			*name;
-	char			*fullpath_name;
-	unsigned int	length;
-	unsigned int	maxlength;
+	t_type			fileType;
+	char			*fileName;
+	char			*fullPathName;
+	unsigned int	fileNameLength;
+	unsigned int	maxFileNameLength;
 	struct stat		stat;
 	struct s_data	*data;
-	struct s_file	*sub;
 	struct s_file	*next;
 }				t_file;
+
+typedef struct s_data
+{
+	unsigned short	*flags;
+	t_file			*folders;
+}				t_data;
+
+/*----------------------------------------------------------------------------*/
+/*--------------------------CUSTOM DEFINITIONS--------------------------------*/
+/*----------------------------------------------------------------------------*/
 # define TAB_WIDTH 4
 # define DEBUG 0
 
+/*----------------------------------------------------------------------------*/
+/*-----------------------------OPTIONS BITMASK--------------------------------*/
+/*----------------------------------------------------------------------------*/
 # define F_ALL			(1 << 0)	//-a
 # define F_LONG			(1 << 1)	//-l
 # define F_REVERSE		(1 << 2)	//-r
@@ -69,27 +86,28 @@ typedef struct s_file
 # define F_CLEAR(mask, flag)	((mask) &= ~(flag))
 # define F_ISSET(mask, flag)	!!((mask) & (flag))
 
+/*----------------------------------------------------------------------------*/
+/*-----------------------------SORTING MACROS---------------------------------*/
+/*----------------------------------------------------------------------------*/
 # define SORT_BY_ALPHA(left, right) \
 	(F_ISSET(*(left)->data->flags, F_REVERSE) \
-	? ft_strcmp((left)->fullpath_name, (right)->fullpath_name) > 0 \
-	: ft_strcmp((left)->fullpath_name, (right)->fullpath_name) < 0 )
+	? ft_strcmp((left)->fullPathName, (right)->fullPathName) > 0 \
+	: ft_strcmp((left)->fullPathName, (right)->fullPathName) < 0 )
 
 # define SORTDIR(left, right) \
 	((F_ISSET(*(left)->data->flags, F_MTIME)) \
 	? (sort_by_mtime(left, right)) \
 	: (SORT_BY_ALPHA(left, right)))
 
-typedef struct s_data
-{
-	unsigned short	*flags;
-	t_file			*folders;
-}				t_data;
+/*----------------------------------------------------------------------------*/
+/*-------------------------FUNCTION PROTOTYPES--------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 //parsing
 bool			isOption(char *argv);
+void			getOptions(t_data *data, char* argv);
 bool			isDotfile(char *filename);
 bool			isSpecialDir(char *filename);
-void			getOptions(t_data *data, char* argv);
 void			setFileType(t_file *node, unsigned char type);
 void			detectOutputMode(t_data *data);
 
@@ -98,8 +116,8 @@ void			loop(t_data **data, t_file **treelvl, char *path, DIR *ref);
 
 t_file			*listNew(t_data *data);
 // unsigned int	listSize(t_file *tree);
-t_file			*listLast(t_file *tree);
-void			listUpdateMaxlength(t_file *head, unsigned int length);
+// t_file			*listLast(t_file *tree);
+// void			listUpdateMaxlength(t_file *head, unsigned int length);
 
 //error
 void	ft_error(t_data *data, unsigned int code);
@@ -109,10 +127,10 @@ void	ft_free(void **tofree);
 void	ft_free_tree(t_file	*tree);
 
 //printing
-void	fillup_and_gap(unsigned int length, unsigned int maxlength);
+void	insertPadding(unsigned int length, unsigned int maxlength);
 // void	print_tree(t_file *tree, int lvl);
 // void	print_inline_tree(t_file *tree);
-void	print_treelvl(t_file **tree);
+void	printTreelvl(t_file **tree);
 void	printLongTreelvl(t_file **tree);
 // void	print_debug_tree(t_file *tree, int lvl);
 // void	print_array(char **array);
@@ -120,10 +138,10 @@ void	printLongTreelvl(t_file **tree);
 
 //sorting
 long	sort_by_mtime(t_file *left, t_file *right);
-void	bubblesort(char **input, int n, bool direction);
+// void	bubblesort(char **input, int n, bool direction);
 t_file	*merge(t_file *left, t_file *right);
-t_file	*splitlist(t_file *head);
-t_file	*mergesortlist(t_file *tree);
+t_file	*splitList(t_file *head);
+t_file	*mergesortFileList(t_file *tree);
 
 #endif
 

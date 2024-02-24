@@ -1,11 +1,11 @@
 #include "ft_ls.h"
 
-void	setFileType(t_file *node, unsigned char type)
+void	setFileType(t_file *node, unsigned char fileType)
 {
-	if (type == DT_DIR)
-		node->type = _DIR;
-	else if (type == DT_LNK)
-		node->type = _LINK;
+	if (fileType == DT_DIR)
+		node->fileType = _DIR;
+	else if (fileType == DT_LNK)
+		node->fileType = _LINK;
 	else
-		node->type = _FILE;
+		node->fileType = _FILE;
 }

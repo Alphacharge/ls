@@ -6,13 +6,11 @@ t_file	*listNew(t_data *data)
 	if (new == NULL)
 		return NULL;
 	new->next = NULL;
-	new->sub = NULL;
-	new->name = NULL;
-	new->path = NULL;
-	new->fullpath_name = NULL;
+	new->fileName = NULL;
+	new->fullPathName = NULL;
 	new->data = data;
-	new->length = 0;
-	new->maxlength = 0;
-	new->type = _NONE;
+	new->fileNameLength = 0;
+	new->maxFileNameLength = 0;
+	new->fileType = _NONE;
 	return new;
 }

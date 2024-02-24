@@ -1,10 +1,10 @@
 #include "ft_ls.h"
 
-bool	isSpecialDir(char *filename)
+bool	isSpecialDir(char *fileName)
 {
-	if (!filename)
+	if (!fileName)
 		return false;
-	if (!ft_strcmp(filename, ".") || !ft_strcmp(filename, ".."))
+	if (!ft_strcmp(fileName, ".") || !ft_strcmp(fileName, ".."))
 		return true;
 	return false;
 }

@@ -13,8 +13,8 @@ void	parsing(t_data *data, int argc, char **argv)
 		data->folders = ft_calloc(1, sizeof(t_file));
 		if (data->folders == NULL)
 			ft_error(data, 1);
-		data->folders->fullpath_name = ft_strdup(".");
-		if (data->folders->fullpath_name == NULL)
+		data->folders->fullPathName = ft_strdup(".");
+		if (data->folders->fullPathName == NULL)
 			ft_error(data, 2);
 		data->folders->next = NULL;
 	}
@@ -36,8 +36,8 @@ void	parsing(t_data *data, int argc, char **argv)
 					last = last->next;
 				last->next = new;
 			}
-			new->fullpath_name = ft_strdup(argv[i++]);
-			if (new->fullpath_name == NULL)
+			new->fullPathName = ft_strdup(argv[i++]);
+			if (new->fullPathName == NULL)
 				ft_error(data, 2);
 			data->folders = head;
 		}
