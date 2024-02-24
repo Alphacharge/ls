@@ -1,6 +1,6 @@
 #include "ft_ls.h"
 
-long	sort_by_mtime(t_file *left, t_file *right)
+long	sortByMtime(t_file *left, t_file *right)
 {
 	time_t	leftTime = left->TIME;
 	time_t	rightTime = right->TIME;
