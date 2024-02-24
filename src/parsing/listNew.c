@@ -11,6 +11,7 @@ t_file	*listNew(t_data *data)
 	new->data = data;
 	new->fileNameLength = 0;
 	new->maxFileNameLength = 0;
+	new->maxLinks = 0;
 	new->fileType = _NONE;
 	return new;
 }

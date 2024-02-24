@@ -48,6 +48,7 @@ typedef struct s_file
 	char			*fullPathName;
 	unsigned int	fileNameLength;
 	unsigned int	maxFileNameLength;
+	unsigned int	maxLinks;
 	struct stat		stat;
 	struct s_data	*data;
 	struct s_file	*next;
@@ -96,7 +97,7 @@ typedef struct s_data
 
 # define SORTDIR(left, right) \
 	((F_ISSET(*(left)->data->flags, F_MTIME)) \
-	? (sort_by_mtime(left, right)) \
+	? (sortByMtime(left, right)) \
 	: (SORT_BY_ALPHA(left, right)))
 
 /*----------------------------------------------------------------------------*/
@@ -110,6 +111,7 @@ bool			isDotfile(char *filename);
 bool			isSpecialDir(char *filename);
 void			setFileType(t_file *node, unsigned char type);
 void			detectOutputMode(t_data *data);
+unsigned int	countDigits(unsigned int digit);
 
 void			parsing(t_data *data, int argc, char **argv);
 void			loop(t_data **data, t_file **treelvl, char *path, DIR *ref);
@@ -132,12 +134,13 @@ void	insertPadding(unsigned int length, unsigned int maxlength);
 // void	print_inline_tree(t_file *tree);
 void	printTreelvl(t_file **tree);
 void	printLongTreelvl(t_file **tree);
+void	printLinks(t_file *this);
 // void	print_debug_tree(t_file *tree, int lvl);
 // void	print_array(char **array);
 // bool	print_dotfile(unsigned short *flags, char *filename);
 
 //sorting
-long	sort_by_mtime(t_file *left, t_file *right);
+long	sortByMtime(t_file *left, t_file *right);
 // void	bubblesort(char **input, int n, bool direction);
 t_file	*merge(t_file *left, t_file *right);
 t_file	*splitList(t_file *head);

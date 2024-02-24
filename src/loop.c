@@ -52,10 +52,14 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 			// new->path = path;
 			new->fullPathName = ft_multijoin(false, 3, path, "/", dir->d_name);
 			new->fileNameLength = NAMELENGTH;
+			new->maxFileNameLength = new->fileNameLength;
 			if (new->fileName == NULL || new->fullPathName == NULL)
 				ft_error(*data, 5);
 			if ((F_ISSET(*new->data->flags, F_LONG) || F_ISSET(*new->data->flags, F_MTIME)) && lstat(new->fullPathName, &new->stat) < 0)
 				ft_error(*data, 4);
+			// if (F_ISSET(*new->data->flags, F_LONG)) {
+			// 	new->maxLinks = new->stat.st_nlink;
+			// }
 			dir = readdir(ref);
 			if (head == NULL)
 				head = new;
@@ -63,10 +67,16 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 			{
 				t_file	*last = head;
 				while (last && last->next){
-					if (last->fileNameLength < new->fileNameLength)
-						last->fileNameLength = new->fileNameLength;
+					if (last->maxFileNameLength < new->fileNameLength)
+						last->maxFileNameLength = new->fileNameLength;
+					if (F_ISSET(*new->data->flags, F_LONG) && last->maxLinks < new->stat.st_nlink)
+						last->maxLinks = new->stat.st_nlink;
 					last = last->next;
 				}
+				// if (last->maxFileNameLength > new->maxFileNameLength)
+					new->maxFileNameLength = last->maxFileNameLength;
+				// if (F_ISSET(*new->data->flags, F_LONG) && last->maxLinks > new->stat.st_nlink)
+					new->maxLinks = last->maxLinks;
 				last->next = new;
 			}
 			// head->listsize = listSize(head);
