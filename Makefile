@@ -73,7 +73,7 @@ gprof: CFLAGS += -pg
 gprof: clean
 	@$(MAKE) gprof -C $(LIBFT_D)
 	@$(MAKE) $(NAME)
-	./ft_ls -aR ftt
+	./ft_ls -aR urdu
 	gprof ./ft_ls gmon.out > analysis.txt
 
 $(NAME): $(OBJ_D) $(OBJ_F)

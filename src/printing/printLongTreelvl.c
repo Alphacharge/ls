@@ -42,6 +42,7 @@ void	printLongTreelvl(t_file **tree)
 		printLinks(&this);
 		printUser(&this);
 		printGroup(&this);
+		printBytes(&this);
 		if (this->fileName && this->data)
 			ft_printf("%s", this->fileName);
 		//gaps 4 stdout
