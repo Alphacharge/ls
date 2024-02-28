@@ -64,12 +64,14 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 				new->grp = getgrgid(new->stat.st_gid);
 				if (new->grp == NULL)
 					ft_error(*data, 4);
-				new->maxLinks = new->stat.st_nlink;
-				new->maxBytes = new->stat.st_size;
 				new->userLength = ft_strlen(new->pwd->pw_name);
 				new->maxUserLength = new->userLength;
+				new
 				new->groupLength = ft_strlen(new->grp->gr_name);
 				new->maxGroupLength = new->groupLength;
+				new->maxLinks = new->stat.st_nlink;
+				new->maxBytes = new->stat.st_size;
+				new->totalBlocks = new->stat.st_blocks;
 			}
 			dir = readdir(ref);
 			if (head == NULL)
@@ -89,6 +91,7 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 							last->maxUserLength = new->userLength;
 						if (last->maxGroupLength < new->groupLength)
 							last->maxGroupLength = new->groupLength;
+						last->totalBlocks += new->totalBlocks;
 					}
 					// ft_printf("->%s,\t\t%d,\t\t%d\n", last->fileName, last->maxFileNameLength, last->maxLinks);
 					last = last->next;
@@ -104,10 +107,12 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 						last->maxUserLength = new->userLength;
 					if (last->maxGroupLength < new->groupLength)
 						last->maxGroupLength = new->groupLength;
+					last->totalBlocks += new->totalBlocks;
 				}
 				new->maxFileNameLength = last->fileNameLength;
 				new->maxLinks = last->maxLinks;
 				new->maxBytes = last->maxBytes;
+				new->totalBlocks = last->totalBlocks;
 				new->maxUserLength = last->maxUserLength;
 				new->maxGroupLength = last->maxGroupLength;
 					// ft_printf("->->%s,\t\t%d,\t\t%d\n", last->fileName, last->maxFileNameLength, last->maxLinks);
