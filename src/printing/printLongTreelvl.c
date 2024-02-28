@@ -4,11 +4,11 @@ void	printLongTreelvl(t_file **tree)
 {
 	t_file	*this = *tree;
 	char	permissions[11];
+	char	*month;
 	
-	ft_memset(permissions, '-', sizeof(permissions));
-	permissions[10] = ' ';
-
 	while (this) {
+		ft_memset(permissions, '-', sizeof(permissions));
+		permissions[10] = ' ';
 		//filetype
 		if (this->fileType == _DIR)
 			permissions[0] = 'd';
@@ -43,8 +43,17 @@ void	printLongTreelvl(t_file **tree)
 		printUser(&this);
 		printGroup(&this);
 		printBytes(&this);
+		month = ctime(&this->TIME);
+		if (!month)
+			ft_error(this->data, 4);
+		month = &month[4];
+		write(1, month, 12);
+		write(1, " ", 1);
 		if (this->fileName && this->data)
 			ft_printf("%s", this->fileName);
+		printFilename(&this);
+		if (this->fileType == _LINK)
+			ft_printf(" -> %s", this->fileName);
 		//gaps 4 stdout
 		(write(1, "\n", 1));
 		this = this->next;
