@@ -13,5 +13,11 @@ t_file	*listNew(t_data *data)
 	new->maxFileNameLength = 0;
 	new->maxLinks = 0;
 	new->fileType = _NONE;
+	new->pwd = NULL;
+	new->userLength = 0;
+	new->maxUserLength = 0;
+	new->grp = NULL;
+	new->groupLength = 0;
+	new->maxGroupLength = 0;
 	return new;
 }

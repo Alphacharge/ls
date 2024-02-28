@@ -39,7 +39,9 @@ void	printLongTreelvl(t_file **tree)
 		if (listxattr(this->fullPathName, NULL, 0, 0) != 0)
 			permissions[10] = '@';
 		write(1, permissions, 11);
-		printLinks(this);
+		printLinks(&this);
+		printUser(&this);
+		printGroup(&this);
 		if (this->fileName && this->data)
 			ft_printf("%s", this->fileName);
 		//gaps 4 stdout

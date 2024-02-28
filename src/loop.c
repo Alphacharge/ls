@@ -57,9 +57,19 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 				ft_error(*data, 5);
 			if ((F_ISSET(*new->data->flags, F_LONG) || F_ISSET(*new->data->flags, F_MTIME)) && lstat(new->fullPathName, &new->stat) < 0)
 				ft_error(*data, 4);
-			// if (F_ISSET(*new->data->flags, F_LONG)) {
-			// 	new->maxLinks = new->stat.st_nlink;
-			// }
+			if (F_ISSET(*new->data->flags, F_LONG)) {
+				new->pwd = getpwuid(new->stat.st_uid);
+				if (new->pwd == NULL)
+					ft_error(*data, 4);
+				new->grp = getgrgid(new->stat.st_gid);
+				if (new->grp == NULL)
+					ft_error(*data, 4);
+				new->maxLinks = new->stat.st_nlink;
+				new->userLength = ft_strlen(new->pwd->pw_name);
+				new->maxUserLength = new->userLength;
+				new->groupLength = ft_strlen(new->grp->gr_name);
+				new->maxGroupLength = new->groupLength;
+			}
 			dir = readdir(ref);
 			if (head == NULL)
 				head = new;
@@ -71,12 +81,27 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 						last->maxFileNameLength = new->fileNameLength;
 					if (F_ISSET(*new->data->flags, F_LONG) && last->maxLinks < new->stat.st_nlink)
 						last->maxLinks = new->stat.st_nlink;
+					if (F_ISSET(*new->data->flags, F_LONG) && last->maxUserLength < new->userLength)
+						last->maxUserLength = new->userLength;
+					if (F_ISSET(*new->data->flags, F_LONG) && last->maxGroupLength < new->groupLength)
+						last->maxGroupLength = new->groupLength;
+					// ft_printf("->%s,\t\t%d,\t\t%d\n", last->fileName, last->maxFileNameLength, last->maxLinks);
 					last = last->next;
 				}
-				// if (last->maxFileNameLength > new->maxFileNameLength)
-					new->maxFileNameLength = last->maxFileNameLength;
-				// if (F_ISSET(*new->data->flags, F_LONG) && last->maxLinks > new->stat.st_nlink)
-					new->maxLinks = last->maxLinks;
+				if (last->maxFileNameLength < new->maxFileNameLength)
+					last->maxFileNameLength = new->maxFileNameLength;
+				if (F_ISSET(*new->data->flags, F_LONG) && last->maxLinks < new->stat.st_nlink)
+					last->maxLinks = new->stat.st_nlink;
+				if (F_ISSET(*new->data->flags, F_LONG) && last->maxUserLength < new->userLength)
+					last->maxUserLength = new->userLength;
+				if (F_ISSET(*new->data->flags, F_LONG) && last->maxGroupLength < new->groupLength)
+					last->maxGroupLength = new->groupLength;
+				new->maxFileNameLength = last->fileNameLength;
+				new->maxLinks = last->maxLinks;
+				new->maxUserLength = last->maxUserLength;
+				new->maxGroupLength = last->maxGroupLength;
+					// ft_printf("->->%s,\t\t%d,\t\t%d\n", last->fileName, last->maxFileNameLength, last->maxLinks);
+					// ft_printf("-------------------------------------\n");
 				last->next = new;
 			}
 			// head->listsize = listSize(head);
