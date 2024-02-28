@@ -12,6 +12,7 @@
 # include <stdio.h>		//perror, strerror
 # include <time.h>		//time, ctime
 # include <sys/xattr.h>	//listxattr
+# include <limits.h>	//PATH_MAX
 
 /*----------------------------------------------------------------------------*/
 /*--------------------------SYSTEM SETTINGS-----------------------------------*/
@@ -48,15 +49,16 @@ typedef struct s_file
 	char			*fullPathName;
 	unsigned int	fileNameLength;
 	unsigned int	maxFileNameLength;
+	char			*userName;
+	unsigned int	userLength;
+	unsigned int	maxUserLength;
+	char			*groupName;
+	unsigned int	groupLength;
+	unsigned int	maxGroupLength;
 	unsigned int	maxLinks;
 	unsigned int	maxBytes;
-	unsigned int	maxUserLength;
-	unsigned int	userLength;
-	unsigned int	maxGroupLength;
-	unsigned int	groupLength;
+	unsigned int	totalBlocks;
 	struct stat		stat;
-	struct passwd	*pwd;
-	struct group	*grp;
 	struct s_data	*data;
 	struct s_file	*next;
 }				t_file;
@@ -145,6 +147,7 @@ void	printLinks(t_file **this);
 void	printUser(t_file **this);
 void	printGroup(t_file **this);
 void	printBytes(t_file **this);
+void	printFilename(t_file **this);
 // void	print_debug_tree(t_file *tree, int lvl);
 // void	print_array(char **array);
 // bool	print_dotfile(unsigned short *flags, char *filename);

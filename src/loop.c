@@ -58,17 +58,20 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 			if ((F_ISSET(*new->data->flags, F_LONG) || F_ISSET(*new->data->flags, F_MTIME)) && lstat(new->fullPathName, &new->stat) < 0)
 				ft_error(*data, 4);
 			if (F_ISSET(*new->data->flags, F_LONG)) {
-				new->pwd = getpwuid(new->stat.st_uid);
-				if (new->pwd == NULL)
+				struct passwd	*pwd;
+				struct group	*grp;
+				pwd = getpwuid(new->stat.st_uid);
+				if (pwd == NULL)
 					ft_error(*data, 4);
-				new->grp = getgrgid(new->stat.st_gid);
-				if (new->grp == NULL)
+				grp = getgrgid(new->stat.st_gid);
+				if (grp == NULL)
 					ft_error(*data, 4);
-				new->userLength = ft_strlen(new->pwd->pw_name);
+				new->userLength = ft_strlen(pwd->pw_name);
 				new->maxUserLength = new->userLength;
-				new
-				new->groupLength = ft_strlen(new->grp->gr_name);
+				new->userName = ft_strdup(pwd->pw_name);
+				new->groupLength = ft_strlen(grp->gr_name);
 				new->maxGroupLength = new->groupLength;
+				new->groupName = ft_strdup(grp->gr_name);
 				new->maxLinks = new->stat.st_nlink;
 				new->maxBytes = new->stat.st_size;
 				new->totalBlocks = new->stat.st_blocks;
