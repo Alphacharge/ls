@@ -37,7 +37,7 @@ void	printLongTreelvl(t_file **tree)
 		if (this->stat.st_mode & S_IXOTH)
 			permissions[9] = 'x';
 		//extendend attr
-		if (listxattr(this->fullPathName, NULL, 0, 0) != 0)
+		if (LISTXATTR != 0)
 			permissions[10] = '@';
 		write(1, permissions, 11);
 		printLinks(&this);

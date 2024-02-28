@@ -22,6 +22,7 @@
 // #  define OFFSET dir->d_off
 #  define NAMELENGTH ft_strlen(dir->d_name)
 #  define TIME stat.st_mtime
+#  define LISTXATTR listxattr(this->fullPathName, NULL, 0)
 # endif
 
 # ifdef __APPLE__
@@ -29,6 +30,7 @@
 // #  define OFFSET dir->d_seekoff
 #  define NAMELENGTH dir->d_namlen
 #  define TIME stat.st_mtimespec.tv_sec
+#  define LISTXATTR listxattr(this->fullPathName, NULL, 0, 0)
 # endif
 
 /*----------------------------------------------------------------------------*/
