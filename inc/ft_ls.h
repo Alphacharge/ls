@@ -128,38 +128,28 @@ void			parsing(t_data *data, int argc, char **argv);
 void			loop(t_data **data, t_file **treelvl, char *path, DIR *ref);
 
 t_file			*listNew(t_data *data);
-// void			listUpdateMaxlength(t_file *head, unsigned int length);
 
 //error
-void	ft_error(t_data *data, unsigned int code);
+void			ft_error(t_data *data, unsigned int code);
 
 //cleanup
-void	ft_free(void **tofree);
-void	ft_free_tree(t_file	*tree);
+void			ft_free(void **tofree);
+void			ft_free_tree(t_file	*tree);
 
 //printing
-void	insertPadding(unsigned int length, unsigned int maxlength);
-void	printTreelvl(t_file **tree);
-void	printLongTreelvl(t_file **tree);
-void	printLinks(t_file **this);
-void	printUser(t_file **this);
-void	printGroup(t_file **this);
-void	printBytes(t_file **this);
-void	printFilename(t_file **this);
+void			insertPadding(unsigned int length, unsigned int maxlength);
+void			printTreelvl(t_file **tree);
+void			printLongTreelvl(t_file **tree);
+void			printLinks(t_file **this);
+void			printUser(t_file **this);
+void			printGroup(t_file **this);
+void			printBytes(t_file **this);
+void			printFilename(t_file **this);
 
 //sorting
-long	sortByMtime(t_file *left, t_file *right);
-t_file	*merge(t_file *left, t_file *right);
-t_file	*splitList(t_file *head);
-t_file	*mergesortFileList(t_file *tree);
+long			sortByMtime(t_file *left, t_file *right);
+t_file			*merge(t_file *left, t_file *right);
+t_file			*splitList(t_file *head);
+t_file			*mergesortFileList(t_file *tree);
 
 #endif
-
-//                 OK
-// -a              OK
-// -t              OK
-// -aR             OK
-// -ar             OK
-// -at             OK
-// -aRt            OK
-// -art            OK
