@@ -11,7 +11,7 @@ CFLAGS	+=	-g
 # CFLAGS	+=	-fsanitize=address
 
 ###			###			SOURCES			###			###
-VPATH	:=	src/ src/options src/error src/cleanup src/parsing
+VPATH	:=	src/ src/error src/cleanup src/parsing
 VPATH	+=	src/sorting src/printing
 
 SRC_F	:=	$(shell find src -name "*.c")
