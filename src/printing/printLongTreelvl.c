@@ -40,13 +40,13 @@ void	printLongTreelvl(t_file **tree)
 		if (LISTXATTR != 0)
 			permissions[10] = '@';
 		write(1, permissions, 11);
-		printLinks(&this);
-		printUser(&this);
-		printGroup(&this);
-		printBytes(&this);
+		printValue(&this, this->maxLinks, 1);
+		printUserGroup(this->userLength, this->maxUserLength, this->userName);
+		printUserGroup(this->groupLength, this->maxGroupLength, this->groupName);
+		printValue(&this, this->maxBytes, 0);
 		month = ctime(&this->TIME);
 		if (!month)
-			ft_error(this->data, 4);
+			ft_error(this->data, 1);
 		month = &month[4];
 		write(1, month, 12);
 		write(1, " ", 1);

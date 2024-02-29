@@ -38,25 +38,38 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 		if (ref == NULL)
 			return ;
 		struct dirent *dir = readdir(ref);
+		if (errno != 0) {
+			perror("readdir");
+			closedir(ref);
+		}
 		t_file	*head = NULL;
 		while (dir != NULL) {
 			if (isDotfile(dir->d_name) && !F_ISSET((*(*data)->flags), F_ALL)){
 				dir = readdir(ref);
+				if (errno != 0)
+					perror(NULL);
 				continue;
 			}
 			t_file	*new = listNew(*data);
 			if (new == NULL)
-				ft_error(*data, 3);
+				ft_error(*data, 1);
 			setFileType(new, dir->d_type);
 			new->fileName = ft_strdup(dir->d_name);
-			// new->path = path;
+			if (new->fileName == NULL){
+				ft_putstr_fd("file name malloc error\n", 2);
+				ft_error(*data, 1);
+			}
 			new->fullPathName = ft_multijoin(false, 3, path, "/", dir->d_name);
+			if (new->fullPathName == NULL){
+				ft_putstr_fd("path malloc error\n", 2);
+				ft_error(*data, 1);
+			}
 			new->fileNameLength = NAMELENGTH;
 			new->maxFileNameLength = new->fileNameLength;
-			if (new->fileName == NULL || new->fullPathName == NULL)
-				ft_error(*data, 5);
-			if ((F_ISSET(*new->data->flags, F_LONG) || F_ISSET(*new->data->flags, F_MTIME)) && lstat(new->fullPathName, &new->stat) < 0)
-				ft_error(*data, 4);
+			if ((F_ISSET(*new->data->flags, F_LONG) || F_ISSET(*new->data->flags, F_MTIME)) && lstat(new->fullPathName, &new->stat) < 0){
+				perror("lstat");
+				ft_error(*data, 1);
+			}
 			if (F_ISSET(*new->data->flags, F_LONG)) {
 				struct passwd	*pwd;
 				struct group	*grp;
@@ -69,14 +82,26 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 				new->userLength = ft_strlen(pwd->pw_name);
 				new->maxUserLength = new->userLength;
 				new->userName = ft_strdup(pwd->pw_name);
+				if (new->userName == NULL){
+					ft_putstr_fd("user malloc error\n", 2);
+					ft_error(*data, 1);
+				}
 				new->groupLength = ft_strlen(grp->gr_name);
 				new->maxGroupLength = new->groupLength;
 				new->groupName = ft_strdup(grp->gr_name);
+				if (new->groupName == NULL){
+					ft_putstr_fd("group malloc error\n", 2);
+					ft_error(*data, 1);
+				}
 				new->maxLinks = new->stat.st_nlink;
 				new->maxBytes = new->stat.st_size;
 				new->totalBlocks = new->stat.st_blocks;
 			}
 			dir = readdir(ref);
+			if (errno != 0) {
+				perror("readdir");
+				closedir(ref);
+			}
 			if (head == NULL)
 				head = new;
 			else
@@ -96,7 +121,6 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 							last->maxGroupLength = new->groupLength;
 						last->totalBlocks += new->totalBlocks;
 					}
-					// ft_printf("->%s,\t\t%d,\t\t%d\n", last->fileName, last->maxFileNameLength, last->maxLinks);
 					last = last->next;
 				}
 				if (last->maxFileNameLength < new->maxFileNameLength)
@@ -118,15 +142,11 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 				new->totalBlocks = last->totalBlocks;
 				new->maxUserLength = last->maxUserLength;
 				new->maxGroupLength = last->maxGroupLength;
-					// ft_printf("->->%s,\t\t%d,\t\t%d\n", last->fileName, last->maxFileNameLength, last->maxLinks);
-					// ft_printf("-------------------------------------\n");
 				last->next = new;
 			}
-			// head->listsize = listSize(head);
 		}
 		if (ref)
 			closedir(ref);
-		//call recursive to print
 		if (head != NULL)
 			loop(data, &head, head->fullPathName, NULL);
 	}

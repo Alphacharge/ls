@@ -6,8 +6,7 @@ void	detectOutputMode(t_data *data)
 
 	if (fstat(STDOUT_FILENO, &statbuf) == -1) {
 		perror("fstat");
-		exit(EXIT_FAILURE);
-		//needs freeing
+		ft_error(data, 1);
 	}
 
 	if (S_ISREG(statbuf.st_mode)) {

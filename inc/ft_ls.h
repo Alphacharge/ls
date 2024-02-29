@@ -13,6 +13,7 @@
 # include <time.h>		//time, ctime
 # include <sys/xattr.h>	//listxattr
 # include <limits.h>	//PATH_MAX
+# include <errno.h>		//
 
 /*----------------------------------------------------------------------------*/
 /*--------------------------SYSTEM SETTINGS-----------------------------------*/
@@ -75,7 +76,6 @@ typedef struct s_data
 /*--------------------------CUSTOM DEFINITIONS--------------------------------*/
 /*----------------------------------------------------------------------------*/
 # define TAB_WIDTH 4
-# define DEBUG 0
 
 /*----------------------------------------------------------------------------*/
 /*-----------------------------OPTIONS BITMASK--------------------------------*/
@@ -140,10 +140,8 @@ void			ft_free_tree(t_file	*tree);
 void			insertPadding(unsigned int length, unsigned int maxlength);
 void			printTreelvl(t_file **tree);
 void			printLongTreelvl(t_file **tree);
-void			printLinks(t_file **this);
-void			printUser(t_file **this);
-void			printGroup(t_file **this);
-void			printBytes(t_file **this);
+void			printValue(t_file **this, unsigned int maxValue, short link);
+void	printUserGroup(unsigned int length, unsigned int maxLength, char *value);
 void			printFilename(t_file **this);
 
 //sorting
