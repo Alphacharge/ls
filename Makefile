@@ -63,8 +63,7 @@ endif
 #make lsan is downloading lsan if its not.
 #every make will be with lsan until a clean occurs.
 
-all: message $(LIBFT_F)
-	@$(MAKE) -j $(NAME)
+all: $(LIBFT_F) $(NAME)
 
 lsan: clean_lsan $(OBJ_D) $(LIBFT_F) $(LSAN_F)
 	@$(MAKE) -j $(NAME)
@@ -77,7 +76,10 @@ $(NAME): $(OBJ_D) $(OBJ_F)
 	@$(CC) $(CFLAGS) $(INC_F) -o $(NAME) $(OBJ_F) $(LIB)
 	@echo "$(RED)--->$(BLUE)ls is compiled.$(WHITE)"
 
-$(OBJ_D)/%.o: %.c
+compile:
+	@echo "$(BLUE)--->$(GREEN)Compiling C Files .....$(WHITE)"
+
+$(OBJ_D)/%.o: %.c compile
 	@$(CC) $(CFLAGS) $(INC_F) -c $< -o $@
 
 -include $(DEP_F)
@@ -86,7 +88,7 @@ $(OBJ_D):
 	@git config advice.detachedHead false
 	@mkdir -p $@
 
-$(LIBFT_F):
+$(LIBFT_F): message
 ifneq ($(shell test -d $(LIBFT_D) && echo exists), exists)
 	@echo "$(GREEN)Clone libft ...$(WHITE)"
 	@git clone -q --branch v1.0.3 --recurse-submodules $(LIBFT_U) $(LIBFT_D)
@@ -140,5 +142,7 @@ fclean: clean
 re: fclean all
 
 bonus: all
+
+.INTERMEDIATE: compile message
 
 .PHONY: all fclean clean re lsan bonus clean_lsan

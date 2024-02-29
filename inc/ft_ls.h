@@ -91,8 +91,7 @@ typedef struct s_data
 # define F_DIR			(1 << 8)	//-d
 # define F_NUMID		(1 << 9)	//-n
 # define F_COLOR		(1 << 10)	//-G
-# define F_FOLDERSORT	(1 << 11)	//flag to sort args
-# define F_STDOUT		(1 << 12)	//flag to recognize output 1 stdout 0 pipe or file
+# define F_STDOUT		(1 << 11)	//flag to recognize output 1 stdout 0 pipe or file
 
 # define F_SET(mask, flag)		((mask) |= (flag))
 # define F_CLEAR(mask, flag)	((mask) &= ~(flag))

@@ -23,9 +23,7 @@ int main(int argc, char** argv) {
 	parsing(data, argc, argv);
 
 	//sorting parameters
-	// F_SET(bitmask, F_FOLDERSORT);
 	data->folders = mergesortFileList(data->folders);
-	// F_CLEAR(bitmask, F_FOLDERSORT);
 
 	//generate, sort, print and free tree for every parameter
 	t_file	*current = data->folders;
@@ -47,3 +45,9 @@ int main(int argc, char** argv) {
 	ft_free((void**)&data);
 	return 0;
 }
+
+
+//listxattr --> fixed by >0 ???
+//sticky bit
+//error if option appears after arg
+//error if option not exists

@@ -19,12 +19,13 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 				if (current->fileType == _DIR && !isSpecialDir(current->fileName) && (!isDotfile(current->fileName) || (isDotfile(current->fileName) && F_ISSET(*(*data)->flags, F_ALL))) && current->fileType == _DIR)
 				{
 					DIR	*dir = opendir(current->fullPathName);
+					ft_printf("\n%s:\n", current->fullPathName);
 					if (dir == NULL) {
+						ft_putstr_fd(current->fullPathName, 2);
 						perror(current->fullPathName);
 						current = current->next;
 						continue;
 					}
-					ft_printf("\n%s:\n", current->fullPathName);
 					loop(data, NULL, current->fullPathName, dir);
 				}
 				current = current->next;
@@ -52,7 +53,6 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 			if (new->fileName == NULL){
 				ft_putstr_fd("file name malloc error\n", 2);
 				ft_free_tree(new);
-				ft_free_tree(*treelvl);
 				ft_error(*data, 1);
 			}
 			char *separator = (path[0] == '\0' || path[ft_strlen(path) - 1] == '/') ? "" : "/";
@@ -60,7 +60,6 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 			if (new->fullPathName == NULL){
 				ft_putstr_fd("path malloc error\n", 2);
 				ft_free_tree(new);
-				ft_free_tree(*treelvl);
 				ft_error(*data, 1);
 			}
 			new->fileNameLength = NAMELENGTH;
@@ -68,7 +67,6 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 			if ((F_ISSET(*new->data->flags, F_LONG) || F_ISSET(*new->data->flags, F_MTIME)) && lstat(new->fullPathName, &new->stat) < 0){
 				perror("lstat");
 				ft_free_tree(new);
-				ft_free_tree(*treelvl);
 				ft_error(*data, 1);
 			}
 			if (F_ISSET(*new->data->flags, F_LONG)) {
@@ -77,13 +75,11 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 				pwd = getpwuid(new->stat.st_uid);
 				if (pwd == NULL){
 					ft_free_tree(new);
-					ft_free_tree(*treelvl);
 					ft_error(*data, 1);
 				}
 				grp = getgrgid(new->stat.st_gid);
 				if (grp == NULL){
 					ft_free_tree(new);
-					ft_free_tree(*treelvl);
 					ft_error(*data, 1);
 				}
 				new->userLength = ft_strlen(pwd->pw_name);
@@ -92,7 +88,6 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 				if (new->userName == NULL){
 					ft_putstr_fd("user malloc error\n", 2);
 					ft_free_tree(new);
-					ft_free_tree(*treelvl);
 					ft_error(*data, 1);
 				}
 				new->groupLength = ft_strlen(grp->gr_name);
@@ -101,7 +96,6 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 				if (new->groupName == NULL){
 					ft_putstr_fd("group malloc error\n", 2);
 					ft_free_tree(new);
-					ft_free_tree(*treelvl);
 					ft_error(*data, 1);
 				}
 				new->maxLinks = new->stat.st_nlink;
