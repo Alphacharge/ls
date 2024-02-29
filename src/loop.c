@@ -42,8 +42,6 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 		while (dir != NULL) {
 			if (isDotfile(dir->d_name) && !F_ISSET((*(*data)->flags), F_ALL)){
 				dir = readdir(ref);
-				if (errno != 0)
-					perror(NULL);
 				continue;
 			}
 			t_file	*new = listNew(*data);
@@ -110,10 +108,6 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 				new->maxBytes = new->stat.st_size;
 				new->totalBlocks = new->stat.st_blocks;
 			}
-			dir = readdir(ref);
-			if (errno != 0) {
-				perror("readdir2");
-			}
 			if (head == NULL)
 				head = new;
 			else
@@ -156,6 +150,7 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 				new->maxGroupLength = last->maxGroupLength;
 				last->next = new;
 			}
+			dir = readdir(ref);
 		}
 		if (ref)
 			closedir(ref);
