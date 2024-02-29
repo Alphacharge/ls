@@ -11,8 +11,9 @@ void	printFilename(t_file **this)
 
 		len = readlink((*this)->fullPathName, targetPath, PATH_MAX);
 		if (len == -1) {
+			ft_putstr_fd((*this)->fileName, 1);
 			perror("readlink");
-			ft_error((*this)->data, 1);
+			return ;
 		}
 		targetPath[len] = '\0';
 		if ((*this)->fileName && (*this)->data)

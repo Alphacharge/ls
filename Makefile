@@ -7,7 +7,7 @@ OS		:=	$(shell uname)
 CC		:=	cc
 CFLAGS	:=	-Wall -Wextra -Werror
 CFLAGS	+=	-MMD
-CFLAGS	+=	-g
+# CFLAGS	+=	-g
 # CFLAGS	+=	-fsanitize=address
 
 ###			###			SOURCES			###			###
@@ -69,18 +69,16 @@ all: message $(LIBFT_F)
 lsan: clean_lsan $(OBJ_D) $(LIBFT_F) $(LSAN_F)
 	@$(MAKE) -j $(NAME)
 
-gprof: CFLAGS += -pg
-gprof: clean
-	@$(MAKE) gprof -C $(LIBFT_D)
-	@$(MAKE) $(NAME)
-	./ft_ls -aR urdu
+gprof: all
+	./ft_ls -aR /
 	gprof ./ft_ls gmon.out > analysis.txt
 
 $(NAME): $(OBJ_D) $(OBJ_F)
-	$(CC) $(CFLAGS) $(INC_F) -o $(NAME) $(OBJ_F) $(LIB)
+	@$(CC) $(CFLAGS) $(INC_F) -o $(NAME) $(OBJ_F) $(LIB)
+	@echo "$(RED)--->$(BLUE)ls is compiled.$(WHITE)"
 
 $(OBJ_D)/%.o: %.c
-	$(CC) $(CFLAGS) $(INC_F) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INC_F) -c $< -o $@
 
 -include $(DEP_F)
 
