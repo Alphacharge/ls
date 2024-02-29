@@ -29,5 +29,4 @@ void	printValue(t_file **this, unsigned int maxValue, short link)
 
 	ft_putstr_fd(value, 1);
 	ft_free((void **)&value);
-	write(1, " ", 1);
 }

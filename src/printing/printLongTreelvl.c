@@ -47,8 +47,8 @@ void	printLongTreelvl(t_file **tree)
 		month = ctime(&this->TIME);
 		if (!month)
 			ft_error(this->data, 1);
-		month = &month[4];
-		write(1, month, 12);
+		month = &month[3];
+		write(1, month, 13);
 		write(1, " ", 1);
 		printFilename(&this);;
 		write(1, "\n", 1);
