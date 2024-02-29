@@ -15,6 +15,7 @@
 static char	*copy_input(bool tofr, int n, char **input)
 {
 	int		i;
+	int		j;
 	int		len;
 	char	*str;
 
@@ -27,8 +28,9 @@ static char	*copy_input(bool tofr, int n, char **input)
 	len = 0;
 	while (str != NULL && i < n)
 	{
-		ft_memcpy(&str[len], input[i], ft_strlen(input[i]));
-		len += ft_strlen(input[i]);
+		j = ft_strlen(input[i]);
+		ft_memcpy(&str[len], input[i], j);
+		len += j;
 		if (tofr == true)
 		{
 			free(input[i]);
