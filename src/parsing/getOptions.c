@@ -1,5 +1,10 @@
 #include "ft_ls.h"
 
+/**
+ * Parses command-line options represented as characters and sets corresponding flags in the data structure.
+ * @param data - Pointer to the data structure holding program flags.
+ * @param argv - String of characters representing command-line options.
+ */
 void	getOptions(t_data *data, char* argv)
 {
 	while (data && argv && *argv)

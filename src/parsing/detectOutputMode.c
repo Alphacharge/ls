@@ -1,5 +1,9 @@
 #include "ft_ls.h"
 
+/**
+ * Detects the output mode of the program based on the file descriptor of stdout.
+ * @param data - Pointer to the data structure containing program flags.
+ */
 void	detectOutputMode(t_data *data)
 {
 	struct stat statbuf;

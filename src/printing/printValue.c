@@ -25,9 +25,9 @@ void	printValue(t_file **this, unsigned int maxValue, short link)
 		write(STDOUT_FILENO, spaces[diff - 1], diff);
 
 	if (link)
-		ft_putnbr_fd((*this)->stat.st_nlink, STDOUT_FILENO)
+		ft_putnbr_fd((*this)->stat.st_nlink, STDOUT_FILENO);
 	else
-		ft_putnbr_fd((*this)->stat.st_size, STDOUT_FILENO)
+		ft_putnbr_fd((*this)->stat.st_size, STDOUT_FILENO);
 
 	// 	value = ft_ltoa((*this)->stat.st_nlink);
 	// 	value = ft_ltoa((*this)->stat.st_size);

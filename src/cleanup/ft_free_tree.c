@@ -1,5 +1,10 @@
 #include "ft_ls.h"
 
+/**
+ * Recursively frees the memory allocated for a linked list of t_file structures,
+ * including their associated strings (fullPathName, fileName, userName, groupName).
+ * @param tree - Pointer to the head of the linked list of t_file structures to be freed.
+ */
 void	ft_free_tree(t_file	*tree)
 {
 	t_file	*tmp;
