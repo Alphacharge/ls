@@ -1,5 +1,11 @@
 #include "ft_ls.h"
 
+/**
+ * Merges two sorted linked lists of t_file structures based on the sorting criteria specified by SORTDIR macro.
+ * @param left - Pointer to the head of the first sorted linked list to be merged.
+ * @param right - Pointer to the head of the second sorted linked list to be merged.
+ * @return Pointer to the head of the merged sorted linked list.
+ */
 t_file	*merge(t_file *left, t_file *right)
 {
 	t_file	*new = NULL;
@@ -44,6 +50,11 @@ t_file	*merge(t_file *left, t_file *right)
 	return new;
 }
 
+/**
+ * Splits a linked list into two halves using the slow-fast pointer technique.
+ * @param head - Pointer to the head of the linked list to be split.
+ * @return Pointer to the head of the second half of the split linked list.
+ */
 t_file	*splitList(t_file *head)
 {
 	t_file *fast = head;
@@ -61,6 +72,11 @@ t_file	*splitList(t_file *head)
 	return slow;
 }
 
+/**
+ * Sorts a linked list of t_file structures using the merge sort algorithm.
+ * @param tree - Pointer to the head of the linked list to be sorted.
+ * @return Pointer to the head of the sorted linked list.
+ */
 t_file	*mergesortFileList(t_file *tree)
 {
 	if (tree == NULL || tree->next == NULL)

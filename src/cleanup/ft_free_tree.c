@@ -1,15 +1,12 @@
 #include "ft_ls.h"
 
-void	ft_free_tree(t_file	*tree)
+/**
+ * Frees the memory pointed to by the pointer **tofree and sets it to NULL to prevent
+ * dangling pointers.
+ * @param tofree - Double pointer to dynamically allocated memory.
+ */
+void	ft_free(void **tofree)
 {
-	t_file	*tmp;
-	while (tree) {
-		tmp = tree;
-		ft_free((void**)&tree->fullPathName);
-		ft_free((void**)&(tree->fileName));
-		ft_free((void**)&(tree->userName));
-		ft_free((void**)&(tree->groupName));
-		tree = tree->next;
-		ft_free((void**)&(tmp));
-	}
+	free(*tofree);
+	*tofree = NULL;
 }
