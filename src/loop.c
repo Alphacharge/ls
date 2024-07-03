@@ -27,7 +27,7 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref) //path is curre
 		if (F_ISSET((*(*data)->flags), F_LONG))
 			printLongTreelvl(treelvl);
 		else
-			printTreelvl(treelvl);\
+			printTreelvl(treelvl);
 
 		// If recursive, generate child trees for directories
 		if (F_ISSET((*(*data)->flags), F_RECURSIVE))
@@ -61,6 +61,7 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref) //path is curre
 			return ;
 		struct dirent *dir = readdir(ref);
 		t_file	*head = NULL;
+		t_file	*last = NULL;
 		while (dir != NULL) {
 			if (isDotfile(dir->d_name) && !F_ISSET((*(*data)->flags), F_ALL)){
 				dir = readdir(ref);
@@ -152,6 +153,9 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref) //path is curre
 			}
 			if (head == NULL)
 				head = new;
+			else
+				last->next = new;
+			last = new;
 			// else
 			// {
 			// 	t_file	*last = head;
