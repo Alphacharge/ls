@@ -140,7 +140,7 @@ void			insertPadding(unsigned int length, unsigned int maxlength);
 void			printTreelvl(t_file **tree);
 void			printLongTreelvl(t_file **tree);
 void			printValue(t_file **this, unsigned int maxValue, short link);
-void	printUserGroup(unsigned int length, unsigned int maxLength, char *value);
+void			printUserGroup(unsigned int length, unsigned int maxLength, char *value);
 void			printFilename(t_file **this);
 
 //sorting
