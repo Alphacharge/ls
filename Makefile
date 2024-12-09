@@ -66,7 +66,7 @@ endif
 all: $(LIBFT_F) $(NAME)
 
 lsan: clean_lsan $(OBJ_D) $(LIBFT_F) $(LSAN_F)
-	@$(MAKE) -j $(NAME)
+	@$(MAKE) -s -j $(NAME)
 
 gprof: all
 	./ft_ls -aR /
@@ -90,10 +90,11 @@ $(OBJ_D):
 
 $(LIBFT_F): message
 ifneq ($(shell test -d $(LIBFT_D) && echo exists), exists)
-	@echo "$(GREEN)Clone libft ...$(WHITE)"
-	@git clone -q --branch v1.0.3 --recurse-submodules $(LIBFT_U) $(LIBFT_D)
+	@echo "$(RED)Submodule directory is missing! Initializing submodule...$(WHITE)"
+	@git submodule update --init --recursive
 endif
-	@$(MAKE) -j -C $(LIBFT_D)
+	@echo "$(GREEN)Building libft ...$(WHITE)"
+	@$(MAKE) -s -j -C $(LIBFT_D)
 
 $(LSAN_F):
 ifneq ($(shell test -d $(LSAN_D) && echo exists), exists)
