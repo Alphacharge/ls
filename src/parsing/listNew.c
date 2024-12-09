@@ -1,5 +1,11 @@
 #include "ft_ls.h"
 
+/**
+ * Allocates and initializes a new t_file structure with default values.
+ * @param data - Pointer to the t_data structure to associate with the new t_file.
+ * @return - Returns a pointer to the newly allocated t_file structure,
+ *           or NULL if memory allocation fails.
+ */
 t_file	*listNew(t_data *data)
 {
 	t_file	*new = malloc(1 * sizeof(t_file));
