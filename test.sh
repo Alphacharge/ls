@@ -10,30 +10,30 @@ compare_outputs() {
   fi
 }
 
-@test "Compare stdout of my_ls and ls" {
+@test "Compare stdout of ft_ls and ls" {
   # Capture stdout for both commands
-  my_ls_output=$(./my_ls)
+  ft_ls_output=$(./ft_ls)
   ls_output=$(ls)
 
-  compare_outputs "$my_ls_output" "$ls_output"
+  compare_outputs "$ft_ls_output" "$ls_output"
 }
 
-@test "Compare my_ls and ls output redirected to file" {
+@test "Compare ft_ls and ls output redirected to file" {
   # Redirect both outputs to files
-  ./my_ls > my_ls_output.txt
+  ./ft_ls > ft_ls_output.txt
   ls > ls_output.txt
 
   # Compare file contents
-  my_ls_file_output=$(cat my_ls_output.txt)
+  ft_ls_file_output=$(cat ft_ls_output.txt)
   ls_file_output=$(cat ls_output.txt)
 
-  compare_outputs "$my_ls_file_output" "$ls_file_output"
+  compare_outputs "$ft_ls_file_output" "$ls_file_output"
 }
 
-@test "Compare my_ls and ls piped to wc -l" {
+@test "Compare ft_ls and ls piped to wc -l" {
   # Compare output when piped to wc -l
-  my_ls_piped=$(./my_ls | wc -l)
+  ft_ls_piped=$(./ft_ls | wc -l)
   ls_piped=$(ls | wc -l)
 
-  compare_outputs "$my_ls_piped" "$ls_piped"
+  compare_outputs "$ft_ls_piped" "$ls_piped"
 }
