@@ -1,0 +1,65 @@
+load ../functions.sh
+
+@test "(-R) (STDOUT)" {
+call_ls "-R" 0
+}
+
+@test "(-aR) (STDOUT)" {
+call_ls "" 0
+}
+
+@test "(-lR) (STDOUT)" {
+call_ls "-lR" 0
+}
+
+@test "(-Rr) (STDOUT)" {
+call_ls "-Rr" 0
+}
+
+@test "(-Rt) (STDOUT)" {
+call_ls "-Rt" 0
+}
+
+@test "(-alR) (STDOUT)" {
+call_ls "-alR" 0
+}
+
+@test "(-aRr) (STDOUT)" {
+call_ls "-aRr" 0
+}
+
+@test "(-aRt) (STDOUT)" {
+call_ls "-aRt" 0
+}
+
+@test "(-lRr) (STDOUT)" {
+call_ls "-lRr" 0
+}
+
+@test "(-lRt) (STDOUT)" {
+call_ls "-lRt" 0
+}
+
+@test "(-Rrt) (STDOUT)" {
+call_ls "-Rrt" 0
+}
+
+@test "(-alRr) (STDOUT)" {
+call_ls "-alRr" 0
+}
+
+@test "(-alRt) (STDOUT)" {
+call_ls "-alRt" 0
+}
+
+@test "(-aRrt) (STDOUT)" {
+call_ls "-aRrt" 0
+}
+
+@test "(-lRrt) (STDOUT)" {
+call_ls "-lRrt" 0
+}
+
+@test "(-alRrt) (STDOUT)" {
+call_ls "-alRrt" 0
+}

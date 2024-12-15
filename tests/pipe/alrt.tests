@@ -1,0 +1,73 @@
+load ../functions.sh
+
+@test "No arguments (PIPE)" {
+call_ls "" 1
+}
+
+@test "(-a) (PIPE)" {
+call_ls "-a" 1
+}
+
+@test "(-l) (PIPE)" {
+call_ls "-l" 1
+}
+
+@test "(-r) (PIPE)" {
+call_ls "-r" 1
+}
+
+@test "(-t) (PIPE)" {
+call_ls "-t" 1
+}
+
+@test "(-al) (PIPE)" {
+call_ls "-al" 1
+}
+
+@test "(-ar) (PIPE)" {
+call_ls "" 1
+}
+
+@test "(-at) (PIPE)" {
+call_ls "-at" 1
+}
+
+@test "(-lr) (PIPE)" {
+call_ls "-lr" 1
+}
+
+@test "(-lt) (PIPE)" {
+call_ls "-lt" 1
+}
+
+@test "(-rt) (PIPE)" {
+call_ls "-rt" 1
+}
+
+@test "(-alr) (PIPE)" {
+call_ls "-alr" 1
+}
+
+@test "(-alt) (PIPE)" {
+call_ls "-alt" 1
+}
+
+@test "(-art) (PIPE)" {
+call_ls "-art" 1
+}
+
+@test "(-lrt) (PIPE)" {
+call_ls "-lrt" 1
+}
+
+@test "(-alrt) (PIPE)" {
+call_ls "-alrt" 1
+}
+
+@test "(single dir) (PIPE)" {
+call_ls "src" 1
+}
+
+@test "(absolut path) (PIPE)" {
+call_ls "$PWD/src" 1
+}

@@ -1,0 +1,66 @@
+load ../functions.sh
+
+@test "(-R) (REDIRECT)" {
+call_ls "-R" 2
+}
+
+@test "(-Rr) (REDIRECT)" {
+call_ls "-Rr" 2
+}
+
+@test "(-Rt) (REDIRECT)" {
+call_ls "-Rt" 2
+}
+
+@test "(-Rrt) (REDIRECT)" {
+call_ls "-Rrt" 2
+}
+
+@test "(-aR) (REDIRECT)" {
+call_ls "" 2
+}
+
+@test "(-lR) (REDIRECT)" {
+call_ls "-lR" 2
+}
+
+@test "(-alR) (REDIRECT)" {
+call_ls "-alR" 2
+}
+
+@test "(-aRr) (REDIRECT)" {
+call_ls "-aRr" 2
+}
+
+@test "(-aRt) (REDIRECT)" {
+call_ls "-aRt" 2
+}
+
+@test "(-lRr) (REDIRECT)" {
+call_ls "-lRr" 2
+}
+
+@test "(-lRt) (REDIRECT)" {
+call_ls "-lRt" 2
+}
+
+@test "(-alRr) (REDIRECT)" {
+call_ls "-alRr" 2
+}
+
+@test "(-alRt) (REDIRECT)" {
+call_ls "-alRt" 2
+}
+
+
+@test "(-aRrt) (REDIRECT)" {
+call_ls "-aRrt" 2
+}
+
+@test "(-lRrt) (REDIRECT)" {
+call_ls "-lRrt" 2
+}
+
+@test "(-alRrt) (REDIRECT)" {
+call_ls "-alRrt" 2
+}

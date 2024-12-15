@@ -1,0 +1,65 @@
+load ../functions.sh
+
+@test "(-R) (PIPE)" {
+call_ls "-R" 1
+}
+
+@test "(-aR) (PIPE)" {
+call_ls "" 1
+}
+
+@test "(-lR) (PIPE)" {
+call_ls "-lR" 1
+}
+
+@test "(-Rr) (PIPE)" {
+call_ls "-Rr" 1
+}
+
+@test "(-Rt) (PIPE)" {
+call_ls "-Rt" 1
+}
+
+@test "(-alR) (PIPE)" {
+call_ls "-alR" 1
+}
+
+@test "(-aRr) (PIPE)" {
+call_ls "-aRr" 1
+}
+
+@test "(-aRt) (PIPE)" {
+call_ls "-aRt" 1
+}
+
+@test "(-lRr) (PIPE)" {
+call_ls "-lRr" 1
+}
+
+@test "(-lRt) (PIPE)" {
+call_ls "-lRt" 1
+}
+
+@test "(-Rrt) (PIPE)" {
+call_ls "-Rrt" 1
+}
+
+@test "(-alRr) (PIPE)" {
+call_ls "-alRr" 1
+}
+
+@test "(-alRt) (PIPE)" {
+call_ls "-alRt" 1
+}
+
+@test "(-aRrt) (PIPE)" {
+call_ls "-aRrt" 1
+}
+
+@test "(-lRrt) (PIPE)" {
+call_ls "-lRrt" 1
+}
+
+@test "(-alRrt) (PIPE)" {
+call_ls "-alRrt" 1
+}

@@ -1,0 +1,73 @@
+load ../functions.sh
+
+@test "No arguments (REDIRECT)" {
+call_ls "" 2
+}
+
+@test "(-a) (REDIRECT)" {
+call_ls "-a" 2
+}
+
+@test "(-l) (REDIRECT)" {
+call_ls "-l" 2
+}
+
+@test "(-r) (REDIRECT)" {
+call_ls "-r" 2
+}
+
+@test "(-t) (REDIRECT)" {
+call_ls "-t" 2
+}
+
+@test "(-al) (REDIRECT)" {
+call_ls "-al" 2
+}
+
+@test "(-ar) (REDIRECT)" {
+call_ls "" 2
+}
+
+@test "(-at) (REDIRECT)" {
+call_ls "-at" 2
+}
+
+@test "(-lr) (REDIRECT)" {
+call_ls "-lr" 2
+}
+
+@test "(-lt) (REDIRECT)" {
+call_ls "-lt" 2
+}
+
+@test "(-rt) (REDIRECT)" {
+call_ls "-rt" 2
+}
+
+@test "(-alr) (REDIRECT)" {
+call_ls "-alr" 2
+}
+
+@test "(-alt) (REDIRECT)" {
+call_ls "-alt" 2
+}
+
+@test "(-art) (REDIRECT)" {
+call_ls "-art" 2
+}
+
+@test "(-lrt) (REDIRECT)" {
+call_ls "-lrt" 2
+}
+
+@test "(-alrt) (REDIRECT)" {
+call_ls "-alrt" 2
+}
+
+@test "(single dir) (REDIRECT)" {
+call_ls "src" 2
+}
+
+@test "(absolut path) (REDIRECT)" {
+call_ls "$PWD/src" 2
+}

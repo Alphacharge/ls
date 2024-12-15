@@ -1,0 +1,73 @@
+load ../functions.sh
+
+@test "No arguments (STDOUT)" {
+call_ls "" 0
+}
+
+@test "(-a) (STDOUT)" {
+call_ls "-a" 0
+}
+
+@test "(-l) (STDOUT)" {
+call_ls "-l" 0
+}
+
+@test "(-r) (STDOUT)" {
+call_ls "-r" 0
+}
+
+@test "(-t) (STDOUT)" {
+call_ls "-t" 0
+}
+
+@test "(-al) (STDOUT)" {
+call_ls "-al" 0
+}
+
+@test "(-ar) (STDOUT)" {
+call_ls "" 0
+}
+
+@test "(-at) (STDOUT)" {
+call_ls "-at" 0
+}
+
+@test "(-lr) (STDOUT)" {
+call_ls "-lr" 0
+}
+
+@test "(-lt) (STDOUT)" {
+call_ls "-lt" 0
+}
+
+@test "(-rt) (STDOUT)" {
+call_ls "-rt" 0
+}
+
+@test "(-alr) (STDOUT)" {
+call_ls "-alr" 0
+}
+
+@test "(-alt) (STDOUT)" {
+call_ls "-alt" 0
+}
+
+@test "(-art) (STDOUT)" {
+call_ls "-art" 0
+}
+
+@test "(-lrt) (STDOUT)" {
+call_ls "-lrt" 0
+}
+
+@test "(-alrt) (STDOUT)" {
+call_ls "-alrt" 0
+}
+
+@test "(single dir) (STDOUT)" {
+call_ls "src" 0
+}
+
+@test "(absolut path) (STDOUT)" {
+call_ls "$PWD/src" 0
+}
