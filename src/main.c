@@ -43,8 +43,9 @@ int main(int argc, char** argv) {
 			current = current->next;
 			continue;
 		}
-		if (!isSpecialDir(current->fullPathName))
-			ft_printf("%s:\n", current->fullPathName);
+		// Not for STDOUT
+		// if (!isSpecialDir(current->fullPathName))
+			// ft_printf("%s:\n", current->fullPathName);
 		loop(&data, NULL, current->fullPathName, dir);
 		if (!isSpecialDir(current->fullPathName) && current->next != NULL)
 			write(STDOUT_FILENO, "\n", 1);
@@ -60,3 +61,7 @@ int main(int argc, char** argv) {
 //sticky bit
 //error if option appears after arg
 //error if option not exists
+
+// $ ./ft_ls lt miau
+// Compare:(null)|(null)
+// Segmentation fault (core dumped)

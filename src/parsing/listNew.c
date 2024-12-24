@@ -13,6 +13,7 @@ t_file	*listNew(t_data *data)
 		return NULL;
 	new->next = NULL;
 	new->fileName = NULL;
+	new->lowercaseName = NULL;
 	new->fullPathName = NULL;
 	new->data = data;
 	new->fileNameLength = 0;

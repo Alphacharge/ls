@@ -7,8 +7,8 @@ OS		:=	$(shell uname)
 CC		:=	cc
 CFLAGS	:=	-Wall -Wextra -Werror
 CFLAGS	+=	-MMD
-# CFLAGS	+=	-g
-# CFLAGS	+=	-fsanitize=address
+CFLAGS	+=	-g
+CFLAGS	+=	-Wunused -Wunused-variable -Wunused-function -Wnull-dereference -Wpedantic -Wuninitialized -fstack-protector-strong
 
 ###			###			SOURCES			###			###
 VPATH	:=	src/ src/error src/cleanup src/parsing

@@ -13,9 +13,9 @@ void	printValue(t_file **this, unsigned int maxValue, short link)
 	// char			*value = NULL;
 
 	if (link)
-		diff = countDigits(maxValue) - countDigits((*this)->stat.st_nlink) + 1;
+		diff = countDigits(maxValue) - countDigits((*this)->stat.st_nlink);// + 1;
 	else
-		diff = countDigits(maxValue) - countDigits((*this)->stat.st_size) + 1;
+		diff = countDigits(maxValue) - countDigits((*this)->stat.st_size);// + 1;
 
 	while (diff > 10){
 		write(STDOUT_FILENO, spaces[9], 10);

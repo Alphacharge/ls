@@ -11,6 +11,7 @@
 # include <stdlib.h>	//malloc, free, exit
 # include <stdio.h>		//perror, strerror
 # include <time.h>		//time, ctime
+# include <string.h>	//strcoll
 # include <sys/xattr.h>	//listxattr
 # include <limits.h>	//PATH_MAX
 # include <errno.h>		//
@@ -24,6 +25,7 @@
 #  define NAMELENGTH ft_strlen(dir->d_name)
 #  define TIME stat.st_mtime
 #  define LISTXATTR listxattr(this->fullPathName, NULL, 0)
+#  define BLOCK_SIZE 2
 # endif
 
 # ifdef __APPLE__
@@ -32,6 +34,7 @@
 #  define NAMELENGTH dir->d_namlen
 #  define TIME stat.st_mtimespec.tv_sec
 #  define LISTXATTR listxattr(this->fullPathName, NULL, 0, 0)
+#  define BLOCKSIZE 1
 # endif
 
 /*----------------------------------------------------------------------------*/
@@ -49,6 +52,7 @@ typedef struct s_file
 {
 	t_type			fileType;
 	char			*fileName;
+	char			*lowercaseName;
 	char			*fullPathName;
 	unsigned int	fileNameLength;
 	unsigned int	maxFileNameLength;
@@ -76,6 +80,7 @@ typedef struct s_data
 /*--------------------------CUSTOM DEFINITIONS--------------------------------*/
 /*----------------------------------------------------------------------------*/
 # define TAB_WIDTH 4
+# define DEBUGLVL 0
 
 /*----------------------------------------------------------------------------*/
 /*-----------------------------OPTIONS BITMASK--------------------------------*/
@@ -102,8 +107,8 @@ typedef struct s_data
 /*----------------------------------------------------------------------------*/
 # define SORT_BY_ALPHA(left, right) \
 	(F_ISSET(*(left)->data->flags, F_REVERSE) \
-	? ft_strcmp((left)->fullPathName, (right)->fullPathName) > 0 \
-	: ft_strcmp((left)->fullPathName, (right)->fullPathName) < 0 )
+	? strcoll((left)->lowercaseName, (right)->lowercaseName) > 0 \
+	: strcoll((left)->lowercaseName, (right)->lowercaseName) < 0 )
 
 # define SORTDIR(left, right) \
 	((F_ISSET(*(left)->data->flags, F_MTIME)) \
