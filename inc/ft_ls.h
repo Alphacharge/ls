@@ -26,15 +26,17 @@
 #  define TIME stat.st_mtime
 #  define LISTXATTR listxattr(this->fullPathName, NULL, 0)
 #  define BLOCK_SIZE 2
+#  define NAME_TO_SORT fileName
 # endif
 
 # ifdef __APPLE__
 #  define SYSTEM 1
 // #  define OFFSET dir->d_seekoff
 #  define NAMELENGTH dir->d_namlen
-#  define TIME stat.st_mtimespec.tv_sec
+#  define TIME stat.st_mtimespec.tv_nsec
 #  define LISTXATTR listxattr(this->fullPathName, NULL, 0, 0)
-#  define BLOCKSIZE 1
+#  define BLOCK_SIZE 1
+#  define NAME_TO_SORT lowercaseName
 # endif
 
 /*----------------------------------------------------------------------------*/
@@ -107,8 +109,8 @@ typedef struct s_data
 /*----------------------------------------------------------------------------*/
 # define SORT_BY_ALPHA(left, right) \
 	(F_ISSET(*(left)->data->flags, F_REVERSE) \
-	? strcoll((left)->lowercaseName, (right)->lowercaseName) > 0 \
-	: strcoll((left)->lowercaseName, (right)->lowercaseName) < 0 )
+	? strcoll((left)->NAME_TO_SORT, (right)->NAME_TO_SORT) > 0 \
+	: strcoll((left)->NAME_TO_SORT, (right)->NAME_TO_SORT) < 0 )
 
 # define SORTDIR(left, right) \
 	((F_ISSET(*(left)->data->flags, F_MTIME)) \
