@@ -32,6 +32,7 @@ void	parsing(t_data *data, int argc, char **argv)
 	else
 	{
 		t_file	*head = NULL;
+		t_file	*tail = NULL;
 		while (argv && i < argc && j < argc && argv[i] && !isOption(argv[i]))
 		{
 			t_file	*new = listNew(data);
@@ -39,21 +40,20 @@ void	parsing(t_data *data, int argc, char **argv)
 				ft_putstr_fd("new node malloc error\n", STDERR_FILENO);
 				ft_error(data, 1);
 			}
-			if (head == NULL)
-				head = new;
-			else
-			{
-				t_file	*last = head;
-				while (last && last->next)
-					last = last->next;
-				last->next = new;
-			}
 			new->fullPathName = ft_strdup(argv[i++]);
+			new->lowercaseName = ft_strlower(new->fullPathName);
 			if (new->fullPathName == NULL) {
 				ft_putstr_fd("folders path malloc error\n", STDERR_FILENO);
 				ft_error(data, 1);
 			}
-			data->folders = head;
+			if (head == NULL) {
+				head = new;
+				data->folders = head;
+				tail = new;
+			} else {
+				tail->next = new;
+				tail = new;
+			}
 		}
 	}
 }
