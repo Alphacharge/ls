@@ -160,46 +160,6 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref) //path is curre
 				last->next = new;
 			}
 			last = new;
-			// else
-			// {
-			// 	t_file	*last = head;
-			// 	while (last && last->next){
-			// 		if (last->maxFileNameLength < new->fileNameLength)
-			// 			last->maxFileNameLength = new->fileNameLength;
-			// 		if (F_ISSET(*new->data->flags, F_LONG)) {
-			// 			if (last->maxLinks < new->stat.st_nlink)
-			// 				last->maxLinks = new->stat.st_nlink;
-			// 			if (last->maxBytes < new->stat.st_size)
-			// 				last->maxBytes = new->stat.st_size;
-			// 			if (last->maxUserLength < new->userLength)
-			// 				last->maxUserLength = new->userLength;
-			// 			if (last->maxGroupLength < new->groupLength)
-			// 				last->maxGroupLength = new->groupLength;
-			// 			last->totalBlocks += new->totalBlocks;
-			// 		}
-			// 		last = last->next;
-			// 	}
-			// 	if (last->maxFileNameLength < new->maxFileNameLength)
-			// 		last->maxFileNameLength = new->maxFileNameLength;
-			// 	if (F_ISSET(*new->data->flags, F_LONG)) {
-			// 		if (last->maxLinks < new->stat.st_nlink)
-			// 			last->maxLinks = new->stat.st_nlink;
-			// 		if (last->maxBytes < new->stat.st_size)
-			// 			last->maxBytes = new->stat.st_size;
-			// 		if (last->maxUserLength < new->userLength)
-			// 			last->maxUserLength = new->userLength;
-			// 		if (last->maxGroupLength < new->groupLength)
-			// 			last->maxGroupLength = new->groupLength;
-			// 		last->totalBlocks += new->totalBlocks;
-			// 	}
-			// 	new->maxFileNameLength = last->fileNameLength;
-			// 	new->maxLinks = last->maxLinks;
-			// 	new->maxBytes = last->maxBytes;
-			// 	new->totalBlocks = last->totalBlocks;
-			// 	new->maxUserLength = last->maxUserLength;
-			// 	new->maxGroupLength = last->maxGroupLength;
-			// 	last->next = new;
-			// }
 			dir = readdir(ref);
 		}
 		// Update max Values for cols
