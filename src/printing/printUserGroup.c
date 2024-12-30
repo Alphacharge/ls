@@ -12,5 +12,5 @@ void	printUserGroup(unsigned int length, unsigned int maxLength, char *value)
 	while (length++ < maxLength)
 		write(STDOUT_FILENO, " ", 1);
 	ft_putstr_fd(value, STDOUT_FILENO);
-	write(STDOUT_FILENO, " ", 1);
+	// write(STDOUT_FILENO, " ", 1);
 }

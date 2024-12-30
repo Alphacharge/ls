@@ -11,9 +11,10 @@
 # include <stdlib.h>	//malloc, free, exit
 # include <stdio.h>		//perror, strerror
 # include <time.h>		//time, ctime
+# include <string.h>	//strcoll
 # include <sys/xattr.h>	//listxattr
 # include <limits.h>	//PATH_MAX
-# include <errno.h>		//
+# include <errno.h>		//catch errors from opendir
 
 /*----------------------------------------------------------------------------*/
 /*--------------------------SYSTEM SETTINGS-----------------------------------*/
@@ -24,14 +25,18 @@
 #  define NAMELENGTH ft_strlen(dir->d_name)
 #  define TIME stat.st_mtime
 #  define LISTXATTR listxattr(this->fullPathName, NULL, 0)
+#  define BLOCK_SIZE 2
+#  define NAME_TO_SORT fileName
 # endif
 
 # ifdef __APPLE__
 #  define SYSTEM 1
 // #  define OFFSET dir->d_seekoff
 #  define NAMELENGTH dir->d_namlen
-#  define TIME stat.st_mtimespec.tv_sec
+#  define TIME stat.st_mtimespec.tv_nsec
 #  define LISTXATTR listxattr(this->fullPathName, NULL, 0, 0)
+#  define BLOCK_SIZE 1
+#  define NAME_TO_SORT lowercaseName
 # endif
 
 /*----------------------------------------------------------------------------*/
@@ -49,6 +54,7 @@ typedef struct s_file
 {
 	t_type			fileType;
 	char			*fileName;
+	char			*lowercaseName;
 	char			*fullPathName;
 	unsigned int	fileNameLength;
 	unsigned int	maxFileNameLength;
@@ -76,6 +82,7 @@ typedef struct s_data
 /*--------------------------CUSTOM DEFINITIONS--------------------------------*/
 /*----------------------------------------------------------------------------*/
 # define TAB_WIDTH 4
+# define DEBUGLVL 0
 
 /*----------------------------------------------------------------------------*/
 /*-----------------------------OPTIONS BITMASK--------------------------------*/
@@ -102,8 +109,8 @@ typedef struct s_data
 /*----------------------------------------------------------------------------*/
 # define SORT_BY_ALPHA(left, right) \
 	(F_ISSET(*(left)->data->flags, F_REVERSE) \
-	? ft_strcmp((left)->fullPathName, (right)->fullPathName) > 0 \
-	: ft_strcmp((left)->fullPathName, (right)->fullPathName) < 0 )
+	? strcoll((left)->NAME_TO_SORT, (right)->NAME_TO_SORT) > 0 \
+	: strcoll((left)->NAME_TO_SORT, (right)->NAME_TO_SORT) < 0 )
 
 # define SORTDIR(left, right) \
 	((F_ISSET(*(left)->data->flags, F_MTIME)) \

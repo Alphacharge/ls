@@ -39,11 +39,12 @@ int main(int argc, char** argv) {
 	while (current != NULL) {
 		DIR	*dir = opendir(current->fullPathName);
 		if (dir == NULL){
-			perror(current->fullPathName);
+			ft_printf("%s:\n", current->fullPathName);
+			ft_printf("ft_ls: %s", strerror(errno));
 			current = current->next;
 			continue;
 		}
-		if (!isSpecialDir(current->fullPathName))
+		if (data->folders->next)
 			ft_printf("%s:\n", current->fullPathName);
 		loop(&data, NULL, current->fullPathName, dir);
 		if (!isSpecialDir(current->fullPathName) && current->next != NULL)

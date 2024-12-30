@@ -57,6 +57,7 @@ void	printLongTreelvl(t_file **tree)
 		printValue(&this, this->maxLinks, 1);
 		printUserGroup(this->userLength, this->maxUserLength, this->userName);
 		printUserGroup(this->groupLength, this->maxGroupLength, this->groupName);
+		write(STDOUT_FILENO, " ", 1);
 		printValue(&this, this->maxBytes, 0);
 
 		// Print month and day from timestamp

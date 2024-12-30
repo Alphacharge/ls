@@ -14,9 +14,12 @@ void	printTreelvl(t_file **tree)
 			ft_putstr_fd(this->fileName, STDOUT_FILENO);
 		if (this->next && this->next->fileName && this->data) {
 			//padding just 4 stdout
-			if (F_ISSET(*(this->data->flags), F_STDOUT))
-				insertPadding(this->fileNameLength, (*tree)->maxFileNameLength);
-			else
+			if (F_ISSET(*(this->data->flags), F_STDOUT)){
+				if (F_ISSET(*(this->data->flags), F_LONG))
+					insertPadding(this->fileNameLength, (*tree)->maxFileNameLength);
+				else
+					write(STDOUT_FILENO, "  ", 2);
+			} else
 				write(STDOUT_FILENO, "\n", 1);
 		}
 		this = this->next;

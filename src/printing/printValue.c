@@ -10,12 +10,11 @@ void	printValue(t_file **this, unsigned int maxValue, short link)
 {
 	const char		*spaces[10] = {" ", "  ", "   ", "    ", "     ", "      ", "       ", "        ", "         ", "          "};
 	unsigned int	diff = 0;
-	// char			*value = NULL;
 
 	if (link)
-		diff = countDigits(maxValue) - countDigits((*this)->stat.st_nlink) + 1;
+		diff = countDigits(maxValue) - countDigits((*this)->stat.st_nlink);
 	else
-		diff = countDigits(maxValue) - countDigits((*this)->stat.st_size) + 1;
+		diff = countDigits(maxValue) - countDigits((*this)->stat.st_size);
 
 	while (diff > 10){
 		write(STDOUT_FILENO, spaces[9], 10);
@@ -28,13 +27,4 @@ void	printValue(t_file **this, unsigned int maxValue, short link)
 		ft_putnbr_fd((*this)->stat.st_nlink, STDOUT_FILENO);
 	else
 		ft_putnbr_fd((*this)->stat.st_size, STDOUT_FILENO);
-
-	// 	value = ft_ltoa((*this)->stat.st_nlink);
-	// 	value = ft_ltoa((*this)->stat.st_size);
-	// if (value == NULL){
-	// 	ft_putstr_fd("ltoa malloc error\n", STDERR_FILENO);
-	// 	ft_error((*this)->data, 1);
-	// }
-	// ft_putstr_fd(value, STDOUT_FILENO);
-	// ft_free((void **)&value);
 }

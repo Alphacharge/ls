@@ -9,51 +9,58 @@
 void	parsing(t_data *data, int argc, char **argv)
 {
 	int		i = 1;
-	int		j = 0;
 
-	while (argv && i < argc && argv[i] && isOption(argv[i]))
-		getOptions(data, argv[i++]);
-	//only options without parameter
-	if (argv[i] == NULL)
-	{
-		data->folders = ft_calloc(1, sizeof(t_file));
-		if (data->folders == NULL){
-			ft_putstr_fd("folders malloc error\n", STDERR_FILENO);
-			ft_error(data, 1);
-		}
-		data->folders->fullPathName = ft_strdup(".");
-		if (data->folders->fullPathName == NULL){
-			ft_putstr_fd("folders path malloc error\n", STDERR_FILENO);
-			ft_error(data, 1);
-		}
-		data->folders->next = NULL;
+	//parse all options
+	while (argv && i < argc && argv[i]) {
+		if (isOption(argv[i]))
+			getOptions(data, argv[i]);
+		++i;
 	}
-	//parameter
-	else
+
+	//parse all parameters
+	i = 1;
+	t_file	*head = NULL;
+	t_file	*tail = NULL;
+	while (argv && i < argc && argv[i])
 	{
-		t_file	*head = NULL;
-		while (argv && i < argc && j < argc && argv[i] && !isOption(argv[i]))
-		{
+		if (!isOption(argv[i])) {
 			t_file	*new = listNew(data);
 			if (new == NULL){
 				ft_putstr_fd("new node malloc error\n", STDERR_FILENO);
 				ft_error(data, 1);
 			}
-			if (head == NULL)
-				head = new;
-			else
-			{
-				t_file	*last = head;
-				while (last && last->next)
-					last = last->next;
-				last->next = new;
-			}
-			new->fullPathName = ft_strdup(argv[i++]);
-			if (new->fullPathName == NULL) {
+			new->fullPathName = ft_strdup(argv[i]);
+			new->lowercaseName = ft_strlower(ft_strdup(new->fullPathName));
+			if (new->fullPathName == NULL || new->lowercaseName == NULL) {
 				ft_putstr_fd("folders path malloc error\n", STDERR_FILENO);
 				ft_error(data, 1);
 			}
-			data->folders = head;
+			if (head == NULL) {
+				head = new;
+				data->folders = head;
+				tail = new;
+			} else {
+				tail->next = new;
+				tail = new;
+			}
 		}
+		++i;
+	}
+
+	//set . if no parameter is given
+	if (data->folders == NULL)
+	{
+		data->folders = listNew(data);
+		if (data->folders == NULL){
+			ft_putstr_fd("folders malloc error\n", STDERR_FILENO);
+			ft_error(data, 1);
+		}
+		data->folders->fullPathName = ft_strdup(".");
+		data->folders->lowercaseName = ft_strlower(ft_strdup("."));
+		if (data->folders->fullPathName == NULL || data->folders->lowercaseName == NULL){
+			ft_putstr_fd("folders path malloc error\n", STDERR_FILENO);
+			ft_error(data, 1);
+		}
+		data->folders->next = NULL;
 	}
 }

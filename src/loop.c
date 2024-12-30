@@ -11,7 +11,7 @@
  * @param path - String representing the current directory path being processed.
  * @param ref - Pointer to DIR structure representing the directory stream to be read.
  */
-void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref) //path is currently not protected!!
+void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 {
 	static unsigned int	maxFileNameLength = 0;
 	static unsigned int	maxLinks = 0;
@@ -72,12 +72,13 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref) //path is curre
 				ft_error(*data, 1);
 			setFileType(new, dir->d_type);
 			new->fileName = ft_strdup(dir->d_name);
-			if (new->fileName == NULL){
+			new->lowercaseName = ft_strlower(ft_strdup(dir->d_name));
+			if (new->fileName == NULL || new->lowercaseName == NULL){
 				ft_putstr_fd("file name malloc error\n", STDERR_FILENO);
 				ft_free_tree(new);
 				ft_error(*data, 1);
 			}
-			char *separator = (path[0] == '\0' || path[ft_strlen(path) - 1] == '/') ? "" : "/";
+			char *separator = (!path || path[0] == '\0' || path[ft_strlen(path) - 1] == '/') ? "" : "/";
 			new->fullPathName = ft_multijoin(false, 3, path, separator, dir->d_name);
 			if (new->fullPathName == NULL){
 				ft_putstr_fd("path malloc error\n", STDERR_FILENO);
@@ -136,6 +137,8 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref) //path is curre
 					ft_free_tree(new);
 					ft_error(*data, 1);
 				}
+				if (DEBUGLVL > 0)
+					ft_printf("%snstatlinks:%d,\tcurrentmaxlinks:%d\n%s", RED, new->stat.st_nlink, maxLinks, WHITE);
 				if (new->stat.st_nlink > maxLinks) {
 					maxLinks = new->stat.st_nlink;
 					new->maxLinks = new->stat.st_nlink;
@@ -148,55 +151,29 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref) //path is curre
 				}
 				else
 					new->maxBytes = maxBytes;
-				totalBlocks += new->stat.st_blocks;
+				totalBlocks += new->stat.st_blocks / BLOCK_SIZE;
 				new->totalBlocks = totalBlocks;
 			}
-			if (head == NULL)
+			if (head == NULL) {
 				head = new;
-			else
+			} else {
 				last->next = new;
+			}
 			last = new;
-			// else
-			// {
-			// 	t_file	*last = head;
-			// 	while (last && last->next){
-			// 		if (last->maxFileNameLength < new->fileNameLength)
-			// 			last->maxFileNameLength = new->fileNameLength;
-			// 		if (F_ISSET(*new->data->flags, F_LONG)) {
-			// 			if (last->maxLinks < new->stat.st_nlink)
-			// 				last->maxLinks = new->stat.st_nlink;
-			// 			if (last->maxBytes < new->stat.st_size)
-			// 				last->maxBytes = new->stat.st_size;
-			// 			if (last->maxUserLength < new->userLength)
-			// 				last->maxUserLength = new->userLength;
-			// 			if (last->maxGroupLength < new->groupLength)
-			// 				last->maxGroupLength = new->groupLength;
-			// 			last->totalBlocks += new->totalBlocks;
-			// 		}
-			// 		last = last->next;
-			// 	}
-			// 	if (last->maxFileNameLength < new->maxFileNameLength)
-			// 		last->maxFileNameLength = new->maxFileNameLength;
-			// 	if (F_ISSET(*new->data->flags, F_LONG)) {
-			// 		if (last->maxLinks < new->stat.st_nlink)
-			// 			last->maxLinks = new->stat.st_nlink;
-			// 		if (last->maxBytes < new->stat.st_size)
-			// 			last->maxBytes = new->stat.st_size;
-			// 		if (last->maxUserLength < new->userLength)
-			// 			last->maxUserLength = new->userLength;
-			// 		if (last->maxGroupLength < new->groupLength)
-			// 			last->maxGroupLength = new->groupLength;
-			// 		last->totalBlocks += new->totalBlocks;
-			// 	}
-			// 	new->maxFileNameLength = last->fileNameLength;
-			// 	new->maxLinks = last->maxLinks;
-			// 	new->maxBytes = last->maxBytes;
-			// 	new->totalBlocks = last->totalBlocks;
-			// 	new->maxUserLength = last->maxUserLength;
-			// 	new->maxGroupLength = last->maxGroupLength;
-			// 	last->next = new;
-			// }
 			dir = readdir(ref);
+		}
+		// Update max Values for cols
+		t_file	*update = head;
+		while (update && update->next){
+			update->maxFileNameLength = maxFileNameLength;
+			if (F_ISSET(*head->data->flags, F_LONG)) {
+				update->maxLinks = maxLinks;
+				update->maxBytes = maxBytes;
+				update->maxUserLength = maxUserLength;
+				update->maxGroupLength = maxGroupLength;
+				update->totalBlocks = totalBlocks;
+			}
+			update = update->next;
 		}
 		if (ref)
 			closedir(ref);

@@ -12,6 +12,7 @@ void	ft_free_tree(t_file	*tree)
 		tmp = tree;
 		ft_free((void**)&tree->fullPathName);
 		ft_free((void**)&(tree->fileName));
+		ft_free((void**)&tree->lowercaseName);
 		ft_free((void**)&(tree->userName));
 		ft_free((void**)&(tree->groupName));
 		tree = tree->next;
