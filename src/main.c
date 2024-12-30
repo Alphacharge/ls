@@ -60,7 +60,3 @@ int main(int argc, char** argv) {
 //sticky bit
 //error if option appears after arg
 //error if option not exists
-
-// $ ./ft_ls lt miau
-// Compare:(null)|(null)
-// Segmentation fault (core dumped)
