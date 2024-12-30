@@ -11,7 +11,7 @@
  * @param path - String representing the current directory path being processed.
  * @param ref - Pointer to DIR structure representing the directory stream to be read.
  */
-void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref) //path is currently not protected!!
+void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 {
 	static unsigned int	maxFileNameLength = 0;
 	static unsigned int	maxLinks = 0;
@@ -78,7 +78,7 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref) //path is curre
 				ft_free_tree(new);
 				ft_error(*data, 1);
 			}
-			char *separator = (path[0] == '\0' || path[ft_strlen(path) - 1] == '/') ? "" : "/";
+			char *separator = (!path || path[0] == '\0' || path[ft_strlen(path) - 1] == '/') ? "" : "/";
 			new->fullPathName = ft_multijoin(false, 3, path, separator, dir->d_name);
 			if (new->fullPathName == NULL){
 				ft_putstr_fd("path malloc error\n", STDERR_FILENO);
