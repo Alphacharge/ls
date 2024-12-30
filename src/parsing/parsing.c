@@ -9,7 +9,6 @@
 void	parsing(t_data *data, int argc, char **argv)
 {
 	int		i = 1;
-	int		j = 0;
 
 	while (argv && i < argc && argv[i] && isOption(argv[i]))
 		getOptions(data, argv[i++]);
@@ -33,7 +32,7 @@ void	parsing(t_data *data, int argc, char **argv)
 	{
 		t_file	*head = NULL;
 		t_file	*tail = NULL;
-		while (argv && i < argc && j < argc && argv[i] && !isOption(argv[i]))
+		while (argv && i < argc && argv[i] && !isOption(argv[i]))
 		{
 			t_file	*new = listNew(data);
 			if (new == NULL){
