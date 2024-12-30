@@ -14,7 +14,7 @@
 # include <string.h>	//strcoll
 # include <sys/xattr.h>	//listxattr
 # include <limits.h>	//PATH_MAX
-# include <errno.h>		//
+# include <errno.h>		//catch errors from opendir
 
 /*----------------------------------------------------------------------------*/
 /*--------------------------SYSTEM SETTINGS-----------------------------------*/
