@@ -43,9 +43,8 @@ int main(int argc, char** argv) {
 			current = current->next;
 			continue;
 		}
-		// Not for STDOUT
-		// if (!isSpecialDir(current->fullPathName))
-			// ft_printf("%s:\n", current->fullPathName);
+		if (data->folders->next && !isSpecialDir(current->fullPathName))
+			ft_printf("%s:\n", current->fullPathName);
 		loop(&data, NULL, current->fullPathName, dir);
 		if (!isSpecialDir(current->fullPathName) && current->next != NULL)
 			write(STDOUT_FILENO, "\n", 1);
