@@ -29,7 +29,7 @@ void	parsing(t_data *data, int argc, char **argv)
 				ft_putstr_fd("new node malloc error\n", STDERR_FILENO);
 				ft_error(data, 1);
 			}
-			new->fullPathName = ft_strdup(argv[i++]);
+			new->fullPathName = ft_strdup(argv[i]);
 			new->lowercaseName = ft_strlower(ft_strdup(new->fullPathName));
 			if (new->fullPathName == NULL || new->lowercaseName == NULL) {
 				ft_putstr_fd("folders path malloc error\n", STDERR_FILENO);
