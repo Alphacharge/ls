@@ -39,7 +39,15 @@ int main(int argc, char** argv) {
 	while (current != NULL) {
 		DIR	*dir = opendir(current->fullPathName);
 		if (dir == NULL){
-			perror(current->fullPathName);
+			if (stat(current->fullPathName, &current->stat) < 0) {
+				perror("stat");
+			} else if (S_ISREG(current->stat.st_mode)) {
+				ft_printf("%s\n", current->fullPathName);
+			} else if (S_ISDIR(current->stat.st_mode)) {
+				ft_printf("ft_ls: cannot open directory '%s': Permission denied\n", current->fullPathName);
+			} else {
+				ft_printf("ft_ls: %s: Unsupported file type\n", current->fullPathName);
+			}
 			current = current->next;
 			continue;
 		}
