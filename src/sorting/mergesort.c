@@ -6,7 +6,6 @@
  * @param right - Pointer to the head of the second sorted linked list to be merged.
  * @return Pointer to the head of the merged sorted linked list.
  */
-// #include "mpsort.h"
 t_file	*merge(t_file *left, t_file *right)
 {
 	t_file	*new = NULL;
