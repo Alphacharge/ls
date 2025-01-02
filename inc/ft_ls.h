@@ -75,6 +75,7 @@ typedef struct s_file
 typedef struct s_data
 {
 	unsigned short	*flags;
+	time_t			sixmonthsago;
 	t_file			*folders;
 }				t_data;
 

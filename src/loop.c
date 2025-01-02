@@ -32,6 +32,7 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 		// If recursive, generate child trees for directories
 		if (F_ISSET((*(*data)->flags), F_RECURSIVE))
 		{
+			maxFileNameLength = maxLinks = maxBytes = maxUserLength = maxGroupLength = totalBlocks = 0;
 			t_file *current = *treelvl;
 			while (current)
 			{
