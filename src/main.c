@@ -20,6 +20,7 @@ t_data	*init_data(unsigned short *bitmask)
 	}
 	data->flags = bitmask;
 	data->folders = NULL;
+	data->sixmonthsago = time(NULL) - (time_t)(6 * 30 * 24 * 60 * 60);
 	return data;
 }
 
@@ -44,7 +45,7 @@ int main(int argc, char** argv) {
 			current = current->next;
 			continue;
 		}
-		if (data->folders->next)
+		if (data->folders->next || F_ISSET(*data->flags, F_RECURSIVE))
 			ft_printf("%s:\n", current->fullPathName);
 		loop(&data, NULL, current->fullPathName, dir);
 		if (!isSpecialDir(current->fullPathName) && current->next != NULL)
