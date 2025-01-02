@@ -23,8 +23,9 @@
 #  define SYSTEM 0
 // #  define OFFSET dir->d_off
 #  define NAMELENGTH ft_strlen(dir->d_name)
-#  define TIME stat.st_mtime
-#  define LISTXATTR listxattr(this->fullPathName, NULL, 0)
+#  define TIME_SEC stat.st_mtime
+#  define TIME_NSEC stat.st_mtime
+#  define LISTXATTR listxattr(this->fullPathName, buffer, sizeof(buffer))
 #  define BLOCK_SIZE 2
 #  define NAME_TO_SORT fileName
 # endif
@@ -33,8 +34,9 @@
 #  define SYSTEM 1
 // #  define OFFSET dir->d_seekoff
 #  define NAMELENGTH dir->d_namlen
-#  define TIME stat.st_mtimespec.tv_nsec
-#  define LISTXATTR listxattr(this->fullPathName, NULL, 0, 0)
+#  define TIME_SEC stat.st_mtimespec.tv_sec
+#  define TIME_NSEC stat.st_mtimespec.tv_nsec
+#  define LISTXATTR listxattr(this->fullPathName, buffer, sizeof(buffer), 0)
 #  define BLOCK_SIZE 1
 #  define NAME_TO_SORT lowercaseName
 # endif
@@ -83,6 +85,7 @@ typedef struct s_data
 /*--------------------------CUSTOM DEFINITIONS--------------------------------*/
 /*----------------------------------------------------------------------------*/
 # define TAB_WIDTH 4
+# define MAX_XATTR_SIZE 4096
 # define DEBUGLVL 0
 
 /*----------------------------------------------------------------------------*/

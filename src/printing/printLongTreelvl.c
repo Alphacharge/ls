@@ -49,6 +49,7 @@ void	printLongTreelvl(t_file **tree)
 		if (this->stat.st_mode & S_ISVTX)
 			permissions[9] = 'T';
 		// Check for extended attributes
+		char	buffer[MAX_XATTR_SIZE];
 		if (LISTXATTR > 0)
 			permissions[10] = '@';
 
@@ -61,12 +62,12 @@ void	printLongTreelvl(t_file **tree)
 		printValue(&this, this->maxBytes, 0);
 
 		// Print month and day from timestamp
-		month = ctime(&this->TIME);
+		month = ctime(&this->TIME_SEC);
 		if (!month)
 			ft_error(this->data, 1);
 		month = &month[3]; // Skip day of the week
 		//print year instead of time if older than 6 months
-		if (this->TIME < this->data->sixmonthsago) {
+		if (this->TIME_SEC < this->data->sixmonthsago) {
 			ft_memmove(&month[8], &month[16], 5);
 			month[13] = '\0';
 		}
