@@ -65,6 +65,11 @@ void	printLongTreelvl(t_file **tree)
 		if (!month)
 			ft_error(this->data, 1);
 		month = &month[3]; // Skip day of the week
+		//print year instead of time if older than 6 months
+		if (this->TIME < this->data->sixmonthsago) {
+			ft_memmove(&month[8], &month[16], 5);
+			month[13] = '\0';
+		}
 		write(STDOUT_FILENO, month, 13);
 		write(STDOUT_FILENO, " ", 1);
 
