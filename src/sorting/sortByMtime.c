@@ -10,9 +10,15 @@
  */
 long	sortByMtime(t_file *left, t_file *right)
 {
-	time_t	leftTime = left->TIME;
-	time_t	rightTime = right->TIME;
-	if (leftTime != rightTime)
-		return (F_ISSET(*(left)->data->flags, F_REVERSE) ? leftTime < rightTime : leftTime > rightTime);
+	time_t	leftTimeSec = left->TIME_SEC;
+	time_t	rightTimeSec = right->TIME_SEC;
+	if (leftTimeSec != rightTimeSec)
+		return (F_ISSET(*(left)->data->flags, F_REVERSE) ? leftTimeSec < rightTimeSec : leftTimeSec > rightTimeSec);
+
+	time_t	leftTimeNsec = left->TIME_NSEC;
+	time_t	rightTimeNsec = right->TIME_NSEC;
+	if (leftTimeNsec != rightTimeNsec)
+		return (F_ISSET(*(left)->data->flags, F_REVERSE) ? leftTimeNsec < rightTimeNsec : leftTimeNsec > rightTimeNsec);
+
 	return SORT_BY_ALPHA(left, right);
 }
