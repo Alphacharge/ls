@@ -25,7 +25,7 @@ call_ls "-al" 0
 }
 
 @test "(-ar) (STDOUT)" {
-call_ls "" 0
+call_ls "-ar" 0
 }
 
 @test "(-at) (STDOUT)" {
@@ -66,6 +66,10 @@ call_ls "-alrt" 0
 
 @test "(single dir) (STDOUT)" {
 call_ls "src" 0
+}
+
+@test "(multiple dirs) (STDOUT)" {
+call_ls "src inc" 0
 }
 
 @test "(absolut path) (STDOUT)" {

@@ -63,3 +63,15 @@ call_ls "-lRrt" 0
 @test "(-alRrt) (STDOUT)" {
 call_ls "-alRrt" 0
 }
+
+@test "(single dir) (STDOUT)" {
+call_ls "-R src" 0
+}
+
+@test "(multiple dirs) (STDOUT)" {
+call_ls "-R src inc" 0
+}
+
+@test "(absolut path) (STDOUT)" {
+call_ls "-R $PWD/src" 0
+}

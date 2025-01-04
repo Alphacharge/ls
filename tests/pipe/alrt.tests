@@ -25,7 +25,7 @@ call_ls "-al" 1
 }
 
 @test "(-ar) (PIPE)" {
-call_ls "" 1
+call_ls "-ar" 1
 }
 
 @test "(-at) (PIPE)" {
@@ -66,6 +66,10 @@ call_ls "-alrt" 1
 
 @test "(single dir) (PIPE)" {
 call_ls "src" 1
+}
+
+@test "(multiple dirs) (PIPE)" {
+call_ls "src inc" 1
 }
 
 @test "(absolut path) (PIPE)" {

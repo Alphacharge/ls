@@ -25,7 +25,7 @@ call_ls "-al" 2
 }
 
 @test "(-ar) (REDIRECT)" {
-call_ls "" 2
+call_ls "-ar" 2
 }
 
 @test "(-at) (REDIRECT)" {
@@ -66,6 +66,10 @@ call_ls "-alrt" 2
 
 @test "(single dir) (REDIRECT)" {
 call_ls "src" 2
+}
+
+@test "(multiple dirs) (REDIRECT)" {
+call_ls "src inc" 2
 }
 
 @test "(absolut path) (REDIRECT)" {

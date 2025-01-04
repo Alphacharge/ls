@@ -63,3 +63,15 @@ call_ls "-lRrt" 1
 @test "(-alRrt) (PIPE)" {
 call_ls "-alRrt" 1
 }
+
+@test "(single dir) (PIPE)" {
+call_ls "-R src" 1
+}
+
+@test "(multiple dirs) (PIPE)" {
+call_ls "-R src inc" 1
+}
+
+@test "(absolut path) (PIPE)" {
+call_ls "-R $PWD/src" 1
+}
