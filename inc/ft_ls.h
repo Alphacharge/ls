@@ -20,19 +20,19 @@
 /*--------------------------SYSTEM SETTINGS-----------------------------------*/
 /*----------------------------------------------------------------------------*/
 # ifdef __linux__
-#  define SYSTEM 0
-// #  define OFFSET dir->d_off
 #  define NAMELENGTH ft_strlen(dir->d_name)
-#  define TIME_SEC stat.st_mtime
-#  define TIME_NSEC stat.st_mtime
+#  define TIME_SEC stat.st_mtim.tv_sec
+#  define TIME_NSEC stat.st_mtim.tv_nsec
 #  define LISTXATTR listxattr(this->fullPathName, buffer, sizeof(buffer))
 #  define BLOCK_SIZE 2
-#  define NAME_TO_SORT fileName
+#  if defined(DOCKER_ENV) //GNU ls on APFS Filesystem
+#   define NAME_TO_SORT fileName
+#  else
+#   define NAME_TO_SORT lowercaseName
+#  endif
 # endif
 
 # ifdef __APPLE__
-#  define SYSTEM 1
-// #  define OFFSET dir->d_seekoff
 #  define NAMELENGTH dir->d_namlen
 #  define TIME_SEC stat.st_mtimespec.tv_sec
 #  define TIME_NSEC stat.st_mtimespec.tv_nsec
@@ -87,6 +87,7 @@ typedef struct s_data
 # define TAB_WIDTH 4
 # define MAX_XATTR_SIZE 4096
 # define DEBUGLVL 0
+# define SKIP_DOT(name) (!isSpecialDir(name) && isDotfile(name)) ? &name[1] : name
 
 /*----------------------------------------------------------------------------*/
 /*-----------------------------OPTIONS BITMASK--------------------------------*/
@@ -113,8 +114,8 @@ typedef struct s_data
 /*----------------------------------------------------------------------------*/
 # define SORT_BY_ALPHA(left, right) \
 	(F_ISSET(*(left)->data->flags, F_REVERSE) \
-	? strcoll((left)->NAME_TO_SORT, (right)->NAME_TO_SORT) > 0 \
-	: strcoll((left)->NAME_TO_SORT, (right)->NAME_TO_SORT) < 0 )
+	? strcoll(SKIP_DOT((left)->NAME_TO_SORT), SKIP_DOT((right)->NAME_TO_SORT)) > 0 \
+	: strcoll(SKIP_DOT((left)->NAME_TO_SORT), SKIP_DOT((right)->NAME_TO_SORT)) < 0 )
 
 # define SORTDIR(left, right) \
 	((F_ISSET(*(left)->data->flags, F_MTIME)) \
