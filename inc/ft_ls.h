@@ -25,10 +25,12 @@
 #  define TIME_NSEC stat.st_mtim.tv_nsec
 #  define LISTXATTR listxattr(this->fullPathName, buffer, sizeof(buffer))
 #  define BLOCK_SIZE 2
-#  if defined(DOCKER_ENV) //GNU ls on APFS Filesystem
+#  if defined(DOCKER_ENV) //GNU ls in container on APFS Filesystem
 #   define NAME_TO_SORT fileName
+#   define SYSTEM 1
 #  else
 #   define NAME_TO_SORT lowercaseName
+#   define SYSTEM 0
 #  endif
 # endif
 
@@ -39,6 +41,7 @@
 #  define LISTXATTR listxattr(this->fullPathName, buffer, sizeof(buffer), 0)
 #  define BLOCK_SIZE 1
 #  define NAME_TO_SORT lowercaseName
+#  define SYSTEM 2
 # endif
 
 /*----------------------------------------------------------------------------*/
