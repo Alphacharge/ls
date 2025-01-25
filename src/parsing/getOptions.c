@@ -26,6 +26,13 @@ void	getOptions(t_data *data, char* argv)
 			case 'r':
 				F_SET(*(data->flags), F_REVERSE);
 				break;
+			case '-':
+				break;
+			default:
+				ft_putstr_fd("ft_ls: illegal option -- ", 2);
+				ft_putchar_fd(*argv, 2);
+				ft_putstr_fd("\nusage: ft_ls [-Ralrt] [file ...]\n", 2);
+				ft_error(data, 1);
 		}
 		argv++;
 	}
