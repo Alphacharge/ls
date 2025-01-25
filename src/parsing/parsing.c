@@ -10,13 +10,13 @@ void	parsing(t_data *data, int argc, char **argv)
 {
 	int		i = 1;
 
-	//parse all options
+	//parse options until the first parameter
 	while (argv && i < argc && argv[i] && isOption(argv[i])) {
 		getOptions(data, argv[i]);
 		++i;
 	}
 
-	//parse all parameters
+	//parse parameters
 	t_file	*head = NULL;
 	t_file	*tail = NULL;
 	while (argv && i < argc && argv[i])
@@ -53,6 +53,7 @@ void	parsing(t_data *data, int argc, char **argv)
 			ft_error(data, 1);
 		}
 		data->folders->fullPathName = ft_strdup(".");
+		data->folders->fileName = ft_strdup(data->folders->fullPathName);
 		data->folders->lowercaseName = ft_strlower(ft_strdup("."));
 		if (data->folders->fullPathName == NULL || data->folders->lowercaseName == NULL){
 			ft_putstr_fd("folders path malloc error\n", STDERR_FILENO);

@@ -2,7 +2,7 @@
 
 /**
  * Compares two t_file structures based on their modification time if the F_MTIME flag is set in data->flags,
- * otherwise compares alphabetically based on fullPathName.
+ * otherwise compares alphabetically.
  * @param left - Pointer to the first t_file structure to compare.
  * @param right - Pointer to the second t_file structure to compare.
  * @return A negative value if left should precede right, a positive value if right should precede left,

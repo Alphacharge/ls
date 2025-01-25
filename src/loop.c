@@ -32,7 +32,7 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 		// If recursive, generate child trees for directories
 		if (F_ISSET((*(*data)->flags), F_RECURSIVE))
 		{
-			if (SYSTEM > 0) //reset alignment for BSD, GNU aligness to max value
+			if (SYSTEM == 2) //reset alignment for BSD, GNU aligness to max value
 				maxFileNameLength = maxLinks = maxBytes = maxUserLength = maxGroupLength = totalBlocks = 0;
 			t_file *current = *treelvl;
 			while (current)
@@ -139,8 +139,6 @@ void	loop(t_data **data, t_file **treelvl, char *path, DIR *ref)
 					ft_free_tree(new);
 					ft_error(*data, 1);
 				}
-				if (DEBUGLVL > 0)
-					ft_printf("%snstatlinks:%d,\tcurrentmaxlinks:%d\n%s", RED, new->stat.st_nlink, maxLinks, WHITE);
 				if (new->stat.st_nlink > maxLinks) {
 					maxLinks = new->stat.st_nlink;
 					new->maxLinks = new->stat.st_nlink;
