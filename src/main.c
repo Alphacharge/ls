@@ -40,8 +40,7 @@ int main(int argc, char** argv) {
 	while (current != NULL) {
 		DIR	*dir = opendir(current->fullPathName);
 		if (dir == NULL){
-			ft_printf("%s:\n", current->fullPathName);
-			ft_printf("ft_ls: %s", strerror(errno));
+			ft_printf("ft_ls: %s: %s\n", current->fileName, strerror(errno));
 			current = current->next;
 			continue;
 		}
@@ -56,9 +55,3 @@ int main(int argc, char** argv) {
 	ft_free((void**)&data);
 	return 0;
 }
-
-
-//listxattr --> fixed by >0 ???
-//sticky bit
-//error if option appears after arg
-//error if option not exists
