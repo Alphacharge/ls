@@ -40,7 +40,7 @@
 #  define TIME_NSEC stat.st_mtimespec.tv_nsec
 #  define LISTXATTR listxattr(this->fullPathName, buffer, sizeof(buffer), 0)
 #  define BLOCK_SIZE 1
-#  define NAME_TO_SORT lowercaseName
+#  define NAME_TO_SORT fileName
 #  define SYSTEM 2
 # endif
 
@@ -89,7 +89,6 @@ typedef struct s_data
 /*----------------------------------------------------------------------------*/
 # define TAB_WIDTH 4
 # define MAX_XATTR_SIZE 4096
-# define DEBUGLVL 0
 # define SKIP_DOT(name) (!isSpecialDir(name) && isDotfile(name)) ? &name[1] : name
 
 /*----------------------------------------------------------------------------*/
@@ -100,12 +99,12 @@ typedef struct s_data
 # define F_REVERSE		(1 << 2)	//-r
 # define F_RECURSIVE	(1 << 3)	//-R
 # define F_MTIME		(1 << 4)	//-t
-# define F_ATIME		(1 << 5)	//-u
-# define F_UNSORTED		(1 << 6)	//-f
-# define F_GROUP		(1 << 7)	//-g
-# define F_DIR			(1 << 8)	//-d
-# define F_NUMID		(1 << 9)	//-n
-# define F_COLOR		(1 << 10)	//-G
+// # define F_ATIME		(1 << 5)	//-u
+// # define F_UNSORTED	(1 << 6)	//-f
+// # define F_GROUP		(1 << 7)	//-g
+// # define F_DIR		(1 << 8)	//-d
+// # define F_NUMID		(1 << 9)	//-n
+// # define F_COLOR		(1 << 10)	//-G
 # define F_STDOUT		(1 << 11)	//flag to recognize output 1 stdout 0 pipe or file
 
 # define F_SET(mask, flag)		((mask) |= (flag))
@@ -117,13 +116,13 @@ typedef struct s_data
 /*----------------------------------------------------------------------------*/
 # define SORT_BY_ALPHA(left, right) \
 	(F_ISSET(*(left)->data->flags, F_REVERSE) \
-	? strcoll(SKIP_DOT((left)->NAME_TO_SORT), SKIP_DOT((right)->NAME_TO_SORT)) > 0 \
-	: strcoll(SKIP_DOT((left)->NAME_TO_SORT), SKIP_DOT((right)->NAME_TO_SORT)) < 0 )
+		? strcoll(SKIP_DOT((left)->NAME_TO_SORT), SKIP_DOT((right)->NAME_TO_SORT)) > 0 \
+		: strcoll(SKIP_DOT((left)->NAME_TO_SORT), SKIP_DOT((right)->NAME_TO_SORT)) < 0 )
 
 # define SORTDIR(left, right) \
 	((F_ISSET(*(left)->data->flags, F_MTIME)) \
-	? (sortByMtime(left, right)) \
-	: (SORT_BY_ALPHA(left, right)))
+		? (sortByMtime(left, right)) \
+		: (SORT_BY_ALPHA(left, right)))
 
 /*----------------------------------------------------------------------------*/
 /*-------------------------FUNCTION PROTOTYPES--------------------------------*/
