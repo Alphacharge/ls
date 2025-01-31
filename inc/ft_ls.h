@@ -89,7 +89,6 @@ typedef struct s_data
 /*----------------------------------------------------------------------------*/
 # define TAB_WIDTH 4
 # define MAX_XATTR_SIZE 4096
-# define SKIP_DOT(name) (!isSpecialDir(name) && isDotfile(name)) ? &name[1] : name
 
 /*----------------------------------------------------------------------------*/
 /*-----------------------------OPTIONS BITMASK--------------------------------*/
@@ -116,8 +115,8 @@ typedef struct s_data
 /*----------------------------------------------------------------------------*/
 # define SORT_BY_ALPHA(left, right) \
 	(F_ISSET(*(left)->data->flags, F_REVERSE) \
-		? strcoll(SKIP_DOT((left)->NAME_TO_SORT), SKIP_DOT((right)->NAME_TO_SORT)) > 0 \
-		: strcoll(SKIP_DOT((left)->NAME_TO_SORT), SKIP_DOT((right)->NAME_TO_SORT)) < 0 )
+		? strcoll((left)->NAME_TO_SORT, (right)->NAME_TO_SORT) > 0 \
+		: strcoll((left)->NAME_TO_SORT, (right)->NAME_TO_SORT) < 0 )
 
 # define SORTDIR(left, right) \
 	((F_ISSET(*(left)->data->flags, F_MTIME)) \
