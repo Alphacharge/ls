@@ -44,7 +44,7 @@ int main(int argc, char** argv) {
 			current = current->next;
 			continue;
 		}
-		if (data->folders->next || F_ISSET(*data->flags, F_RECURSIVE))
+		if ((data->folders->next || F_ISSET(*data->flags, F_RECURSIVE)) && ft_strcmp(current->fullPathName, "."))
 			ft_printf("%s:\n", current->fullPathName);
 		loop(&data, NULL, current->fullPathName, dir);
 		if (!isSpecialDir(current->fullPathName) && current->next != NULL)
