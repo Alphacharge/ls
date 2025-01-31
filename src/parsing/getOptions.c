@@ -5,7 +5,7 @@
  * @param data - Pointer to the data structure holding program flags.
  * @param argv - String of characters representing command-line options.
  */
-void	getOptions(t_data *data, char* argv)
+void	getOptions(t_data *data, char *argv)
 {
 	while (data && argv && *argv)
 	{
