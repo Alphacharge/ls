@@ -7,7 +7,7 @@
 void	printLongTreelvl(t_file **tree)
 {
 	t_file	*this = *tree;
-	char	permissions[11];
+	char	permissions[12];
 	char	*month;
 	
 	ft_printf("total %d\n", this->totalBlocks);
@@ -52,9 +52,10 @@ void	printLongTreelvl(t_file **tree)
 		char	buffer[MAX_XATTR_SIZE];
 		if (LISTXATTR > 0)
 			permissions[10] = '@';
+		permissions[11] = ' ';
 
 		// Print: permissions, linkcount, userpem, grouppem, filesize
-		write(STDOUT_FILENO, permissions, 11);
+		write(STDOUT_FILENO, permissions, 12);
 		printValue(&this, this->maxLinks, 1);
 		printUserGroup(this->userLength, this->maxUserLength, this->userName);
 		printUserGroup(this->groupLength, this->maxGroupLength, this->groupName);
