@@ -7,9 +7,7 @@
  */
 bool	isDotfile(char *fileName)
 {
-	if (!fileName)
-		return false;
-	if (fileName[0] == '.')
+	if (fileName && fileName[0] == '.')
 		return true;
 	return false;
 }
